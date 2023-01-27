@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import AuthStack from './AuthStack';
 import Splash from '../screens/Splash';
+import OnBoardStack from './OnBoardStack';
 
 
 
@@ -27,15 +28,7 @@ const RootNavigation = props => {
         loading: true,
     })
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            setState({ loading: false })
-        }, 1000);
-    }, [props]);
 
-    // if (state.loading) {
-    //     return <Splash />;
-    // }
 
     return (
 
@@ -50,6 +43,14 @@ const RootNavigation = props => {
                         component={AuthStack}
                         options={{ headerShown: false }}
                     />
+
+                    <Stack.Screen
+                        name="onboard"
+                        component={OnBoardStack}
+                        options={{ headerShown: false }}
+                    />
+
+
 
                 </Stack.Navigator>
 

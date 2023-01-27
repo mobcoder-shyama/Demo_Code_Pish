@@ -1,29 +1,17 @@
 import React from 'react';
 import {View,Text, StyleSheet} from 'react-native';
-import Colors from '../constant/Colors';
-import { SvgXml } from 'react-native-svg';
-import { Splash_Logo,Heart_Icon } from '../assests/svg/AuthSvg';
-
-const Splash=(props)=>{
+import Colors from '../../constant/Colors';
 
 
-    React.useEffect(() => {
-        setTimeout(() => {
-           props.navigation.replace('welcome')
-        }, 1000);
-    }, [props]);
+const Walkthrough_Two=(props)=>{
 
-    
-
-    return(
+     return(
         <View style={styles.container}>
 
-            <SvgXml xml={Splash_Logo} height={147} width={140} />
+          
 
             <View style={styles.bottomView}>
-               <Text style={styles.textStyle}>Crafted with </Text>
-                <SvgXml xml={Heart_Icon} height={12} width={13} />
-               <Text style={styles.textStyle}> in New Delhi, India</Text>
+                  <Text>Walkthrough 2</Text>
             </View>
 
 
@@ -50,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: 20, //Here is the trick
+        bottom: 50, //Here is the trick
         flexDirection:'row'
       },
       textStyle: {
@@ -61,4 +49,4 @@ const styles = StyleSheet.create({
       },
 })
 
-export default Splash;
+export default Walkthrough_Two;

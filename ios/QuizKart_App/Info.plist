@@ -24,6 +24,25 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>UIAppFonts</key>
+  <array>
+    <string>Gilroy-Black.ttf</string>
+    <string>Gilroy-BlackItalic.ttf</string>
+    <string>Gilroy-Bold.ttf</string>
+    <string>Gilroy-BoldItalic.ttf</string>
+    <string>Gilroy-Extrabold.ttf</string>
+    <string>Gilroy-ExtraboldItalic.ttf</string>
+    <string>Gilroy-MediumItalic.ttf</string>
+    <string>Gilroy-Regular.ttf</string>
+    <string>Gilroy-RegularItalic.ttf</string>
+    <string>Gilroy-SemiBold.ttf</string>
+    <string>Gilroy-SemiBoldItalic.ttf</string>
+    <string>Gilroy-Thin.ttf</string>
+    <string>Gilroy-ThinItalic.ttf</string>
+    <string>Gilroy-UltraLight.ttf</string>
+    <string>Gilroy-UltraLightItalic.ttf</string>
+   
+  </array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

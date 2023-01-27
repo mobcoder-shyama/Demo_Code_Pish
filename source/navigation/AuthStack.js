@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from '../screens/authentication/Login';
 import Splash from '../screens/Splash';
+import WelcomeScreen from '../screens/Welcome';
+import OnBoardStack from './OnBoardStack';
 
 
 
@@ -26,8 +28,11 @@ const Stack = createNativeStackNavigator();
 const AuthStack = () => {
 
   return (
-      <Stack.Navigator initialRouteName={'login'} headerMode="none">
-          <Stack.Screen name="login" component={Splash}  options={{ headerShown: false }} /> 
+      <Stack.Navigator initialRouteName={'splash'} headerMode="none">
+          <Stack.Screen name="splash" component={Splash} options={{ headerShown: false }} /> 
+          <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false }} /> 
+          <Stack.Screen name="walkthrough" component={OnBoardStack} options={{ headerShown: false }} /> 
+          <Stack.Screen name="login" component={Login}  options={{ headerShown: false }} /> 
         
       
       </Stack.Navigator>
