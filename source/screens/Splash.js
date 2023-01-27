@@ -6,6 +6,8 @@ import { Splash_Logo,Heart_Icon } from '../assests/svg/AuthSvg';
 
 const Splash=(props)=>{
 
+    
+
     return(
         <View style={styles.container}>
 
@@ -14,8 +16,11 @@ const Splash=(props)=>{
             <View style={styles.bottomView}>
                <Text style={styles.textStyle}>Crafted with </Text>
                 <SvgXml xml={Heart_Icon} height={12} width={13} />
-               <Text style={styles.textStyle}> in New Delhi, Indiah</Text>
+               <Text style={styles.textStyle}> in New Delhi, India</Text>
             </View>
+
+
+
 
        </View>
     )
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
       },
       textStyle: {
         color: '#FFFFFF',
-        fontWeight:'400',
+        //fontWeight:'bold',
         fontSize: 13,
         fontFamily:'Gilroy'
       },
