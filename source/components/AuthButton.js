@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { SvgXml } from 'react-native-svg';
+import { NextArrow, WhiteArrow } from '../assests/svg/AuthSvg';
 const { width, height } = Dimensions.get('window')
 
 const AuthButton = (props) => {
@@ -21,6 +23,8 @@ const AuthButton = (props) => {
                     <Text style={styles.buttonText}>
                         {props?.title}
                     </Text>
+                    <SvgXml xml={WhiteArrow} height={20} width={20} style={{left:10}} />
+
                 </LinearGradient>
 
             </TouchableOpacity>
@@ -40,7 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 45,
         justifyContent: 'center',
-        borderRadius: 8
+        borderRadius: 8,
+        flexDirection:'row'
     },
     buttonText: {
         fontSize: 16,

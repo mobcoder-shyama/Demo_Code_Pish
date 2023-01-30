@@ -4,7 +4,12 @@ export default {
     },
     textColor:{
         white:'#FFFFFF'
-    }
+    },
+    border:{
+        gray:'#E5E5F3',
+        white:'#FFFFFF',
+        skyBlue:'#2DA5FE',
+    },
     
     
 }

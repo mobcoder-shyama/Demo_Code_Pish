@@ -1,58 +1,96 @@
 import React from 'react';
-import {View,Text, StyleSheet} from 'react-native';
+import { View, ImageBackground, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import AuthButton from '../components/AuthButton';
 
-const WelcomeScreen=(props)=>{
 
-   const getStarted=()=>{
-      props.navigation.replace('walkthrough')
-   }
-   
 
-    return(
-        <View style={styles.container}>
+const WelcomeScreen = (props) => {
 
-          
+    const getStarted = () => {
+        props.navigation.replace('walkthrough')
 
-            <View style={styles.bottomView}>
-               <AuthButton type={2} onpress={()=>getStarted()} title={'Get started'}/>
+    }
+    const renderStartButton = () => {
+        return (
+            <View style={styles.bottomBtnView}>
+                <AuthButton type={2} onpress={() => getStarted()} title={'Get started'} />
             </View>
+        )
+    }
+
+    const renderTextContainer = () => {
+        return (
+            <View style={styles.bottomTextView}>
+                {/* Nested Text View */}
+                <Text style={styles.bottomTextTitle}>
+                    <Text>welcome{'\n'}</Text>
+                    <Text>to </Text>
+                    <Text style={{ fontWeight: 'bold' }}>quiz</Text>
+                    <Text>kart</Text>
+                </Text>
+
+                {/* SubTitle Text View */}
+
+                <Text style={styles.bottomSubTitle}>play and win fantasy prizes.</Text>
+
+            </View>
+        )
+    }
 
 
+    return (
+        <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'cover'}>
+            <TouchableOpacity onPress={()=>props.navigation.replace('login')} style={{height:24,width:64,backgroundColor:'#FB8C00',marginTop:52,borderRadius:20,alignItems:'center',justifyContent:'center',alignSelf:'flex-end',right:20}}>
+                  <Text style={{color:'#FFFFFF',fontFamily:'Gilroy',fontSize:13}}>Skip</Text>
+            </TouchableOpacity>
+            {renderTextContainer()}
+            {renderStartButton()}
+        </ImageBackground>
 
-
-       </View>
     )
-   
-  
+
+
 
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:Colors.background.dark_black,
-        alignItems:'center',
-        justifyContent:'center'
+    container: {
+        flex: 1,
+        backgroundColor: Colors.background.dark_black,
+        alignItems: 'center',
+        justifyContent: 'center'
 
     },
-    bottomView: {
+    bottomTextView: {
+        width: '100%',
+        height: 100,
+        position: 'absolute', //Here is the trick
+        bottom: 182, //Here is the trick
+        paddingHorizontal: 20
+    },
+    bottomBtnView: {
         width: '100%',
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
         bottom: 50, //Here is the trick
-        flexDirection:'row'
-      },
-      textStyle: {
+        flexDirection: 'row'
+    },
+    bottomTextTitle: {
+        fontSize: 40, fontFamily: 'Gilroy', color: '#FFFFFF', fontWeight: 400, lineHeight: 46, letterSpacing: 0.5,
+    },
+    bottomSubTitle: {
+        fontFamily: 'Gilroy', fontSize: 16, color: '#FFFFFF', marginTop: 6
+    },
+    textStyle: {
         color: '#FFFFFF',
-        fontWeight:'400',
+        fontWeight: '400',
         fontSize: 13,
-        fontFamily:'Gilroy'
-      },
+        fontFamily: 'Gilroy'
+    },
 })
 
 export default WelcomeScreen;
