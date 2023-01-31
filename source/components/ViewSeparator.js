@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet,View, } from 'react-native';
+import { SCREEN_WIDTH } from '../constant/Dimensions';
 
 
 const ViewSeparator = (props) => {
@@ -10,7 +11,7 @@ const ViewSeparator = (props) => {
 const ViewSeparatorStyles=StyleSheet.create({
     container:{
         height: 0.5,
-        width: "100%",
+        width:SCREEN_WIDTH-25,
         alignSelf: 'center',
         backgroundColor: "grey"
     }

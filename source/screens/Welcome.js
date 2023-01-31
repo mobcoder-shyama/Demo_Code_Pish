@@ -15,7 +15,7 @@ const WelcomeScreen = (props) => {
     const renderStartButton = () => {
         return (
             <View style={styles.bottomBtnView}>
-                <AuthButton type={2} onpress={() => getStarted()} title={'Get started'} />
+                <AuthButton type={2} onpress={() => getStarted()} title={'Get started'} isArrow={true} />
             </View>
         )
     }

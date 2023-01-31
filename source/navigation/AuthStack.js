@@ -10,6 +10,8 @@ import Splash from '../screens/Splash';
 import WelcomeScreen from '../screens/Welcome';
 import OnBoardStack from './OnBoardStack';
 import OnBoarding from '../screens/walkthrough/OnBoarding';
+import LoginWithEmail from '../screens/authentication/LoginWithEmail';
+import LoginEmailSuccess from '../screens/authentication/LoginEmailSuccess';
 
 
 
@@ -34,6 +36,10 @@ const AuthStack = () => {
           <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false }} /> 
           <Stack.Screen name="walkthrough" component={OnBoarding} options={{ headerShown: false }} /> 
           <Stack.Screen name="login" component={Login}  options={{ headerShown: false }} /> 
+          <Stack.Screen name="login_with_email" component={LoginWithEmail}  options={{ headerShown: false,animation:'slide_from_bottom' }} /> 
+          <Stack.Screen name="login_email_success" component={LoginEmailSuccess}  options={{ headerShown: false }} /> 
+
+          
         
       
       </Stack.Navigator>

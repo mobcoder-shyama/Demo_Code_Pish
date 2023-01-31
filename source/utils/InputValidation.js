@@ -2,10 +2,10 @@ export function validEmail(emailText){
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
     if(reg.test(emailText) === false)
     {
-        return true;
+        return false;
     }
     else {
-      return false;
+      return true;
     }
 }
 
@@ -29,4 +29,15 @@ export function validOTP(otp){
     } else {
         return true;
     }
+}
+
+export function emailEncraptionFormat(email){
+    var f_name   = email.substring(0,1,email.lastIndexOf("@"));
+    var l_name   = email.substring(1,email.lastIndexOf("@"));
+    var l_index = l_name.substring(l_name.length-1)
+    var domain = email.substring(email.lastIndexOf("@")+1);
+    let returnVal = f_name+"*****"+l_index+"@"+domain
+    console.log("emailEncraptionFormat-------",l_index)
+    return returnVal
+    
 }

@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './AuthStack';
 import Splash from '../screens/Splash';
 import OnBoardStack from './OnBoardStack';
+import Terms from '../screens/authentication/Terms';
 
 
 
@@ -48,6 +49,12 @@ const RootNavigation = props => {
                         name="onboard"
                         component={OnBoardStack}
                         options={{ headerShown: false }}
+                    />
+
+                    <Stack.Screen
+                        name="terms"
+                        component={Terms}
+                        options={{ headerShown: false,animation:'slide_from_bottom' }}
                     />
 
 

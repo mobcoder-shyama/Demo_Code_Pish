@@ -14,11 +14,17 @@ import {
   LogBox
 } from 'react-native';
 import RootNavigation from './navigation/RootNavigation';
-
 LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
+let oldRender = Text.render;
+Text.render = function (...args) {
+    let origin = oldRender.call(this, ...args);
+    return React.cloneElement(origin, {
+        style: [{fontFamily: 'Gilroy'}, origin.props.style]
+    });
+}
 
 
 

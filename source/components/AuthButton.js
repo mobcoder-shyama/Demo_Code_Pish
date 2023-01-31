@@ -23,7 +23,7 @@ const AuthButton = (props) => {
                     <Text style={styles.buttonText}>
                         {props?.title}
                     </Text>
-                    <SvgXml xml={WhiteArrow} height={20} width={20} style={{left:10}} />
+                    { props?.isArrow && <SvgXml xml={WhiteArrow} height={20} width={20} style={{left:10}} />}
 
                 </LinearGradient>
 
