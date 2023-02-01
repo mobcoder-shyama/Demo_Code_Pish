@@ -11,6 +11,7 @@ import AuthStack from './AuthStack';
 import Splash from '../screens/Splash';
 import OnBoardStack from './OnBoardStack';
 import Terms from '../screens/authentication/Terms';
+import TabStack from './TabStack';
 
 
 
@@ -45,6 +46,13 @@ const RootNavigation = props => {
                         options={{ headerShown: false }}
                     />
 
+
+                    <Stack.Screen
+                        name="tabs"
+                        component={TabStack}
+                        options={{ headerShown: false }}
+                    />
+
                     <Stack.Screen
                         name="onboard"
                         component={OnBoardStack}
@@ -54,7 +62,7 @@ const RootNavigation = props => {
                     <Stack.Screen
                         name="terms"
                         component={Terms}
-                        options={{ headerShown: false,animation:'slide_from_bottom' }}
+                        options={{ headerShown: false, animation: 'slide_from_bottom' }}
                     />
 
 

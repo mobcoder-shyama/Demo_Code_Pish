@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, StyleSheet, Dimensions, ScrollView, Text, TouchableOpacity, TextInput, ImageBackground, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Animated, StyleSheet, Dimensions, ScrollView, Text, TouchableOpacity, TextInput, ImageBackground, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { GreyEmailIcon, WinFantasyIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -8,91 +8,105 @@ import Header from '../../components/Header';
 import ViewSeparator from '../../components/ViewSeparator';
 import Colors from '../../constant/Colors';
 const { width, height } = Dimensions.get('window');
-import {validEmail} from '../../utils/InputValidation';
+import { validEmail } from '../../utils/InputValidation';
 
-export const useDebunceEffect=(effect,deps,delay)=>{
-    useEffect(()=>{
-      const handler = setTimeout(()=>effect(),delay)
-      return () => clearTimeout(handler);
-     },[...deps || [],delay])
- }
+export const useDebunceEffect = (effect, deps, delay) => {
+    useEffect(() => {
+        const handler = setTimeout(() => effect(), delay)
+        return () => clearTimeout(handler);
+    }, [...deps || [], delay])
+}
 
 const LoginWithEmail = (props) => {
 
     const [email, setEmail] = React.useState("");
-    const[isValidEmail,setEmailValidate] = React.useState(false);
+    const [isValidEmail, setEmailValidate] = React.useState(false);
+    const [emailFocus, setEmailFocus] = React.useState(false);
 
-   
-    useDebunceEffect(()=>{
-        if(email.length != 0){
-           let isValid = validEmail(email);
-           setEmailValidate(isValid);
-           console.log("isValid ---------",isValid)
+
+    useDebunceEffect(() => {
+        if (email.length != 0) {
+            let isValid = validEmail(email);
+            setEmailValidate(isValid);
+            console.log("isValid ---------", isValid)
         }
-         
-    },[email],500)
-   
 
-  
+    }, [email], 500)
+
+    const onBlurInput = () => {
+        email.length === 0 && setEmailFocus(false)
+
+    }
+
+
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container}>
+            <View style={styles.container}>
 
-            <View style={{marginTop:60,alignSelf:'center'}}>
+                <View style={{ marginTop: 60, alignSelf: 'center' }}>
 
-                <Header title={'Continue with Email'} navigation={props.navigation}/>
+                    <Header title={'Continue with Email'} navigation={props.navigation} />
 
-                <View style={styles.inputContainer}>
-                
+                    <View style={styles.inputContainer}>
 
-                <TextInput
-                    style={{color:'white',fontSize:16, borderBottomWidth : 1.0,fontSize:16,
-                    borderBottomColor:'#757575'}}
-                    placeholder="Enter email"
-                    placeholderTextColor={'#757575'}
-                    keyboardType="email-address"
-                    maxLength={50}
-                    value={email}
-                    onChangeText={(text)=>setEmail(text)}
-                    returnKeyType={'send'}
-                />
+                        {emailFocus && <Animated.Text  style={[{ color: 'grey',bottom:5,fontSize: 16, }]}>
+                            Enter email
+                        </Animated.Text>}
 
 
-             
+                        <TextInput
+                            style={{
+                                color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
+                                borderBottomColor: '#757575'
+                            }}
+                            placeholder={!emailFocus ? "Enter email" : ''}
+                            placeholderTextColor={'#757575'}
+                            keyboardType="email-address"
+                            maxLength={50}
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => onBlurInput()}
+                            returnKeyType={'send'}
+                        />
+
+
+
+
+                    </View>
+
+                    {!isValidEmail && <DisableButton type={2} title={'Send OTP'} />}
+                    {isValidEmail && <AuthButton onpress={() => props.navigation.navigate('login_email_success', { 'email': email })} type={2} title={'Send OTP'} isArrow={false} />}
 
                 </View>
 
-                 {!isValidEmail && <DisableButton type={2} title={'Send OTP'}/>}
-                 {isValidEmail && <AuthButton onpress={()=>props.navigation.navigate('login_email_success',{'email':email})} type={2} title={'Send OTP'} isArrow={false} />}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </View>
-
-         
-
-         
-
-
-               
-
-          
-
-
-        
-
-
-
-
-
-
-         
-
-
-
-
-
-
-
-        </View>
         </TouchableWithoutFeedback>
     )
 
@@ -104,7 +118,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background.dark_black,
-    
+
 
     },
     emailContainer: {

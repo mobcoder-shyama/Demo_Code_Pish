@@ -11,7 +11,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Text,
-  LogBox
+  LogBox,
 } from 'react-native';
 import RootNavigation from './navigation/RootNavigation';
 LogBox.ignoreLogs(['Warning: ...']);

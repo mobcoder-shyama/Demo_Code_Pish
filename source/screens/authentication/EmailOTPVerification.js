@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { ClockIcon, GreyEmailIcon, WinFantasyIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -10,16 +10,18 @@ import Colors from '../../constant/Colors';
 const { width, height } = Dimensions.get('window');
 import BackgroundTimer from "react-native-background-timer"
 import { emailEncraptionFormat } from '../../utils/InputValidation';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
 
 
 
 
 
-const LoginEmailSuccess = (props) => {
+const EmailOTPVerification = (props) => {
 
 
     const [secondsLeft, setSecondsLeft] = useState(60);
     const [isResendOTP, setResendOTP] = useState(false);
+    const [otp, setOTP] = useState('');
     const sendEmail = props?.route?.parmas?.email;
     console.log("props valuesss", props?.route?.params?.email)
 
@@ -47,7 +49,6 @@ const LoginEmailSuccess = (props) => {
     }
 
     const clockify = () => {
-        let hours = Math.floor(secondsLeft / 60 / 60)
         let mins = Math.floor((secondsLeft / 60) % 60)
         let seconds = Math.floor(secondsLeft % 60)
         let displayMins = mins < 10 ? `0${mins}` : mins
@@ -58,47 +59,67 @@ const LoginEmailSuccess = (props) => {
         }
     }
 
+    const resendOTP = () => {
+        //setResendOTP(!isResendOTP)
+        startTimer()
+    }
+
+    const renderResendView = () => {
+        return (
+            <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width: width - 25, height: 45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
+                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize: 16 }}>Resend link</Text>
+                {!isResendOTP && <Text style={{ color: '#757575', margin: 8, fontSize: 16 }}> {clockify().displayMins}:{clockify().displaySecs}</Text>}
+            </TouchableOpacity>
+
+        )
+    }
+
+    const updateCode = (value) => {
+        let otpValue = otp + value;
+        console.log("otpValue------", otpValue)
+        otpValue?.length == 6 && setOTP(otpValue);
+
+    }
+
 
     return (
         <View style={styles.container}>
 
             <View style={{ marginTop: 60, alignSelf: 'center' }}>
 
-                <Header title={''} navigation={props.navigation} />
+                <Header title={'Login with OTP'} navigation={props.navigation} />
 
-                <View style={{ flex: 1,  alignItems: 'center',marginTop:88 }}>
+                <View style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
 
-                   
-                    <Image source={require('../../assests/gif/mailSend.gif')} style={{height:172,width:172}}/>
 
-                    <Text style={{ color: '#FFFFFF',fontSize:24,fontFamily:'Gilroy',fontWeight:700,marginTop:25 }}>Check your email</Text>
-                   
-                    <View style={{width:width-38,marginTop:10}}>
-                    
-                     <Text style={{ fontFamily:'Gilroy',color: '#FFFFFF',textAlign:'center',fontSize:16,fontWeight:600,lineHeight:20,letterSpacing:0.2 }}>To confirm your email address, please tap the button in the email we sent to{'\n'}{emailEncraptionFormat(props?.route?.params?.email)}</Text>
+                    <View style={{ width: width - 38, marginTop: 0 }}>
+
+                        <Text style={{ fontFamily: 'Gilroy', color: '#FFFFFF', textAlign: 'center', fontSize: 16, fontWeight: 600, lineHeight: 20, letterSpacing: 0.2 }}>To confirm your email address, please tap the button in the email we sent to{'\n'}{emailEncraptionFormat(props?.route?.params?.email)}</Text>
 
                     </View>
 
-                    {<AuthButton type={2} title={'Or Manually Enter OTP'} isArrow={false}  onpress={()=>props.navigation.navigate('email_otp_verification',{'email':props?.route?.params?.email})}/>}
 
-                    <View style={{ alignItems: 'center', marginTop: 40 }}>
+                    <OTPInputView
+                        autoFocusOnLoad
+                        selectionColor='white'
+                        pinCount={6}
+                        secureTextEntry={false}
+                        style={{ width: width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
+                        codeInputFieldStyle={styles.otpBoxStyle}
+                        onCodeChanged={(text) => updateCode(text)}
+                        keyboardAppearance={'light'}
+                    />
 
-                        {!isResendOTP && <Text style={{ color: '#757575' }}>Resend link</Text>}
-
-                        {isResendOTP && <TouchableOpacity onPress={() => startTimer()}>
-                            <Text style={{ color: '#FFFFFF' }}>Resend link</Text>
-                        </TouchableOpacity>}
+                    <View style={{ marginTop: 28 }} />
 
 
+                    {<AuthButton type={2} title={'Login'} isArrow={false} />}
 
-                        <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
-                            <SvgXml xml={ClockIcon} height={20} width={20} />
-                            <Text style={{ color: '#757575', margin: 8 }}>
-                                {clockify().displayMins}:{clockify().displaySecs}
-                            </Text>
+                    {renderResendView()}
 
-                        </View>
+                    <View style={{ alignItems: 'center', marginTop: 20 }}>
 
+                        <Text style={{ color: '#9945FF', fontFamily: 'Gilroy', lineHeight: 16, fontSize: 13, letterSpacing: 0.2 }}>Valid for 10 minutes {otp}  {otp?.length} </Text>
                     </View>
 
                 </View>
@@ -121,6 +142,19 @@ const styles = StyleSheet.create({
 
 
 
+    },
+    otpBoxStyle: {
+        width: 48,
+        height: 56,
+        borderWidth: 1,
+        borderRadius: 10,
+        zIndex: 5,
+        backgroundColor: 'transparent',
+        borderColor: '#424242',
+        fontSize: 20,
+        color: 'white',
+        textAlign: 'center',
+        //margin:14
     },
     emailContainer: {
         flexDirection: 'row',
@@ -179,4 +213,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LoginEmailSuccess;
+export default EmailOTPVerification;

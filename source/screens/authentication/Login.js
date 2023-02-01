@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback,ScrollView } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon } from '../../assests/svg/AuthSvg';
+import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
 import DisableButton from '../../components/DisableButton';
 import Colors from '../../constant/Colors';
@@ -9,18 +9,28 @@ const { width, height } = Dimensions.get('window');
 import { getFCMToken } from '../notification/NotificationHandler';
 import { isEmpty } from '../../utils/InputValidation'
 import SeparatorTextView from '../../components/SeparatorTextView';
+import { useDebunceEffect } from '../../utils/Effect';
 
 const Login = (props) => {
 
     const [state, setState] = useState({
         fcmToken: '',
-        // mobile:"gg"
+        isContinue: false,
     })
-    const [mobile, setMobile] = useState('')
+    const [mobile, setMobile] = useState('');
+    const [countryModal, setCountryModal] = useState(false);
+    const[searchText,setSearchText] = useState('');
 
     useEffect(() => {
         fcmToken();
     }, []);
+
+    useDebunceEffect(() => {
+        if (searchText.length != 0) {
+            Keyboard.dismiss();
+        }
+
+    }, [searchText], 500)
 
     const fcmToken = async () => {
         let token = await getFCMToken();
@@ -63,12 +73,13 @@ const Login = (props) => {
             </View>
         )
     }
-    // const {mobile} = state;
+
+    const { isContinue } = state;
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          
-           <View style={styles.container}>
+
+            <View style={styles.container}>
 
                 <ImageBackground source={require('../../assests/png/LoginBGImg.png')} resizeMode={'stretch'} style={{ height: 296, width: width }}>
 
@@ -101,32 +112,87 @@ const Login = (props) => {
 
 
 
-                <SeparatorTextView text={'Log in or sign up'}/>
+                {!isContinue && <SeparatorTextView text={'Log in or sign up'} />}
 
-                <View style={styles.inputContainer}>
+                {!isContinue &&
+                    <View style={styles.inputContainer}>
 
-                    {/* country code */}
-                    <View style={{ width: 76, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        <SvgXml xml={IndianFlagIcon} width={20} height={16} />
-                        <Text style={{ color: 'white', margin: 8, fontSize: 16, fontFamily: 'Gilroy' }}>+91</Text>
+                        {/* country code */}
+                        <TouchableOpacity onPress={() => setCountryModal(true)} style={{ width: 76, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <SvgXml xml={IndianFlagIcon} width={20} height={16} />
+                            <Text style={{ color: 'white', margin: 8, fontSize: 16, fontFamily: 'Gilroy' }}>+91</Text>
+                        </TouchableOpacity>
+
+                        <View style={{ height: 30, width: 1, backgroundColor: '#757575' }} />
+
+                        <TextInput
+                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16 }}
+                            placeholder="Enter mobile number"
+                            placeholderTextColor={'#757575'}
+                            value={mobile}
+                            onChangeText={(text) => setMobile(text)}
+                            keyboardType='phone-pad'
+                            maxLength={15}
+                            returnKeyType={'done'}
+                        />
+
+                    </View>}
+
+                <Modal
+                    animationType={'slide'}
+                    transparent={false}
+                    animationOutTiming={1000}
+                    visible={countryModal}
+                    
+                    onRequestClose={() => { console.log("Modal has been closed.") }}>
+                    {/*All views of Modal*/}
+                    <View style={styles.modal}>
+
+                        <View style={styles.modalContainer}>
+
+                            <TouchableOpacity hitSlop={{ top: 20, bottom: 20, left: 40, right: 40 }} onPress={() => setCountryModal(false)}>
+                                <SvgXml xml={WhiteBackArrow} style={{ transform: [{ rotate: '270deg' }], paddingHorizontal: 18 }} height={19.5} width={10.7} onPress={() => props.navigation.navigate('login')} />
+                            </TouchableOpacity>
+
+                        </View>
+
+
+                        <View style={styles.inputContainer}>
+
+                            {/* country code */}
+                            <TouchableOpacity onPress={() => setCountryModal(true)} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',paddingHorizontal:14 }}>
+                                <SvgXml xml={VioletSearchIcon} width={20.31} height={20.31} />
+                            </TouchableOpacity>
+
+
+                            <TextInput
+                                style={{ color: 'white',fontSize: 16 }}
+                                placeholder="Search by country name..."
+                                placeholderTextColor={'#757575'}
+                                value={searchText}
+                                onChangeText={(text) => setSearchText(text)}
+                                maxLength={15}
+                                returnKeyType={'search'}
+                            />
+
+                        </View>
+
+
                     </View>
 
-                    <View style={{ height: 30, width: 1, backgroundColor: '#757575' }} />
+                </Modal>
 
-                    <TextInput
-                        style={{ color: 'white', paddingHorizontal: 12, fontSize: 16 }}
-                        placeholder="Enter mobile number"
-                        placeholderTextColor={'#757575'}
-                        value={mobile}
-                        onChangeText={(text) => setMobile(text)}
-                        keyboardType='phone-pad'
-                        maxLength={15}
-                        returnKeyType={'done'}
-                    />
+                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 25 }}>
+                    <Text style={{ color: 'white', fontSize: 36, fontFamily: 'Gilroy' }}>+91 12334345345</Text>
+                    <Text style={{ color: 'white', fontSize: 16, fontFamily: 'Gilroy', marginTop: 12, fontWeight: 500 }}> Is this the correct number?</Text>
+                    <TouchableOpacity style={{ marginTop: 24 }} onPress={() => setState({ isContinue: false })}>
+                        <Text style={{ color: 'white', fontSize: 18, fontFamily: 'Gilroy', fontWeight: 600 }}>Edit</Text>
+                    </TouchableOpacity>
 
-                </View>
 
-                {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} />}
+                </View>}
+
+                {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => setState({ isContinue: true })} />}
 
                 {isEmpty(mobile) && <DisableButton type={2} title={'Continue'} />}
 
@@ -139,7 +205,7 @@ const Login = (props) => {
 
                 {/* {renderSeparatorView('Or')} */}
 
-                <SeparatorTextView text={'Or'}/>
+                <SeparatorTextView text={'Or'} />
 
                 {renderEmailView()}
 
@@ -181,7 +247,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         width: width - 25,
-        height: 45,
+        height: 48,
         alignSelf: 'center',
         //justifyContent: 'center',
         //justifyContent:'space-around',
@@ -224,6 +290,20 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontFamily: 'Gilroy',
         letterSpacing: 0.3
+    },
+    modal: {
+        flex: 1,
+        backgroundColor: 'black',
+
+    },
+    modalContainer: {
+        marginTop: 61,
+        width: width - 25,
+        height: 45,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
 })
 
