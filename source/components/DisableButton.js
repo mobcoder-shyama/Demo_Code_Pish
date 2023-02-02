@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { RFValue } from 'react-native-responsive-fontsize';
 const { width, height } = Dimensions.get('window')
 
 const DisableButton = (props) => {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     buttonText: {
-        fontSize: 16,
+        fontSize:RFValue(16),
         fontFamily: 'Gilroy',
         textAlign: 'center',
         margin: 10,

@@ -5,24 +5,30 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/dashboard/home/Home';
 import WishList from '../screens/dashboard/wishlist/WishList';
 import CampaignRanking from '../screens/dashboard/ranking/CampaignRanking';
-import LinearGradient from 'react-native-linear-gradient';
+import { SvgXml } from 'react-native-svg';
+import { Home_Active_Icon, Home_Inactive_Icon, Line_Icon, Question_Active_Icon, Question_Inactive_Icon, Ranking_Active_Icon, Ranking_Inactive_Icon, Search_Active_Icon, Search_Inactive_Icon, WishList_Active_Icon, WishList_Inactive_Icon } from '../assests/svg/MainSvg';
+import QuizRules from '../screens/dashboard/quiz_rules/QuizRules';
+import { SCREEN_WIDTH } from '../constant/Dimensions';
+import { FontFamily } from '../constant/FontFamily';
 
 const Tab = createBottomTabNavigator();
 
 
 const TabStack = () => {
 
-    const activeTabbar = (title) => {
+    const activeTabbar = (title, icon) => {
         return (
             <View style={{ alignItems: 'center' }}>
+                <SvgXml xml={icon} height={20} width={20} style={{bottom:10}} />
                 <Text style={[styles.activeTabTitle]}>{title}</Text>
             </View>
         )
     }
 
-    const inactiveTabbar = (title) => {
+    const inactiveTabbar = (title, icon) => {
         return (
             <View style={{ alignItems: 'center' }}>
+                <SvgXml xml={icon} height={20} width={20}  style={{bottom:0}}  />
                 <Text style={[styles.inactiveTabTitle]}>{title}</Text>
             </View>
         )
@@ -34,24 +40,12 @@ const TabStack = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: '#000000',
-                    height: 65,
-                    borderTopWidth:1,
-                    borderTopColor:'transparent'
+                    backgroundColor: 'black',
+                    height:125,
+                    borderTopWidth: 1,
+                    borderTopColor: 'transparent'
                 },
-                tabBarBackground: () => (
-                    <View style={{ flex: 1 }}>
-                       
-                        <LinearGradient
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 0 }}
-                            locations={[0,100,0]}
-                            colors={['#9945FF','#9945FF','#9945FF']}
-                            style={{ height: 1 }}
-                        />
-
-                    </View>
-                ),
+                tabBarBackground: () => (  <SvgXml xml={Line_Icon} height={20} width={SCREEN_WIDTH} /> ),
 
             }}
             tabBarOptions={{
@@ -78,20 +72,33 @@ const TabStack = () => {
             <Tab.Screen name={"home"} component={HomeScreen}
                 options={{
                     tabBarIcon: ({ focused, tintColor, color }) => (
-                        focused ? activeTabbar('Home') : inactiveTabbar('Home')),
+                        focused ? activeTabbar('Home', Home_Active_Icon) : inactiveTabbar('Home', Home_Inactive_Icon)),
                 }} />
+
+
+             <Tab.Screen name={"serch"} component={WishList}
+                options={{
+                    tabBarIcon: ({ focused, tintColor, color }) => (
+                        focused ? activeTabbar('Search', Search_Active_Icon) : inactiveTabbar('Search', Search_Inactive_Icon)),
+             }} />    
 
             <Tab.Screen name={"wishlist"} component={WishList}
                 options={{
                     tabBarIcon: ({ focused, tintColor, color }) => (
-                        focused ? activeTabbar('Wishlist') : inactiveTabbar('Wishlist')),
-                }} />
+                        focused ? activeTabbar('Wishlist', WishList_Active_Icon) : inactiveTabbar('Wishlist', WishList_Inactive_Icon)),
+             }} />
 
 
             <Tab.Screen name={"ranking"} component={CampaignRanking}
                 options={{
                     tabBarIcon: ({ focused, tintColor, color }) => (
-                        focused ? activeTabbar('Ranking') : inactiveTabbar('Ranking')),
+                        focused ? activeTabbar('Ranking', Ranking_Active_Icon) : inactiveTabbar('Ranking', Ranking_Inactive_Icon)),
+                }} />
+
+            <Tab.Screen name={"quiz_rules"} component={QuizRules}
+                options={{
+                    tabBarIcon: ({ focused, tintColor, color }) => (
+                        focused ? activeTabbar('Quiz Rules', Question_Active_Icon) : inactiveTabbar('Quiz Rules', Question_Inactive_Icon)),
                 }} />
 
         </Tab.Navigator>
@@ -102,10 +109,10 @@ const TabStack = () => {
 const styles = StyleSheet.create({
 
     inactiveTabTitle: {
-        opacity: 0.5, color: '#555555', fontSize: 12, fontWeight: '400'
+        opacity: 0.5, color: '#555555', fontSize: 12, fontWeight: '500',fontFamily:FontFamily['Gilroy'][500]
     },
     activeTabTitle: {
-        color: '#FFFFFF', fontSize: 12, fontWeight: '700'
+        color: '#FFFFFF', fontSize: 12, fontWeight: '500',fontFamily:FontFamily['Gilroy'][500]
     },
 })
 

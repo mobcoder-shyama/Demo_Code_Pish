@@ -5,6 +5,7 @@ platform :ios, min_ios_version_supported
 prepare_react_native_project!
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
+pod 'Firebase/Analytics'
 pod 'GoogleUtilities', :modular_headers => true
 pod 'FirebaseCore', :modular_headers => true
 

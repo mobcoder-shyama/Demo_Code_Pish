@@ -3,6 +3,7 @@ import {View,Text, StyleSheet} from 'react-native';
 import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import { Splash_Logo,Heart_Icon } from '../assests/svg/AuthSvg';
+import { FontFamily } from '../constant/FontFamily';
 
 const Splash=(props)=>{
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight:'400',
         fontSize: 13,
-        fontFamily:'Gilroy'
+        fontFamily:FontFamily['Gilroy'][400]
       },
 })
 

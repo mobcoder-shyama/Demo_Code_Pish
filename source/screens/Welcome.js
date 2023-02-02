@@ -3,6 +3,7 @@ import { View, ImageBackground, StyleSheet, Text, TouchableOpacity } from 'react
 import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import AuthButton from '../components/AuthButton';
+import { FontFamily } from '../constant/FontFamily';
 
 
 
@@ -42,8 +43,8 @@ const WelcomeScreen = (props) => {
 
     return (
         <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'cover'}>
-            <TouchableOpacity onPress={()=>props.navigation.replace('login')} style={{height:24,width:64,backgroundColor:'#FB8C00',marginTop:52,borderRadius:20,alignItems:'center',justifyContent:'center',alignSelf:'flex-end',right:20}}>
-                  <Text style={{color:'#FFFFFF',fontFamily:'Gilroy',fontSize:13}}>Skip</Text>
+            <TouchableOpacity onPress={()=>props.navigation.replace('login')} style={styles.skipButton}>
+                  <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
             {renderTextContainer()}
             {renderStartButton()}
@@ -80,17 +81,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     bottomTextTitle: {
-        fontSize: 40, fontFamily: 'Gilroy', color: '#FFFFFF', fontWeight: 400, lineHeight: 46, letterSpacing: 0.5,
+        fontSize: 40,fontFamily:FontFamily['Gilroy'][400], color: '#FFFFFF', fontWeight:'400', lineHeight: 46, letterSpacing: 0.5,
     },
     bottomSubTitle: {
-        fontFamily: 'Gilroy', fontSize: 16, color: '#FFFFFF', marginTop: 6
+        fontWeight: '400', fontSize: 16, color: '#FFFFFF', marginTop: 6, fontFamily:FontFamily['Gilroy'][400]
     },
     textStyle: {
         color: '#FFFFFF',
         fontWeight: '400',
         fontSize: 13,
-        fontFamily: 'Gilroy'
+        fontFamily:FontFamily['Gilroy'][400]
     },
+    skipButton:{
+        height:24,width:64,backgroundColor:'#FB8C00',marginTop:52,borderRadius:20,alignItems:'center',justifyContent:'center',alignSelf:'flex-end',right:20
+    },
+    skipText:{
+        color:'#FFFFFF',fontWeight:'500',fontSize:13, fontFamily:FontFamily['Gilroy'][500]
+    }
 })
 
 export default WelcomeScreen;

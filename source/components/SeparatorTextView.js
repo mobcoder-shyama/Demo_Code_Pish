@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { SCREEN_WIDTH } from '../constant/Dimensions';
+import { SCREEN_WIDTH,SCREEN_HEIGHT } from '../constant/Dimensions';
 
 
 const SeparatorTextView = (props) => {
 
     return (
-        <View style={{  width: SCREEN_WIDTH - 25,height:20,marginTop:28,alignSelf:'center'}}>
+        <View style={{  width: SCREEN_WIDTH - 25,height:20,marginTop:SCREEN_HEIGHT<600?14:28,alignSelf:'center'}}>
            
             <View style={SeparatorTextStyles.container} />
             

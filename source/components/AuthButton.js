@@ -1,8 +1,10 @@
 import React from 'react';
 import { Text, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgXml } from 'react-native-svg';
 import { NextArrow, WhiteArrow } from '../assests/svg/AuthSvg';
+import { FontFamily } from '../constant/FontFamily';
 const { width, height } = Dimensions.get('window')
 
 const AuthButton = (props) => {
@@ -48,13 +50,14 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     buttonText: {
-        fontSize: 16,
-        fontFamily: 'Gilroy',
+        fontSize:RFValue(16),
+        //fontFamily: 'Gilroy',
+        fontWeight:'600',
         textAlign: 'center',
         margin: 10,
         color: '#ffffff',
         backgroundColor: 'transparent',
-        fontWeight:'600'
+        fontFamily:FontFamily['Gilroy'][600]
     },
 })
 

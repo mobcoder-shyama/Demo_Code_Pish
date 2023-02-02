@@ -12,6 +12,8 @@ import Splash from '../screens/Splash';
 import OnBoardStack from './OnBoardStack';
 import Terms from '../screens/authentication/Terms';
 import TabStack from './TabStack';
+import WelcomeScreen from '../screens/Welcome';
+import OnBoarding from '../screens/walkthrough/OnBoarding';
 
 
 
@@ -38,7 +40,11 @@ const RootNavigation = props => {
 
             <NavigationContainer>
 
-                <Stack.Navigator headerMode="none" initialRouteName={'authstack'} options={{ headerShown: false }} >
+                <Stack.Navigator headerMode="none" initialRouteName={'splash'} options={{ headerShown: false }} >
+
+                    <Stack.Screen name="splash" component={Splash} options={{ headerShown: false }} />
+                    <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="walkthrough" component={OnBoarding} options={{ headerShown: false }} />
 
                     <Stack.Screen
                         name="authstack"

@@ -217,7 +217,7 @@ export default class SwiperComponent extends Component {
                 {lastScreen ? (
                     // Show this button on the last screen
                     // TODO: Add a handler that would send a user to your app after onboarding is complete
-                    <AuthButton title={'Lets win'} isArrow={true} onpress={() =>this.props.navigation.replace('login')} type={2} />
+                    <AuthButton title={'Lets win'} isArrow={true} onpress={() =>this.props.navigation.replace('authstack')} type={2} />
 
                 ) : (
 
