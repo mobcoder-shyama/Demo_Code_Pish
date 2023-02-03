@@ -19,7 +19,7 @@ const Walkthrough_One = (props) => {
         <PaginationIndicator screenIndex={1}/>
 
      
-       <View style={{position:'absolute',bottom:170,width:SCREEN_WIDTH-55,alignSelf:'center'}}>
+       <View style={{position:'absolute',bottom:SCREEN_HEIGHT<600?100:170,width:SCREEN_WIDTH-55,alignSelf:'center'}}>
        
 
         {/* Description Container */}

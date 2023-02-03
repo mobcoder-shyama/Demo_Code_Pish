@@ -7,6 +7,7 @@ import DisableButton from '../../components/DisableButton';
 import Header from '../../components/Header';
 import ViewSeparator from '../../components/ViewSeparator';
 import Colors from '../../constant/Colors';
+import { SCREEN_HEIGHT } from '../../constant/Dimensions';
 const { width, height } = Dimensions.get('window');
 import { validEmail } from '../../utils/InputValidation';
 
@@ -44,7 +45,7 @@ const LoginWithEmail = (props) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>
 
-                <View style={{ marginTop: 60, alignSelf: 'center' }}>
+                <View style={{ marginTop:SCREEN_HEIGHT<675?25:60, alignSelf: 'center' }}>
 
                     <Header title={'Continue with Email'} navigation={props.navigation} />
 

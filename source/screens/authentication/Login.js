@@ -12,6 +12,7 @@ import SeparatorTextView from '../../components/SeparatorTextView';
 import { useDebunceEffect } from '../../utils/Effect';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { FontFamily } from '../../constant/FontFamily';
+import { SCREEN_HEIGHT } from '../../constant/Dimensions';
 
 
 const Login = (props) => {
@@ -78,7 +79,7 @@ const Login = (props) => {
     }
 
     const handleLogin=()=>{
-        state?.isContinue? props.navigation.navigate('phone_otp_verification') : setState({isContinue:true})
+        state?.isContinue? props.navigation.navigate('phone_otp_verification',{'mobile':mobile}) : setState({isContinue:true})
        
       
     }
@@ -192,10 +193,10 @@ const Login = (props) => {
 
                 </Modal>
 
-                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 25 }}>
-                    <Text style={{ color: 'white', fontSize:RFValue(36),fontFamily:FontFamily['Gilroy'][700],fontWeight:700 }}>+91 12334345345</Text>
-                    <Text style={{ color: 'white', fontSize:RFValue(16), fontFamily: 'Gilroy', marginTop: 12, fontFamily:FontFamily['Gilroy'][500],fontWeight:500 }}> Is this the correct number?</Text>
-                    <TouchableOpacity style={{ marginTop: 24 }} onPress={() => setState({ isContinue: false })}>
+                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop:SCREEN_HEIGHT<600?14:25 }}>
+                    <Text style={{ color: 'white', fontSize:RFValue(36),fontFamily:FontFamily['Gilroy'][700],fontWeight:700 }}>+91 {mobile}</Text>
+                    <Text style={{ color: 'white', fontSize:RFValue(16), fontFamily: 'Gilroy', marginTop:SCREEN_HEIGHT<600?5:12, fontFamily:FontFamily['Gilroy'][500],fontWeight:500 }}> Is this the correct number?</Text>
+                    <TouchableOpacity style={{ marginTop: SCREEN_HEIGHT<600?15:24 }} onPress={() => setState({ isContinue: false })}>
                         <Text style={{ color: 'white', fontSize:RFValue(18), fontFamily:FontFamily['Gilroy'][600],fontWeight:600}}>Edit</Text>
                     </TouchableOpacity>
 

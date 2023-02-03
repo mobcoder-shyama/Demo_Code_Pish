@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get('window')
 
 const AuthButton = (props) => {
     let bg_color = props.type === 1 ? ['#F7E26F', '#EFB714', '#F576A6'] : props.type === 2 ? ['#9945FF', '#8752F3'] : ['#8076FE', '#5243FE']
+ 
     return (
         props.type === 1 ?
             <TouchableOpacity style={styles.container} onPress={props.onpress}>

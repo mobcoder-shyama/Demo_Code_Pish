@@ -223,7 +223,7 @@ export default class SwiperComponent extends Component {
 
                     <View style={{ flexDirection: 'row', justifyContent:'space-between', width: width - 55 }}>
 
-                        <TouchableOpacity  onPress={() => this.props.navigation.replace('login')}>
+                        <TouchableOpacity  onPress={() => this.props.navigation.replace('authstack')}>
                             <Text style={{
                                 fontSize: 16,
                                 color: '#FB8C00',

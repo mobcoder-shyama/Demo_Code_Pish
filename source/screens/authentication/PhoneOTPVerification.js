@@ -11,6 +11,9 @@ const { width, height } = Dimensions.get('window');
 import BackgroundTimer from "react-native-background-timer"
 import { emailEncraptionFormat } from '../../utils/InputValidation';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
+import { FontFamily } from '../../constant/FontFamily';
+import { SCREEN_HEIGHT } from '../../constant/Dimensions';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 
@@ -23,7 +26,7 @@ const PhoneOTPVerification = (props) => {
     const [isResendOTP, setResendOTP] = useState(false);
     const [otp, setOTP] = useState('');
     const sendEmail = props?.route?.parmas?.email;
-    console.log("props valuesss", props?.route?.params?.email)
+    console.log("props valuesss", props?.route?.params?.mobile)
 
 
     useEffect(() => {
@@ -66,9 +69,9 @@ const PhoneOTPVerification = (props) => {
 
     const renderResendView = () => {
         return (
-            <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width: width - 25, height: 45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
-                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize: 16 }}>Resend link</Text>
-                {!isResendOTP && <Text style={{ color: '#757575', margin: 8, fontSize: 16 }}> {clockify().displayMins}:{clockify().displaySecs}</Text>}
+            <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width:177, height:45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
+                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize:RFValue(16) }}>Resend SMS</Text>
+                {!isResendOTP && <Text style={{ color: '#757575', margin:5,fontSize:RFValue(16) }}>in {clockify().displayMins}:{clockify().displaySecs}</Text>}
             </TouchableOpacity>
 
         )
@@ -85,34 +88,35 @@ const PhoneOTPVerification = (props) => {
     return (
         <View style={styles.container}>
 
-            <View style={{ marginTop: 60, alignSelf: 'center' }}>
+            <View style={{ marginTop:SCREEN_HEIGHT<675?25:60, alignSelf: 'center' }}>
 
                 <Header title={''} navigation={props.navigation} />
 
+                <Text style={{ color: '#FFFFFF', fontFamily:FontFamily['Gilroy'][400],fontWeight:400, lineHeight: 24, fontSize:RFValue(20), letterSpacing: 0.2,paddingHorizontal:16 }} >Enter the 6-digit OTP sent to{'\n'}+91-{props?.route?.params?.mobile}</Text>
+
+
                 <View style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
+
 
                    <OTPInputView
                         autoFocusOnLoad
                         selectionColor='white'
                         pinCount={6}
                         secureTextEntry={false}
-                        style={{ width: width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
+                        style={{ width:SCREEN_HEIGHT<675?width-15:width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
                         codeInputFieldStyle={styles.otpBoxStyle}
                         onCodeChanged={(text) => updateCode(text)}
+                        onCodeFilled={()=>props.navigation.replace('tabs')}
                         keyboardAppearance={'light'}
                     />
 
                     <View style={{ marginTop: 28 }} />
 
-
-                    {<AuthButton type={2} title={'Login'} isArrow={false} />}
-
                     {renderResendView()}
 
-                    <View style={{ alignItems: 'center', marginTop: 20 }}>
-
-                        <Text style={{ color: '#9945FF', fontFamily: 'Gilroy', lineHeight: 16, fontSize: 13, letterSpacing: 0.2 }}>Try other login method</Text>
-                    </View>
+                    <TouchableOpacity onPress={()=>props.navigation.replace('login_with_email')}style={{ alignItems: 'center', marginTop: 20 }}>
+                         <Text style={{ color: '#9945FF', fontFamily: 'Gilroy', lineHeight: 16, fontSize:RFValue(13), letterSpacing: 0.2 }}>Try other login method</Text>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -131,10 +135,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background.dark_black,
-
-
-
-    },
+     },
     otpBoxStyle: {
         width: 48,
         height: 56,

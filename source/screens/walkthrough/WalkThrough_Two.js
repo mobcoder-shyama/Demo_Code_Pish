@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Colors from '../../constant/Colors';
 import { LinearTextGradient } from "react-native-text-gradient";
-import { SCREEN_WIDTH } from '../../constant/Dimensions';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/Dimensions';
 import { AssuredTextIcon, FantasyTextIcon } from '../../assests/svg/AuthSvg';
 import { SvgXml } from 'react-native-svg';
 import PaginationIndicator from './PaginationIndication';
@@ -19,7 +19,7 @@ const Walkthrough_Two = (props) => {
       <PaginationIndicator screenIndex={2}/>
 
      
-      <View style={{ position: 'absolute', bottom: 170, width: SCREEN_WIDTH - 55, alignSelf: 'center', }}>
+      <View style={{ position: 'absolute', bottom:SCREEN_HEIGHT<600?100:170, width: SCREEN_WIDTH - 55, alignSelf: 'center', }}>
 
 
       
