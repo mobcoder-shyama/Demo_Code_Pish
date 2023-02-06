@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert, Platform } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { ClockIcon, GreyEmailIcon, WinFantasyIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('window');
 import BackgroundTimer from "react-native-background-timer"
 import { emailEncraptionFormat } from '../../utils/InputValidation';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
+import { FontFamily } from '../../constant/FontFamily';
 
 
 
@@ -67,8 +68,8 @@ const EmailOTPVerification = (props) => {
     const renderResendView = () => {
         return (
             <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width: width - 25, height: 45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
-                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize: 16 }}>Resend link</Text>
-                {!isResendOTP && <Text style={{ color: '#757575', margin: 8, fontSize: 16 }}> {clockify().displayMins}:{clockify().displaySecs}</Text>}
+                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize: 16,fontFamily:FontFamily['Gilroy'][600] }}>Resend link</Text>
+                {!isResendOTP && <Text style={{ color: '#757575', margin: 8, fontSize: 16,fontFamily:FontFamily['Gilroy'][600] }}> {clockify().displayMins}:{clockify().displaySecs}</Text>}
             </TouchableOpacity>
 
         )
@@ -83,9 +84,10 @@ const EmailOTPVerification = (props) => {
 
 
     return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
 
-            <View style={{ marginTop: 60, alignSelf: 'center' }}>
+            <View style={{ marginTop:Platform.OS === 'android'?25:60, alignSelf: 'center' }}>
 
                 <Header title={'Login with OTP'} navigation={props.navigation} />
 
@@ -94,18 +96,19 @@ const EmailOTPVerification = (props) => {
 
                     <View style={{ width: width - 38, marginTop: 0 }}>
 
-                        <Text style={{ fontFamily: 'Gilroy', color: '#FFFFFF', textAlign: 'center', fontSize: 16, fontWeight: 600, lineHeight: 20, letterSpacing: 0.2 }}>To confirm your email address, please tap the button in the email we sent to{'\n'}{emailEncraptionFormat(props?.route?.params?.email)}</Text>
+                        <Text style={{fontFamily:FontFamily['Gilroy'][600], color: '#FFFFFF', textAlign: 'center', fontSize: 16, fontWeight: 600, lineHeight: 20, letterSpacing: 0.2 }}>To confirm your email address, please tap the button in the email we sent to{'\n'}{emailEncraptionFormat(props?.route?.params?.email)}</Text>
 
                     </View>
 
 
                     <OTPInputView
-                        autoFocusOnLoad
+                        autoFocusOnLoad={Platform.OS ==='android'?false:true}
                         selectionColor='white'
                         pinCount={6}
                         secureTextEntry={false}
-                        style={{ width: width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
+                        style={{ width: width - 25, height: 20, marginTop: 45, alignSelf: 'center',fontFamily:FontFamily['Gilroy'][700],fontWeight:700 }}
                         codeInputFieldStyle={styles.otpBoxStyle}
+                        codeInputHighlightStyle={styles.underlineStyleHighLighted}
                         onCodeChanged={(text) => updateCode(text)}
                         keyboardAppearance={'light'}
                     />
@@ -113,13 +116,13 @@ const EmailOTPVerification = (props) => {
                     <View style={{ marginTop: 28 }} />
 
 
-                    {<AuthButton type={2} title={'Login'} isArrow={false} />}
+                    {<AuthButton type={2} title={'Login'} isArrow={false} onpress={()=>props.navigation.replace('tabs')} />}
 
                     {renderResendView()}
 
                     <View style={{ alignItems: 'center', marginTop: 20 }}>
 
-                        <Text style={{ color: '#9945FF', fontFamily: 'Gilroy', lineHeight: 16, fontSize: 13, letterSpacing: 0.2 }}>Valid for 10 minutes {otp}  {otp?.length} </Text>
+                        <Text style={{ color: '#9945FF',fontFamily:FontFamily['Gilroy'][600], lineHeight: 16, fontSize: 13, letterSpacing: 0.2 }}>Valid for 10 minutes</Text>
                     </View>
 
                 </View>
@@ -129,6 +132,7 @@ const EmailOTPVerification = (props) => {
             </View>
 
         </View>
+        </TouchableWithoutFeedback>
     )
 
 
@@ -154,7 +158,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white',
         textAlign: 'center',
+        fontFamily:FontFamily['Gilroy'][600]
         //margin:14
+    },
+    underlineStyleHighLighted: {
+        borderColor:Colors.border.white,
     },
     emailContainer: {
         flexDirection: 'row',

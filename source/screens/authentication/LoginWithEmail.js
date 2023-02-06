@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet, Dimensions, ScrollView, Text, TouchableOpacity, TextInput, ImageBackground, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Animated, StyleSheet, Dimensions, ScrollView, Text, TouchableOpacity, TextInput, ImageBackground, Alert, TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { GreyEmailIcon, WinFantasyIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import ViewSeparator from '../../components/ViewSeparator';
 import Colors from '../../constant/Colors';
 import { SCREEN_HEIGHT } from '../../constant/Dimensions';
+import { FontFamily } from '../../constant/FontFamily';
 const { width, height } = Dimensions.get('window');
 import { validEmail } from '../../utils/InputValidation';
 
@@ -45,24 +46,25 @@ const LoginWithEmail = (props) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>
 
-                <View style={{ marginTop:SCREEN_HEIGHT<675?25:60, alignSelf: 'center' }}>
+                <View style={{ marginTop:SCREEN_HEIGHT<675?25:Platform.OS==='android'?30:60, alignSelf: 'center' }}>
 
-                    <Header title={'Continue with Email'} navigation={props.navigation} />
+                    <Header title={'Continue with Email'} navigation={props.navigation} isDownArrow={true} />
 
                     <View style={styles.inputContainer}>
 
-                        {emailFocus && <Animated.Text  style={[{ color: 'grey',bottom:5,fontSize: 16, }]}>
-                            Enter email
+                        {emailFocus && <Animated.Text  style={[{ color: 'grey',top:Platform.OS==='android'?10:-10,fontSize: 16,fontFamily:FontFamily['Gilroy'][500],color:'#BDBDBD' }]}>
+                           Email address
                         </Animated.Text>}
 
 
                         <TextInput
                             style={{
-                                color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
+                                color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,fontFamily:FontFamily['Gilroy'][500],
                                 borderBottomColor: '#757575'
                             }}
-                            placeholder={!emailFocus ? "Enter email" : ''}
+                            placeholder={!emailFocus ? "Email address" : ''}
                             placeholderTextColor={'#757575'}
+                            selectionColor={Colors.cursor.white}
                             keyboardType="email-address"
                             maxLength={50}
                             value={email}
@@ -77,9 +79,13 @@ const LoginWithEmail = (props) => {
 
                     </View>
 
+                    <View style={{marginTop:Platform.OS ==='android'?25:0}}>
                     {!isValidEmail && <DisableButton type={2} title={'Send OTP'} />}
                     {isValidEmail && <AuthButton onpress={() => props.navigation.navigate('login_email_success', { 'email': email })} type={2} title={'Send OTP'} isArrow={false} />}
 
+                    </View>
+
+                   
                 </View>
 
 

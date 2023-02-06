@@ -1,4 +1,4 @@
-package com.quizkart_app;
+package com.quizkart.dev;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

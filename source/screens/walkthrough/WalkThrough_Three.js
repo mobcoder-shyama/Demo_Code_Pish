@@ -6,6 +6,7 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/Dimensions';
 import { FantasyTextIcon, QuizTextIcon } from '../../assests/svg/AuthSvg';
 import { SvgXml } from 'react-native-svg';
 import PaginationIndicator from './PaginationIndication';
+import { FontFamily } from '../../constant/FontFamily';
 
 const Walkthrough_Three = (props) => {
 
@@ -27,16 +28,16 @@ const Walkthrough_Three = (props) => {
 
         <View>
 
-          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>play bollywood</Text>
+          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40,fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}>play bollywood</Text>
 
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
-            <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>based </Text>
+            <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}>based </Text>
 
             <SvgXml xml={QuizTextIcon} width={73.68} height={36.52} />
           </View>
 
-          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>prize </Text>
+          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}>prize </Text>
 
 
         </View>

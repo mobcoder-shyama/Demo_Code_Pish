@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import Colors from '../../../constant/Colors';
+import MainHeader from '../components/MainHeader';
 
-const WishList=()=> {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor:'#000000' }}>
-        <Text>HomeScreen!</Text>
-      </View>
-    );
-  }
+const WishList = () => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#000000' }}>
 
-  export default WishList
+      <MainHeader />
+      <Text style={{color:Colors.textColor.white}}>WishList!</Text>
+    </View>
+  );
+}
+
+export default WishList

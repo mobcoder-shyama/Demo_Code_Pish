@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -13,6 +13,111 @@ import { useDebunceEffect } from '../../utils/Effect';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { FontFamily } from '../../constant/FontFamily';
 import { SCREEN_HEIGHT } from '../../constant/Dimensions';
+import Loader from '../../components/Loader';
+import ViewSeparator from '../../components/ViewSeparator';
+
+let dataItem = [
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    },
+    {
+        countryName: 'India',
+        flag: IndianFlagIcon,
+        countryCode: '+91'
+    }
+]
 
 
 const Login = (props) => {
@@ -23,7 +128,7 @@ const Login = (props) => {
     })
     const [mobile, setMobile] = useState('');
     const [countryModal, setCountryModal] = useState(false);
-    const[searchText,setSearchText] = useState('');
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         fcmToken();
@@ -56,7 +161,7 @@ const Login = (props) => {
 
     const renderEmailView = () => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('login_with_email')} style={{bottom:height<650? 25:0}}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('login_with_email')} style={{ bottom: height < 650 ? 25 : 0 }}>
                 <View style={styles.emailContainer}>
                     <Text style={styles.emailTextStyle} >Continue with Email </Text>
                 </View>
@@ -78,10 +183,10 @@ const Login = (props) => {
         )
     }
 
-    const handleLogin=()=>{
-        state?.isContinue? props.navigation.navigate('phone_otp_verification',{'mobile':mobile}) : setState({isContinue:true})
-       
-      
+    const handleLogin = () => {
+        state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
+
+
     }
 
     const { isContinue } = state;
@@ -90,16 +195,16 @@ const Login = (props) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
             <View style={styles.container}>
-                
 
-                <ImageBackground source={height<700?require('../../assests/png/LoginBGImg_Small.png'):require('../../assests/png/LoginBGImg.png')}  resizeMode={'stretch'}  style={{ height:height<700?160: 296, width: width }}>
+
+                <ImageBackground source={height < 700 ? require('../../assests/png/LoginBGImg_Small.png') : require('../../assests/png/LoginBGImg.png')} resizeMode={'stretch'} style={{ height: height < 700 ? 160 : 296, width: width }}>
 
                     <View style={{ marginTop: 56, width, height: 'auto', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 20 }}>
 
                         <SvgXml xml={WinFantasyIcon} width={92.6} height={93.3} />
 
-                        <TouchableOpacity onPress={()=>props.navigation.replace('tabs')} style={{ height: 24, width: 64, backgroundColor: '#2D2563', borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#918DAD', right: 40, bottom: 20 }}>
-                            <Text style={{ color: '#FFFFFF', fontFamily: 'Gilroy', fontSize: RFValue(13) }}>Skip</Text>
+                        <TouchableOpacity onPress={() => props.navigation.replace('tabs')} style={{ height: 24, width: 64, backgroundColor: '#2D2563', borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#918DAD', right: 40, bottom: 20 }}>
+                            <Text style={{ color: '#FFFFFF', fontFamily: FontFamily['Gilroy'][400], fontSize: 13 }}>Skip</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -131,14 +236,15 @@ const Login = (props) => {
                         {/* country code */}
                         <TouchableOpacity onPress={() => setCountryModal(true)} style={{ width: 76, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <SvgXml xml={IndianFlagIcon} width={20} height={16} />
-                            <Text style={{ color: 'white', margin: 8, fontSize:RFValue(16), fontFamily: 'Gilroy' }}>+91</Text>
+                            <Text style={{ color: 'white', margin: 8, fontSize: RFValue(16), fontFamily: FontFamily['Gilroy'][500] }}>+91</Text>
                         </TouchableOpacity>
 
                         <View style={{ height: 30, width: 1, backgroundColor: '#757575' }} />
 
                         <TextInput
-                            style={{ color: 'white', paddingHorizontal: 12, fontSize:RFValue(16) }}
+                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][400] }}
                             placeholder="Enter mobile number"
+                            selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
                             value={mobile}
                             onChangeText={(text) => setMobile(text)}
@@ -154,7 +260,7 @@ const Login = (props) => {
                     transparent={false}
                     animationOutTiming={1000}
                     visible={countryModal}
-                    
+
                     onRequestClose={() => { console.log("Modal has been closed.") }}>
                     {/*All views of Modal*/}
                     <View style={styles.modal}>
@@ -171,15 +277,16 @@ const Login = (props) => {
                         <View style={styles.inputContainer}>
 
                             {/* country code */}
-                            <TouchableOpacity onPress={() => setCountryModal(true)} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',paddingHorizontal:14 }}>
+                            <TouchableOpacity onPress={() => setCountryModal(true)} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14 }}>
                                 <SvgXml xml={VioletSearchIcon} width={20.31} height={20.31} />
                             </TouchableOpacity>
 
 
                             <TextInput
-                                style={{ color: 'white',fontSize: RFValue(16) }}
+                                style={{ color: 'white', fontSize: RFValue(14) }}
                                 placeholder="Search by country name..."
                                 placeholderTextColor={'#757575'}
+                                selectionColor={Colors.cursor.white}
                                 value={searchText}
                                 onChangeText={(text) => setSearchText(text)}
                                 maxLength={15}
@@ -188,22 +295,38 @@ const Login = (props) => {
 
                         </View>
 
+                        {/* <Loader/> */}
+
+                        <FlatList
+                        style={{marginTop:25}}
+                            data={dataItem}
+                            renderItem={({ item }) =>
+                                 <View style={{width:width-25,height:25,margin:15,alignItems:'center',flexDirection:'row',}}>
+                                  <SvgXml xml={item.flag} height={20} width={20}/>
+                                  <Text style={{color:'white',paddingHorizontal:12}}>{item.countryName}</Text>
+                                  <Text style={{color:'white',paddingHorizontal:12}}>{item.countryCode}</Text>
+                                </View>
+                                
+                                }
+                            ItemSeparatorComponent={ViewSeparator}
+                        />
+
 
                     </View>
 
                 </Modal>
 
-                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop:SCREEN_HEIGHT<600?14:25 }}>
-                    <Text style={{ color: 'white', fontSize:RFValue(36),fontFamily:FontFamily['Gilroy'][700],fontWeight:700 }}>+91 {mobile}</Text>
-                    <Text style={{ color: 'white', fontSize:RFValue(16), fontFamily: 'Gilroy', marginTop:SCREEN_HEIGHT<600?5:12, fontFamily:FontFamily['Gilroy'][500],fontWeight:500 }}> Is this the correct number?</Text>
-                    <TouchableOpacity style={{ marginTop: SCREEN_HEIGHT<600?15:24 }} onPress={() => setState({ isContinue: false })}>
-                        <Text style={{ color: 'white', fontSize:RFValue(18), fontFamily:FontFamily['Gilroy'][600],fontWeight:600}}>Edit</Text>
+                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 14 }}>
+                    <Text style={{ color: 'white', fontSize: 36, fontFamily: FontFamily['Gilroy'][700], fontWeight: 700 }}>+91 {mobile}</Text>
+                    <Text style={{ color: 'white', fontSize: 16, marginTop: 5, fontFamily: FontFamily['Gilroy'][500], fontWeight: 500 }}> Is this the correct number?</Text>
+                    <TouchableOpacity style={{ marginTop: 14 }} onPress={() => setState({ isContinue: false })}>
+                        <Text style={{ color: 'white', fontSize: 18, fontFamily: FontFamily['Gilroy'][600], fontWeight: 600 }}>Edit</Text>
                     </TouchableOpacity>
 
 
                 </View>}
 
-                {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() =>handleLogin()} />}
+                {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleLogin()} />}
 
                 {isEmpty(mobile) && <DisableButton type={2} title={'Continue'} />}
 
@@ -250,7 +373,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         //justifyContent:'space-around',
         alignItems: 'center',
-        marginTop:height<600?25:25,
+        marginTop: height < 600 ? 25 : 25,
         borderWidth: 1,
         borderColor: '#424242',
         borderRadius: 8
@@ -263,7 +386,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
         //justifyContent:'space-around',
         alignItems: 'center',
-        marginTop:height<600?0:25,
+        marginTop: height < 600 ? 0 : 25,
         borderWidth: 1,
         borderColor: '#424242',
         borderRadius: 8
@@ -271,17 +394,17 @@ const styles = StyleSheet.create({
     textStyle: {
         color: '#E7E7E7',
         fontWeight: '500',
-        fontSize: RFValue(24),
-        fontFamily: 'Gilroy-Regular',
+        fontSize: 24,
+        fontFamily: FontFamily['Gilroy'][500],
         marginTop: 36,
         textAlign: 'center',
-        letterSpacing:1,
+        letterSpacing: 1,
         lineHeight: 29
     },
     emailTextStyle: {
         color: '#9E9E9E',
         fontWeight: '500',
-        fontSize: RFValue(14),
+        fontSize: 14,
         fontFamily: 'Gilroy-Regular',
         textAlign: 'center',
         letterSpacing: 0.2,
@@ -293,12 +416,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: height<700?24:40, //Here is the trick
+        bottom: height < 700 ? 24 : 30, //Here is the trick
     },
     bottomtextStyle: {
         color: '#FFFFFF',
         fontWeight: '400',
-        fontSize: RFValue(13),
+        fontSize: 13,
         fontFamily: 'Gilroy',
         letterSpacing: 0.3
     },
@@ -308,7 +431,7 @@ const styles = StyleSheet.create({
 
     },
     modalContainer: {
-        marginTop: 61,
+        marginTop: 25,
         width: width - 25,
         height: 45,
         alignSelf: 'center',

@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { Text, Dimensions, View, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../assests/svg/AuthSvg';
-const { width, height } = Dimensions.get('window')
+import Colors from '../constant/Colors';
+import { SCREEN_WIDTH } from '../constant/Dimensions';
+import Font from '../constant/Font';
+import { FontFamily } from '../constant/FontFamily';
+
 
 const Header = (props) => {
   
@@ -13,7 +17,7 @@ const Header = (props) => {
         <View style={styles.container}>
 
                 <TouchableOpacity hitSlop={{top:20,bottom:20,left:20,right:20}} onPress={() => props.navigation.goBack()}>
-                   <SvgXml xml={WhiteBackArrow}  style={{ transform: [{ rotate:  '270deg' }],paddingHorizontal: 18 }} height={19.5} width={10.7} onPress={() => props.navigation.navigate('login')} />
+                   <SvgXml xml={WhiteBackArrow}  style={{ transform: [{ rotate: props?.isDownArrow?'270deg':'0deg' }],paddingHorizontal: 18 }} height={19.5} width={10.7} onPress={() => props.navigation.navigate('login')} />
                 </TouchableOpacity>
 
                <Text style={styles.buttonText}>{props.title}</Text>
@@ -29,26 +33,19 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: width - 25,
+        width: SCREEN_WIDTH - 25,
         height: 45,
         alignSelf: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems:'center'
     },
-    linearGradient: {
-        alignItems: 'center',
-        height: 45,
-        justifyContent: 'center',
-        borderRadius: 8,
-        flexDirection: 'row'
-    },
     buttonText: {
         fontSize: 16,
-        fontFamily: 'Gilroy',
+        fontFamily:FontFamily['Gilroy'][600],
         textAlign: 'center',
         margin: 10,
-        color: '#ffffff',
+        color:Colors.textColor.white,
         backgroundColor: 'transparent',
         fontWeight: '600'
     },

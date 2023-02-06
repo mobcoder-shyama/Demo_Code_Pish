@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { SCREEN_WIDTH,SCREEN_HEIGHT } from '../constant/Dimensions';
+import { FontFamily } from '../constant/FontFamily';
 
 
 const SeparatorTextView = (props) => {
@@ -35,7 +36,7 @@ const SeparatorTextStyles = StyleSheet.create({
         color: '#9E9E9E',
         fontWeight: '500',
         fontSize: 14,
-        fontFamily: 'Gilroy-Regular',
+        fontFamily:FontFamily['Gilroy'][500],
         textAlign: 'center',
         letterSpacing: 0.2,
         lineHeight: 14,

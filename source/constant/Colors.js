@@ -10,6 +10,12 @@ export default {
         white:'#FFFFFF',
         skyBlue:'#2DA5FE',
     },
+    cursor:{
+        white:'#FFFFFF',
+    },
+    loader:{
+        white:'#FFFFFF'
+    }
     
     
 }

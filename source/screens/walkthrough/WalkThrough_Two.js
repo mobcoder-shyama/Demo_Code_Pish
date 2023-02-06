@@ -6,6 +6,7 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/Dimensions';
 import { AssuredTextIcon, FantasyTextIcon } from '../../assests/svg/AuthSvg';
 import { SvgXml } from 'react-native-svg';
 import PaginationIndicator from './PaginationIndication';
+import { FontFamily } from '../../constant/FontFamily';
 
 
 const Walkthrough_Two = (props) => {
@@ -29,17 +30,17 @@ const Walkthrough_Two = (props) => {
 
         <View>
 
-          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>choose available</Text>
+          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40,fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}>choose available</Text>
 
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
             <SvgXml xml={AssuredTextIcon} width={141.14} height={28.52} />
 
-            <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}> loot </Text>
+            <Text style={{ color: 'white', fontWeight: "400", fontSize: 40,fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}> loot </Text>
 
           </View>
 
-          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40, fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>deal</Text>
+          <Text style={{ color: 'white', fontWeight: "400", fontSize: 40,fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1 }}>deal</Text>
 
 
         </View>

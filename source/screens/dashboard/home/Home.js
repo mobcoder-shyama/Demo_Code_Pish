@@ -3,14 +3,17 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { QuizKart_Logo } from '../../../assests/svg/AuthSvg';
 import Colors from '../../../constant/Colors';
+import MainHeader from '../components/MainHeader';
 
 const HomeScreen=(props)=> {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor:'#000000' }}>
+      <View style={{ flex: 1,alignItems: 'center',backgroundColor:'#000000' }}>
+
+        <MainHeader/>
        
-        <SvgXml xml={QuizKart_Logo} height={147} width={140} />
+    
        
-        <TouchableOpacity onPress={()=>props.navigation.replace('authstack')}>
+        <TouchableOpacity onPress={()=>props.navigation.replace('authstack')} style={{marginTop:100}}>
           <Text style={{color:Colors.textColor.white}}>Logout!</Text>
         </TouchableOpacity>
  

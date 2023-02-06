@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/dashboard/home/Home';
@@ -41,11 +41,15 @@ const TabStack = () => {
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: 'black',
-                    height:125,
+                    height:Platform.OS === 'android'?85:120,
                     borderTopWidth: 1,
-                    borderTopColor: 'transparent'
+                    borderTopColor: 'transparent',
                 },
-                tabBarBackground: () => (  <SvgXml xml={Line_Icon} height={20} width={SCREEN_WIDTH} /> ),
+                tabBarBackground: () => ( 
+                     <View style={{height:100}}>
+                       <SvgXml xml={Line_Icon} height={20} width={SCREEN_WIDTH} style={{marginBottom:100}} marginBottom={100} />
+                     </View>
+                ),
 
             }}
             tabBarOptions={{

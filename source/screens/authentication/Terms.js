@@ -23,7 +23,7 @@ const Terms = (props) => {
     return (
         <View style={styles.container}>
 
-            <View style={{marginTop:60,alignSelf:'center'}}>
+            <View style={{marginTop:25,alignSelf:'center'}}>
 
                 <Header title={'Terms & Conditions'} navigation={props.navigation}/>
 

@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert, Platform } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity, TextInput, ImageBackground, Alert, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { ClockIcon, GreyEmailIcon, WinFantasyIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
-import DisableButton from '../../components/DisableButton';
 import Header from '../../components/Header';
-import ViewSeparator from '../../components/ViewSeparator';
 import Colors from '../../constant/Colors';
 const { width, height } = Dimensions.get('window');
 import BackgroundTimer from "react-native-background-timer"
@@ -69,9 +66,9 @@ const PhoneOTPVerification = (props) => {
 
     const renderResendView = () => {
         return (
-            <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width:177, height:45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
-                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize:RFValue(16) }}>Resend SMS</Text>
-                {!isResendOTP && <Text style={{ color: '#757575', margin:5,fontSize:RFValue(16) }}>in {clockify().displayMins}:{clockify().displaySecs}</Text>}
+            <TouchableOpacity onPress={() => resendOTP()} disabled={isResendOTP ? false : true} style={{ flexDirection: 'row', width:180, height:45, borderWidth: 1, borderColor: !isResendOTP ? '#757575' : '#9945FF', alignItems: 'center', justifyContent: 'center', borderRadius: 8, marginTop: 20 }}>
+                <Text style={{ color: !isResendOTP ? '#757575' : '#9945FF', fontSize:RFValue(14) }}>Resend SMS</Text>
+                {!isResendOTP && <Text style={{ color: '#757575', margin:5,fontSize:RFValue(14) }}>in {clockify().displayMins}:{clockify().displaySecs}</Text>}
             </TouchableOpacity>
 
         )
@@ -86,27 +83,33 @@ const PhoneOTPVerification = (props) => {
 
 
     return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
 
-            <View style={{ marginTop:SCREEN_HEIGHT<675?25:60, alignSelf: 'center' }}>
+            <View style={{ marginTop:SCREEN_HEIGHT<675?25:Platform.OS==='android'?25:60, alignSelf: 'center' }}>
 
                 <Header title={''} navigation={props.navigation} />
 
-                <Text style={{ color: '#FFFFFF', fontFamily:FontFamily['Gilroy'][400],fontWeight:400, lineHeight: 24, fontSize:RFValue(20), letterSpacing: 0.2,paddingHorizontal:16 }} >Enter the 6-digit OTP sent to{'\n'}+91-{props?.route?.params?.mobile}</Text>
+                <Text style={{ color: '#FFFFFF', fontFamily:FontFamily['Gilroy'][400],fontWeight:400, lineHeight: 24, fontSize:20, letterSpacing: 0.2,paddingHorizontal:16 }} >
+                    <Text style={{fontFamily:FontFamily['Gilroy'][400],fontWeight:400}}>Enter the 6-digit OTP sent to{'\n'}</Text>
+                    <Text style={{fontFamily:FontFamily['Gilroy'][700],fontWeight:700}}>+91-{props?.route?.params?.mobile}</Text>
+                    
+                </Text>
 
 
                 <View style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
 
 
                    <OTPInputView
-                        autoFocusOnLoad
+                        autoFocusOnLoad={Platform.OS==='android'?false:true}
                         selectionColor='white'
                         pinCount={6}
                         secureTextEntry={false}
                         style={{ width:SCREEN_HEIGHT<675?width-15:width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
                         codeInputFieldStyle={styles.otpBoxStyle}
+                        codeInputHighlightStyle={styles.underlineStyleHighLighted}
                         onCodeChanged={(text) => updateCode(text)}
-                        onCodeFilled={()=>props.navigation.replace('tabs')}
+                        onCodeFilled={()=>props.navigation.replace('update_details')}    // 
                         keyboardAppearance={'light'}
                     />
 
@@ -115,7 +118,7 @@ const PhoneOTPVerification = (props) => {
                     {renderResendView()}
 
                     <TouchableOpacity onPress={()=>props.navigation.replace('login_with_email')}style={{ alignItems: 'center', marginTop: 20 }}>
-                         <Text style={{ color: '#9945FF', fontFamily: 'Gilroy', lineHeight: 16, fontSize:RFValue(13), letterSpacing: 0.2 }}>Try other login method</Text>
+                         <Text style={{ color: '#9945FF', fontFamily:FontFamily['Gilroy'][400], lineHeight: 16, fontSize:13, letterSpacing: 0.2 }}>Try other login method</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -125,6 +128,7 @@ const PhoneOTPVerification = (props) => {
             </View>
 
         </View>
+        </TouchableWithoutFeedback>
     )
 
 
@@ -147,7 +151,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white',
         textAlign: 'center',
+        fontFamily:FontFamily['Gilroy'][600]
         //margin:14
+    },
+    underlineStyleHighLighted: {
+        borderColor:Colors.border.white,
     },
     emailContainer: {
         flexDirection: 'row',
@@ -201,7 +209,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '400',
         fontSize: 13,
-        fontFamily: 'Gilroy',
+        fontFamily:FontFamily['Gilroy'][400],
         letterSpacing: 0.3
     },
 })

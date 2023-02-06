@@ -1,4 +1,4 @@
-package com.quizkart_app;
+package com.quizkart.dev;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 import com.ocetnik.timer.BackgroundTimerPackage;
 import iyegoroff.RNTextGradient.RNTextGradientPackage;
+import com.facebook.react.ReactInstanceManager;
 
 public class MainApplication extends Application implements ReactApplication {
 

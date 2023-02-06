@@ -42,21 +42,21 @@ const RootNavigation = props => {
 
                 <Stack.Navigator headerMode="none" initialRouteName={'splash'} options={{ headerShown: false }} >
 
-                    <Stack.Screen name="splash" component={Splash} options={{ headerShown: false }} />
-                    <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name="walkthrough" component={OnBoarding} options={{ headerShown: false }} />
+                    <Stack.Screen name="splash" component={Splash} options={{ headerShown: false,animation:'slide_from_right' }} />
+                    <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false,animation:'slide_from_right' }} />
+                    <Stack.Screen name="walkthrough" component={OnBoarding} options={{ headerShown: false,animation:'slide_from_right' }} />
 
                     <Stack.Screen
                         name="authstack"
                         component={AuthStack}
-                        options={{ headerShown: false }}
+                        options={{ headerShown: false,animation:'slide_from_right' }}
                     />
 
 
                     <Stack.Screen
                         name="tabs"
                         component={TabStack}
-                        options={{ headerShown: false }}
+                        options={{ headerShown: false,animation:'slide_from_bottom' }}
                     />
 
                     <Stack.Screen

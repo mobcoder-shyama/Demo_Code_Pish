@@ -13,7 +13,7 @@ const ViewSeparatorStyles=StyleSheet.create({
         height: 0.5,
         width:SCREEN_WIDTH-25,
         alignSelf: 'center',
-        backgroundColor: "grey"
+        backgroundColor: "#424242"
     }
 })
 export default ViewSeparator;

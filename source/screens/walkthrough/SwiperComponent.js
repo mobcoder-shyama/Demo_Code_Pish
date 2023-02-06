@@ -13,6 +13,7 @@ import {
 import { SvgXml } from 'react-native-svg';
 import AuthButton from "../../components/AuthButton";
 import { NextArrow } from '../../assests/svg/AuthSvg';
+import { FontFamily } from "../../constant/FontFamily";
 const { width, height } = Dimensions.get("window");
 let iPad = Platform.isPad
 
@@ -225,22 +226,22 @@ export default class SwiperComponent extends Component {
 
                         <TouchableOpacity  onPress={() => this.props.navigation.replace('authstack')}>
                             <Text style={{
-                                fontSize: 16,
+                                //fontSize: 16,
                                 color: '#FB8C00',
                                 fontWeight: '600',
                                 textAlign: 'center',
-                                fontFamily:'Gilroy'
+                                fontFamily:FontFamily['Gilroy'][600]
                             }}>skip</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => this.swipe()} style={{flexDirection:'row'}}>
+                        <TouchableOpacity onPress={() => this.swipe()} style={{flexDirection:'row',justifyContent:'center'}}>
 
                             <Text style={{
-                                fontSize: 16,
+                                //fontSize: 16,
                                 color: '#9945FF',
                                 fontWeight: '600',
                                 textAlign: 'center',
-                                fontFamily:'Gilroy'
+                                fontFamily:FontFamily['Gilroy'][600]
                             }}>swipe</Text>
 
                             <SvgXml xml={NextArrow} height={20} width={20} style={{left:10}} />

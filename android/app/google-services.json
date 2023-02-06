@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "122326759988",
+    "project_id": "quizkart-2",
+    "storage_bucket": "quizkart-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122326759988:android:8ccb56c00e2fede7db6861",
+        "android_client_info": {
+          "package_name": "com.quizkart.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122326759988-gmpl6oi7bkdl7j6alemsvchnd8rqdd8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMzFLlwjW-czcaDhCV_drgZKS1pu5EnLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122326759988-gmpl6oi7bkdl7j6alemsvchnd8rqdd8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

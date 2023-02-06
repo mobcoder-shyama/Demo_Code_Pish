@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     buttonText: {
-        fontSize:RFValue(16),
+        fontSize:16,
         //fontFamily: 'Gilroy',
         fontWeight:'600',
         textAlign: 'center',

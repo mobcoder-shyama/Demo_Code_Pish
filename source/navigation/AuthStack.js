@@ -14,6 +14,7 @@ import LoginWithEmail from '../screens/authentication/LoginWithEmail';
 import LoginEmailSuccess from '../screens/authentication/LoginEmailSuccess';
 import EmailOTPVerification from '../screens/authentication/EmailOTPVerification';
 import PhoneOTPVerification from '../screens/authentication/PhoneOTPVerification';
+import UpdateDetails from '../screens/authentication/UpdateDetails';
 
 
 
@@ -34,11 +35,12 @@ const AuthStack = () => {
 
   return (
       <Stack.Navigator initialRouteName={'login'} headerMode="none">
-          <Stack.Screen name="login" component={Login}  options={{ headerShown: false }} /> 
+          <Stack.Screen name="login" component={Login}  options={{ headerShown: false,animation:'slide_from_right' }} /> 
           <Stack.Screen name="login_with_email" component={LoginWithEmail}  options={{ headerShown: false,animation:'slide_from_bottom' }} /> 
-          <Stack.Screen name="login_email_success" component={LoginEmailSuccess}  options={{ headerShown: false }} /> 
-          <Stack.Screen name="email_otp_verification" component={EmailOTPVerification}  options={{ headerShown: false }} /> 
-          <Stack.Screen name="phone_otp_verification" component={PhoneOTPVerification}  options={{ headerShown: false }} /> 
+          <Stack.Screen name="login_email_success" component={LoginEmailSuccess}  options={{ headerShown: false,animation:'slide_from_right' }} /> 
+          <Stack.Screen name="email_otp_verification" component={EmailOTPVerification}  options={{ headerShown: false,animation:'slide_from_right' }} /> 
+          <Stack.Screen name="phone_otp_verification" component={PhoneOTPVerification}  options={{ headerShown: false,animation:'slide_from_right' }} /> 
+          <Stack.Screen name="update_details" component={UpdateDetails}  options={{ headerShown: false,animation:'slide_from_right' }} /> 
 
 
           

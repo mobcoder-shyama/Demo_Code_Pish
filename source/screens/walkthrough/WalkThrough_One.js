@@ -6,6 +6,7 @@ import Colors from '../../constant/Colors';
 import { SCREEN_HEIGHT,SCREEN_WIDTH } from '../../constant/Dimensions'
 import {FantasyTextIcon} from '../../assests/svg/AuthSvg'
 import PaginationIndicator from './PaginationIndication';
+import { FontFamily } from '../../constant/FontFamily';
 
 const Walkthrough_One = (props) => {
 
@@ -26,15 +27,15 @@ const Walkthrough_One = (props) => {
 
         <View>
 
-         <Text style={{ color: 'white',fontWeight: "400",fontSize: 40,fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1}}>explore & select</Text>
+         <Text style={{ color: 'white',fontWeight: "400",fontSize: 40, fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1}}>explore & select</Text>
 
          <View style={{flexDirection:'row',alignItems:'center'}}>
-            <Text style={{ color: 'white',fontWeight: "400",fontSize: 40,fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1}}>your </Text>
+            <Text style={{ color: 'white',fontWeight: "400",fontSize: 40,fontFamily:FontFamily['Gilroy'][400], lineHeight: 46, letterSpacing: 0.1}}>your </Text>
 
              <SvgXml xml={FantasyTextIcon} width={137.12} height={36.57}/>
          </View>
 
-         <Text style={{ color: 'white',fontWeight: "400",fontSize: 40,fontFamily: 'Gilroy', lineHeight: 46, letterSpacing: 0.1 }}>prize </Text>
+         <Text style={{ color: 'white',fontWeight: "400",fontFamily:FontFamily['Gilroy'][400],fontSize: 40,lineHeight: 46, letterSpacing: 0.1 }}>prize </Text>
       
       
         </View>
@@ -45,10 +46,6 @@ const Walkthrough_One = (props) => {
       </View>
 
 
-
-
-
-      <Text style={{ color: 'white' }} >{SCREEN_HEIGHT}</Text>
 
 
 
