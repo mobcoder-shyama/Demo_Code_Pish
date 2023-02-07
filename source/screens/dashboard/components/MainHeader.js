@@ -27,15 +27,15 @@ const MainHeader = (props) => {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
-                <View style={{ height: 40, width: 40, borderRadius: 20, borderWidth: 1, borderColor: '#555555',alignItems:'center',justifyContent:'center' }}>
+                <TouchableOpacity style={styles.notificationView}>
                    
                     <SvgXml xml={NotificationIcon} width={15} height={17.92}/>
 
-                </View>
+                </TouchableOpacity>
 
-                <View style={{ height: 40, width: 40, borderRadius: 20, borderWidth: 1, borderColor: '#555555',backgroundColor:'grey',margin: 12 }}>
+                <TouchableOpacity style={styles.profileView}  onPress={props?.onpress}>
 
-                </View>
+                </TouchableOpacity>
 
 
             </View>
@@ -59,6 +59,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop:Platform.OS==='android'?25:54
     },
+    profileView:{
+        height: 40, width: 40, borderRadius: 20, borderWidth: 1, borderColor: '#555555',backgroundColor:'grey',margin: 12
+    },
+    notificationView:{
+        height: 40, width: 40, borderRadius: 20, borderWidth: 1, borderColor: '#555555',alignItems:'center',justifyContent:'center' 
+    }
 
 })
 

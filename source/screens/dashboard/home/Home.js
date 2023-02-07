@@ -9,7 +9,7 @@ const HomeScreen=(props)=> {
     return (
       <View style={{ flex: 1,alignItems: 'center',backgroundColor:'#000000' }}>
 
-        <MainHeader/>
+        <MainHeader onpress={()=>props.navigation.navigate('user-account')}/>
        
     
        

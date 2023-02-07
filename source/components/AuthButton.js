@@ -1,11 +1,10 @@
 import React from 'react';
 import { Text, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgXml } from 'react-native-svg';
 import { NextArrow, WhiteArrow } from '../assests/svg/AuthSvg';
 import { FontFamily } from '../constant/FontFamily';
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window');
 
 const AuthButton = (props) => {
     let bg_color = props.type === 1 ? ['#F7E26F', '#EFB714', '#F576A6'] : props.type === 2 ? ['#9945FF', '#8752F3'] : ['#8076FE', '#5243FE']
@@ -20,8 +19,9 @@ const AuthButton = (props) => {
                 </LinearGradient>
 
             </TouchableOpacity> :
+            
 
-            <TouchableOpacity style={styles.container} onPress={props.onpress}>
+            <TouchableOpacity style={[styles.container,{width:props?.width ? props?.width : width - 25}]} onPress={props.onpress}>
                 <LinearGradient colors={bg_color} style={styles.linearGradient} >
                     <Text style={styles.buttonText}>
                         {props?.title}

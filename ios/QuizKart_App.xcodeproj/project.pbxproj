@@ -14,6 +14,16 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-QuizKart_App-QuizKart_AppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-QuizKart_App-QuizKart_AppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A70D8DF22992462B0058B44A /* ChakraPetch-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DE82992462B0058B44A /* ChakraPetch-Light.ttf */; };
+		A70D8DF32992462B0058B44A /* ChakraPetch-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DE92992462B0058B44A /* ChakraPetch-Regular.ttf */; };
+		A70D8DF42992462B0058B44A /* ChakraPetch-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DEA2992462B0058B44A /* ChakraPetch-Medium.ttf */; };
+		A70D8DF52992462B0058B44A /* ChakraPetch-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DEB2992462B0058B44A /* ChakraPetch-LightItalic.ttf */; };
+		A70D8DF62992462B0058B44A /* ChakraPetch-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DEC2992462B0058B44A /* ChakraPetch-Italic.ttf */; };
+		A70D8DF72992462B0058B44A /* ChakraPetch-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DED2992462B0058B44A /* ChakraPetch-SemiBoldItalic.ttf */; };
+		A70D8DF82992462B0058B44A /* ChakraPetch-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DEE2992462B0058B44A /* ChakraPetch-SemiBold.ttf */; };
+		A70D8DF92992462B0058B44A /* ChakraPetch-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DEF2992462B0058B44A /* ChakraPetch-BoldItalic.ttf */; };
+		A70D8DFA2992462B0058B44A /* ChakraPetch-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DF02992462B0058B44A /* ChakraPetch-MediumItalic.ttf */; };
+		A70D8DFB2992462B0058B44A /* ChakraPetch-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A70D8DF12992462B0058B44A /* ChakraPetch-Bold.ttf */; };
 		A738F1F82991186E00539CCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A738F1F72991186E00539CCC /* GoogleService-Info.plist */; };
 		A7EE7B49298505FB00103444 /* libRNTextGradientView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE7B48298505FB00103444 /* libRNTextGradientView.a */; };
 		A7EE99A02983E0340075A75E /* Gilroy-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7EE99912983E0340075A75E /* Gilroy-RegularItalic.ttf */; };
@@ -61,6 +71,16 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-QuizKart_App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuizKart_App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = QuizKart_App/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-QuizKart_App-QuizKart_AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizKart_App-QuizKart_AppTests.release.xcconfig"; path = "Target Support Files/Pods-QuizKart_App-QuizKart_AppTests/Pods-QuizKart_App-QuizKart_AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		A70D8DE82992462B0058B44A /* ChakraPetch-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-Light.ttf"; path = "../../../../../font/ChakraPetch-Light.ttf"; sourceTree = "<group>"; };
+		A70D8DE92992462B0058B44A /* ChakraPetch-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-Regular.ttf"; path = "../../../../../font/ChakraPetch-Regular.ttf"; sourceTree = "<group>"; };
+		A70D8DEA2992462B0058B44A /* ChakraPetch-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-Medium.ttf"; path = "../../../../../font/ChakraPetch-Medium.ttf"; sourceTree = "<group>"; };
+		A70D8DEB2992462B0058B44A /* ChakraPetch-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-LightItalic.ttf"; path = "../../../../../font/ChakraPetch-LightItalic.ttf"; sourceTree = "<group>"; };
+		A70D8DEC2992462B0058B44A /* ChakraPetch-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-Italic.ttf"; path = "../../../../../font/ChakraPetch-Italic.ttf"; sourceTree = "<group>"; };
+		A70D8DED2992462B0058B44A /* ChakraPetch-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-SemiBoldItalic.ttf"; path = "../../../../../font/ChakraPetch-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		A70D8DEE2992462B0058B44A /* ChakraPetch-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-SemiBold.ttf"; path = "../../../../../font/ChakraPetch-SemiBold.ttf"; sourceTree = "<group>"; };
+		A70D8DEF2992462B0058B44A /* ChakraPetch-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-BoldItalic.ttf"; path = "../../../../../font/ChakraPetch-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A70D8DF02992462B0058B44A /* ChakraPetch-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-MediumItalic.ttf"; path = "../../../../../font/ChakraPetch-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A70D8DF12992462B0058B44A /* ChakraPetch-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ChakraPetch-Bold.ttf"; path = "../../../../../font/ChakraPetch-Bold.ttf"; sourceTree = "<group>"; };
 		A738F1F72991186E00539CCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Documents/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A7EE7B48298505FB00103444 /* libRNTextGradientView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNTextGradientView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7EE99912983E0340075A75E /* Gilroy-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-RegularItalic.ttf"; path = "../../../../../font/Gilroy-RegularItalic.ttf"; sourceTree = "<group>"; };
@@ -190,6 +210,16 @@
 		A7EE99902983E01D0075A75E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A70D8DF12992462B0058B44A /* ChakraPetch-Bold.ttf */,
+				A70D8DEF2992462B0058B44A /* ChakraPetch-BoldItalic.ttf */,
+				A70D8DEC2992462B0058B44A /* ChakraPetch-Italic.ttf */,
+				A70D8DE82992462B0058B44A /* ChakraPetch-Light.ttf */,
+				A70D8DEB2992462B0058B44A /* ChakraPetch-LightItalic.ttf */,
+				A70D8DEA2992462B0058B44A /* ChakraPetch-Medium.ttf */,
+				A70D8DF02992462B0058B44A /* ChakraPetch-MediumItalic.ttf */,
+				A70D8DE92992462B0058B44A /* ChakraPetch-Regular.ttf */,
+				A70D8DEE2992462B0058B44A /* ChakraPetch-SemiBold.ttf */,
+				A70D8DED2992462B0058B44A /* ChakraPetch-SemiBoldItalic.ttf */,
 				A7EE99942983E0340075A75E /* Gilroy-Black.ttf */,
 				A7EE99922983E0340075A75E /* Gilroy-BlackItalic.ttf */,
 				A7EE99952983E0340075A75E /* Gilroy-Bold.ttf */,
@@ -315,23 +345,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A70D8DFB2992462B0058B44A /* ChakraPetch-Bold.ttf in Resources */,
 				A7EE99AA2983E0340075A75E /* Gilroy-UltraLightItalic.ttf in Resources */,
 				A7EE99A32983E0340075A75E /* Gilroy-Black.ttf in Resources */,
 				A7EE99A52983E0340075A75E /* Gilroy-SemiBold.ttf in Resources */,
 				A7EE99A72983E0340075A75E /* Gilroy-Extrabold.ttf in Resources */,
+				A70D8DF62992462B0058B44A /* ChakraPetch-Italic.ttf in Resources */,
 				A7EE99A82983E0340075A75E /* Gilroy-UltraLight.ttf in Resources */,
 				A7EE99A62983E0340075A75E /* Gilroy-MediumItalic.ttf in Resources */,
 				A7EE99A12983E0340075A75E /* Gilroy-BlackItalic.ttf in Resources */,
 				A7EE99A22983E0340075A75E /* Gilroy-SemiBoldItalic.ttf in Resources */,
+				A70D8DF52992462B0058B44A /* ChakraPetch-LightItalic.ttf in Resources */,
+				A70D8DFA2992462B0058B44A /* ChakraPetch-MediumItalic.ttf in Resources */,
+				A70D8DF82992462B0058B44A /* ChakraPetch-SemiBold.ttf in Resources */,
+				A70D8DF72992462B0058B44A /* ChakraPetch-SemiBoldItalic.ttf in Resources */,
+				A70D8DF42992462B0058B44A /* ChakraPetch-Medium.ttf in Resources */,
 				A7EE99AC2983E0340075A75E /* Gilroy-ExtraboldItalic.ttf in Resources */,
 				A7EE99A92983E0340075A75E /* Gilroy-Regular.ttf in Resources */,
 				A7EE99AE2983E0340075A75E /* Gilroy-Thin.ttf in Resources */,
 				A738F1F82991186E00539CCC /* GoogleService-Info.plist in Resources */,
+				A70D8DF32992462B0058B44A /* ChakraPetch-Regular.ttf in Resources */,
 				A7EE99AB2983E0340075A75E /* Gilroy-ThinItalic.ttf in Resources */,
 				A7EE99AD2983E0340075A75E /* Gilroy-BoldItalic.ttf in Resources */,
 				A7EE99A42983E0340075A75E /* Gilroy-Bold.ttf in Resources */,
 				A7EE99A02983E0340075A75E /* Gilroy-RegularItalic.ttf in Resources */,
+				A70D8DF22992462B0058B44A /* ChakraPetch-Light.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				A70D8DF92992462B0058B44A /* ChakraPetch-BoldItalic.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

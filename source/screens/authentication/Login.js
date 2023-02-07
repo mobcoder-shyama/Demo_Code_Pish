@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon } from '../../assests/svg/AuthSvg';
+import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon, GmailIcon, FBIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
 import DisableButton from '../../components/DisableButton';
 import Colors from '../../constant/Colors';
@@ -15,6 +15,8 @@ import { FontFamily } from '../../constant/FontFamily';
 import { SCREEN_HEIGHT } from '../../constant/Dimensions';
 import Loader from '../../components/Loader';
 import ViewSeparator from '../../components/ViewSeparator';
+import SocialButton from '../../components/SocialButton';
+import { WhiteEmailIcon } from '../../assests/svg/MainSvg';
 
 let dataItem = [
     {
@@ -184,7 +186,8 @@ const Login = (props) => {
     }
 
     const handleLogin = () => {
-        state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
+         props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
+        //state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
 
 
     }
@@ -228,10 +231,9 @@ const Login = (props) => {
 
 
 
-                {!isContinue && <SeparatorTextView text={'Log in or sign up'} />}
+                {<SeparatorTextView text={'Log in or sign up'} />}
 
-                {!isContinue &&
-                    <View style={styles.inputContainer}>
+                {   <View style={styles.inputContainer}>
 
                         {/* country code */}
                         <TouchableOpacity onPress={() => setCountryModal(true)} style={{ width: 76, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -277,9 +279,9 @@ const Login = (props) => {
                         <View style={styles.inputContainer}>
 
                             {/* country code */}
-                            <TouchableOpacity onPress={() => setCountryModal(true)} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14 }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14 }}>
                                 <SvgXml xml={VioletSearchIcon} width={20.31} height={20.31} />
-                            </TouchableOpacity>
+                            </View>
 
 
                             <TextInput
@@ -316,7 +318,7 @@ const Login = (props) => {
 
                 </Modal>
 
-                {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 14 }}>
+                {/* {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 14 }}>
                     <Text style={{ color: 'white', fontSize: 36, fontFamily: FontFamily['Gilroy'][700], fontWeight: 700 }}>+91 {mobile}</Text>
                     <Text style={{ color: 'white', fontSize: 16, marginTop: 5, fontFamily: FontFamily['Gilroy'][500], fontWeight: 500 }}> Is this the correct number?</Text>
                     <TouchableOpacity style={{ marginTop: 14 }} onPress={() => setState({ isContinue: false })}>
@@ -324,7 +326,7 @@ const Login = (props) => {
                     </TouchableOpacity>
 
 
-                </View>}
+                </View>} */}
 
                 {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleLogin()} />}
 
@@ -341,7 +343,19 @@ const Login = (props) => {
 
                 <SeparatorTextView text={'Or'} />
 
-                {renderEmailView()}
+
+                {/* Social Button view */}
+
+                <View style={{flexDirection:'row',alignSelf:'center'}}>
+                   <SocialButton icon={FBIcon}/>
+                   <SocialButton icon={GmailIcon}/>
+                   <SocialButton  icon={WhiteEmailIcon} onpress={() => props.navigation.navigate('login_with_email')} />
+                </View>
+
+                
+
+               
+                 {/* {renderEmailView()} */}
 
 
 

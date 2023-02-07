@@ -8,5 +8,15 @@ export const FontFamily={
        600:'Gilroy-SemiBold',
        700:'Gilroy-Bold',
        800:'Gilroy-ExtraBold'
+    },
+    'ChakraPetch':{
+        100:'ChakraPetch-Light',
+        200:'ChakraPetch-Light',
+        300:'ChakraPetch-Light',
+        400:'ChakraPetch-Regular',
+        500:'ChakraPetch-SemiBold',
+        600:'ChakraPetch-SemiBold',
+        700:'ChakraPetch-Bold',
+        800:'ChakraPetch-Bold'
     }
 }

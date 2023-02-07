@@ -226,7 +226,7 @@ export default class SwiperComponent extends Component {
 
                         <TouchableOpacity  onPress={() => this.props.navigation.replace('authstack')}>
                             <Text style={{
-                                //fontSize: 16,
+                                fontSize: 16,
                                 color: '#FB8C00',
                                 fontWeight: '600',
                                 textAlign: 'center',
@@ -237,7 +237,7 @@ export default class SwiperComponent extends Component {
                         <TouchableOpacity onPress={() => this.swipe()} style={{flexDirection:'row',justifyContent:'center'}}>
 
                             <Text style={{
-                                //fontSize: 16,
+                                fontSize: 16,
                                 color: '#9945FF',
                                 fontWeight: '600',
                                 textAlign: 'center',
