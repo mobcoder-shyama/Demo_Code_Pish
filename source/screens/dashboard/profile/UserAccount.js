@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { Text, View,ImageBackground,TouchableOpacity,StyleSheet } from 'react-native';
+import { Text, View,ImageBackground,TouchableOpacity,StyleSheet, ScrollView } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
+import { AppTextLogo, LineSeparator, MobileIcon, WhiteEmailIcon } from '../../../assests/svg/MainSvg';
 import Header from '../../../components/Header';
 import Colors from '../../../constant/Colors';
-import { SCREEN_WIDTH } from '../../../constant/Dimensions';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constant/Dimensions';
 import { FontFamily } from '../../../constant/FontFamily';
+import AccountListItem from './components/AccountListItem';
 
 
 const UserAccount = (props) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#000000' }}>
+          
             <ImageBackground source={require('../../../assests/png/UserAccounBGImg.png')} resizeMode={'stretch'} style={{ height:250, width: SCREEN_WIDTH }}>
 
               
@@ -26,7 +29,7 @@ const UserAccount = (props) => {
 
                         <View style={{paddingHorizontal:16,justifyContent:'center'}}>
                            <Text style={[userAccountStyles.detailsText,{fontSize:18}]}>Kistan Waston</Text>
-                           <Text style={userAccountStyles.detailsText}>kitnas@gmail.com</Text>
+                           <Text style={userAccountStyles.detailsText}>kitnas@gmail.com {SCREEN_HEIGHT}</Text>
                            <Text style={userAccountStyles.detailsText}>+91273673623</Text>
 
                         </View>
@@ -47,7 +50,30 @@ const UserAccount = (props) => {
 
             </ImageBackground>
 
-            <Text style={{ color: Colors.textColor.white }}>UserAccount!</Text>
+            <View style={{height:SCREEN_HEIGHT<675?10:25}}/>
+
+            <ScrollView style={{flex:1,alignSelf:'center',width:SCREEN_WIDTH-25}} scrollEnabled={SCREEN_HEIGHT<675?true:false}>
+
+            <AccountListItem title={'My Campaigns'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
+            <AccountListItem title={'Device Settings'} icon={MobileIcon} onpress={()=>props.navigation.navigate('settings')}/>
+            <AccountListItem title={'How to Play'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('howtoplay')}/>
+            <AccountListItem title={'How to Score'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('howtoscore')}/>
+
+            <SvgXml xml={LineSeparator} height={1} width={SCREEN_WIDTH} marginTop={SCREEN_HEIGHT<675?25:32}/> 
+
+            <AccountListItem title={'Support'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
+            <AccountListItem title={'FAQ'} icon={MobileIcon} onpress={()=>props.navigation.navigate('faq')}/>
+            <AccountListItem title={'Terms of Service'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('faq')}/>
+            <AccountListItem title={'Logout'} icon={WhiteEmailIcon} isArrow={false}/>
+
+            <View style={{marginTop:89,alignItems:'center'}}>
+                <SvgXml xml ={AppTextLogo} height={18.15}  width={77.72}/>
+                <Text style={{marginTop:9.18,color:Colors.textColor.white}}>v17.1.13</Text>
+            </View>
+
+            </ScrollView>
+
+       
         </View>
     );
 }

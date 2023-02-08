@@ -18,6 +18,11 @@ import UserStack from './UserStack';
 import UserAccount from '../screens/dashboard/profile/UserAccount';
 import UserProfile from '../screens/dashboard/profile/UserProfile';
 import UpdateUserProfile from '../screens/dashboard/profile/UpdateUserProfile';
+import FAQ from '../screens/dashboard/profile/FAQ';
+import Support from '../screens/dashboard/profile/Support';
+import HowToScore from '../screens/dashboard/profile/HowToScore';
+import HowToPlay from '../screens/dashboard/profile/HowToPlay';
+import DeviceSettings from '../screens/dashboard/profile/DeviceSettings';
 
 
 
@@ -92,6 +97,35 @@ const RootNavigation = props => {
                         component={UpdateUserProfile}
                         options={{ headerShown: false, animation: 'slide_from_bottom' }}
                     />
+
+                    <Stack.Screen
+                        name="settings"
+                        component={DeviceSettings}
+                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                    />
+                    <Stack.Screen
+                        name="faq"
+                        component={FAQ}
+                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                    />
+                    <Stack.Screen
+                        name="support"
+                        component={Support}
+                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                    />
+
+                    <Stack.Screen
+                        name="howtoscore"
+                        component={HowToScore}
+                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                    />
+                    <Stack.Screen
+                        name="howtoplay"
+                        component={HowToPlay}
+                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                    />
+
+
 
 
 

@@ -2,12 +2,13 @@ import * as React from 'react';
 import { Text, View, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
-import { HomeAddressIcon, MobileIcon, ThreeDotIcon, WhiteEmailIcon } from '../../../assests/svg/MainSvg';
+import { HomeAddressIcon, MobileIcon, PlayedIcon, ThreeDotIcon, WhiteEmailIcon, WinBadgeIcon } from '../../../assests/svg/MainSvg';
 import AuthButton from '../../../components/AuthButton';
 import Header from '../../../components/Header';
 import Colors from '../../../constant/Colors';
 import { SCREEN_WIDTH } from '../../../constant/Dimensions';
 import { FontFamily } from '../../../constant/FontFamily';
+import BadgeView from './components/BadgeView';
 
 
 const UserProfile = (props) => {
@@ -19,11 +20,11 @@ const UserProfile = (props) => {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <SvgXml xml={icon} height={22} width={14} />
-                        <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17,textAlign:'left' }]}>{title}</Text>
+                        <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left' }]}>{title}</Text>
 
                     </View>
 
-                    <Text style={[userAccountStyles.buttonText,{fontFamily:FontFamily['Gilroy'][500]}]}>{value}</Text>
+                    <Text style={[userAccountStyles.buttonText, { fontFamily: FontFamily['Gilroy'][500] }]}>{value}</Text>
 
 
                 </View>
@@ -59,14 +60,19 @@ const UserProfile = (props) => {
 
             </ImageBackground>
 
-            <View style={{marginTop:24,alignItems:'center'}}>
+            <View style={{ marginTop: 24, alignItems: 'center' }}>
 
-             <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17,textAlign:'left',fontSize:24 }]}>Kristin Watson</Text>
-            
-             <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17,textAlign:'left',marginTop:5,fontSize:16 }]}>Female, 26 years old</Text>
+                <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', fontSize: 24 }]}>Kristin Watson</Text>
 
-             <AuthButton type={2} title={'Edit Profile'} width={124} onpress={()=>props.navigation.navigate('user-profile-update')}/>
+                <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', marginTop: 5, fontSize: 16 }]}>Female, 26 years old</Text>
 
+                <AuthButton type={2} title={'Edit Profile'} width={124} onpress={() => props.navigation.navigate('user-profile-update')} />
+
+                <View style={{ marginTop: 24,flexDirection:'row',width:SCREEN_WIDTH-25,alignSelf:'center',justifyContent:'space-around',alignContent:'center' }}>
+                    <BadgeView icon={PlayedIcon}  title={'Points'} value ={2322}/ >
+                    <BadgeView  icon={WinBadgeIcon} title={'Wins'} value ={2322} />
+                    <BadgeView  icon={PlayedIcon} title={'Played'}  value ={2322}/>
+                </View>
 
 
             </View>
@@ -79,26 +85,26 @@ const UserProfile = (props) => {
 
             {/*  */}
 
-            <View style={{height:124}}/>
+            <View style={{ height: 56 }} />
 
-            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', minHeight: 128,height:'auto', borderRadius: 24,justifyContent:'center' }}>
+            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', minHeight: 128, height: 'auto', borderRadius: 24, justifyContent: 'center' }}>
 
-       
+
 
                 {renderUserDetails(WhiteEmailIcon, 'Email', "432432432")}
 
-                <View style={{height:10}}/>
+                <View style={{ height: 10 }} />
 
                 {renderUserDetails(MobileIcon, 'Phone', "342345345")}
 
             </View>
 
-            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', height: 122, borderRadius: 24, marginTop: 24,justifyContent:'center' }}>
+            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', height: 122, borderRadius: 24, marginTop: 24, justifyContent: 'center' }}>
 
-             {renderUserDetails(HomeAddressIcon,'105, Vars Casa Rosa, Sakshi Nagar Pai Layout, Mahadevapura, Bengaluru Karnataka 560048', "")}
+                {renderUserDetails(HomeAddressIcon, '105, Vars Casa Rosa, Sakshi Nagar Pai Layout, Mahadevapura, Bengaluru Karnataka 560048', "")}
 
-          
-          
+
+
             </View>
 
 
