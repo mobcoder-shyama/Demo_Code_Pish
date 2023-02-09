@@ -9,8 +9,10 @@ const { width, height } = Dimensions.get('window');
 import { FontFamily } from '../../constant/FontFamily';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/Dimensions';
 import DisableButton from '../../components/DisableButton';
-import { CheckIcon, IndianFlagIcon, VioletSearchIcon, WhatsAppIcon, WhiteBackArrow } from '../../assests/svg/AuthSvg';
+import { CheckIcon, DropdownIcon, IndianFlagIcon, SearchIcon, VioletSearchIcon, WhatsAppIcon, WhiteBackArrow } from '../../assests/svg/AuthSvg';
 import ViewSeparator from '../../components/ViewSeparator';
+import { getStringData } from '../../utils/AsyncStorage';
+import { LOGIN_VIA } from '../../utils/AsyncKeys';
 
 
 let dataItem = [
@@ -129,6 +131,7 @@ const UpdateDetails = (props) => {
     const [isWhatsApp, setWhatsApp] = useState(false);
     const [countryCodeModal, setCountryCodeModal] = useState(false);
     const [searchText, setSearchText] = useState('');
+    const [selectField, setSelectField] = useState(1)
 
 
 
@@ -144,6 +147,17 @@ const UpdateDetails = (props) => {
 
         return () => backHandler.remove();
     }, []);
+
+
+    useEffect(() => {
+        getStoreData();
+    }, []);
+
+    const getStoreData = async () => {
+        let returnData = await getStringData(LOGIN_VIA);
+        console.log("returnData----", returnData);
+        setSelectField(returnData)
+    }
 
 
 
@@ -188,7 +202,7 @@ const UpdateDetails = (props) => {
 
                     <View style={[styles.inputContainer, { marginTop: 36 }]}>
 
-                        {fNameFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -5, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
+                        {fNameFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Full Name
                         </Animated.Text>}
 
@@ -215,9 +229,9 @@ const UpdateDetails = (props) => {
 
                     </View>
 
-                    <View style={styles.inputContainer}>
+                    {selectField == 2 && <View style={styles.inputContainer}>
 
-                        {emailFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -5, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
+                        {emailFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Enter email
                         </Animated.Text>}
 
@@ -242,11 +256,11 @@ const UpdateDetails = (props) => {
 
 
 
-                    </View>
+                    </View>}
 
-                    <View style={[styles.inputContainer]}>
+                    {selectField == 1 && <View style={[styles.inputContainer]}>
 
-                        {mobileFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -5, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
+                        {mobileFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Mobile
                         </Animated.Text>}
 
@@ -272,38 +286,73 @@ const UpdateDetails = (props) => {
 
                             {mobileFocus &&
 
-                                <TouchableOpacity onPress={()=>setCountryCodeModal(!countryCodeModal)} style={{ flexDirection: 'row', borderBottomColor: '#757575', borderBottomWidth: 1.0, width: 65, alignItems: 'center' }}>
+                                <TouchableOpacity onPress={() => setCountryCodeModal(!countryCodeModal)} style={{ flexDirection: 'row', borderBottomColor: '#757575', borderBottomWidth: 1.0, width: 55, alignItems: 'center', justifyContent: 'space-around', }}>
 
                                     <SvgXml xml={IndianFlagIcon} height={14} width={20} />
+                                    <SvgXml xml={DropdownIcon} width={14} height={7}/>
 
-                                    <Text style={{ color: 'white', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8 }}>+91</Text>
 
 
                                 </TouchableOpacity>
 
                             }
 
+                            {mobileFocus && <Text style={{ color: 'white',borderBottomWidth: 1.0, borderBottomColor: '#757575',fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8 }}>+91</Text>}
 
-                            {mobileFocus && <TextInput
-                                autoFocus={true}
-                                style={{
-                                    color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
-                                    borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500], width: (width - 25) - 85
-                                }}
-                                placeholder={!mobileFocus ? "Mobile" : ''}
-                                placeholderTextColor={'#757575'}
-                                selectionColor={Colors.cursor.white}
-                                keyboardType='phone-pad'
-                                maxLength={50}
-                                value={mobile}
-                                onChangeText={(text) => setMobile(text)}
-                                onFocus={() => setMobileFocus(true)}
-                                onBlur={() => onBlurInputMobile()}
-                            />}
+
+
+                            {mobileFocus &&
+
+                                <TextInput
+                                    autoFocus={true}
+                                    style={{
+                                        color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
+                                        borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500], width: (width - 25) - 85
+                                    }}
+                                    placeholder={!mobileFocus ? "Mobile" : ''}
+                                    placeholderTextColor={'#757575'}
+                                    selectionColor={Colors.cursor.white}
+                                    keyboardType='phone-pad'
+                                    maxLength={50}
+                                    value={mobile}
+                                    onChangeText={(text) => setMobile(text)}
+                                    onFocus={() => setMobileFocus(true)}
+                                    onBlur={() => onBlurInputMobile()}
+                                />}
 
                         </View>
 
 
+
+
+
+
+                    </View>}
+
+
+                    <View style={[styles.inputContainer, { marginTop: 36 }]}>
+
+                        {fNameFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
+                            Referral code (Optional)
+                        </Animated.Text>}
+
+
+                        <TextInput
+                            style={{
+                                color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
+                                borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500],
+                            }}
+                            placeholder={!fNameFocus ? "Referral code (Optional)" : ''}
+                            placeholderTextColor={'#757575'}
+                            selectionColor={Colors.cursor.white}
+                            keyboardType="default"
+                            maxLength={50}
+                            value={fName}
+                            onChangeText={(text) => setFName(text)}
+                            onFocus={() => setFNameFocus(true)}
+                            onBlur={() => onBlurInputFName()}
+                        //returnKeyType={'send'}
+                        />
 
 
 
@@ -333,12 +382,12 @@ const UpdateDetails = (props) => {
 
                                 {/* country code */}
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14 }}>
-                                    <SvgXml xml={VioletSearchIcon} width={20.31} height={20.31} />
+                                    <SvgXml xml={SearchIcon} width={20.31} height={20.31} />
                                 </View>
 
 
                                 <TextInput
-                                    style={{ color: 'white', fontSize:14 }}
+                                    style={{ color: 'white', fontSize: 14 }}
                                     placeholder="Search by country name..."
                                     placeholderTextColor={'#757575'}
                                     selectionColor={Colors.cursor.white}
@@ -351,7 +400,7 @@ const UpdateDetails = (props) => {
                             </View>
 
                             {/* <Loader/> */}
-
+                            {/* 
                             <FlatList
                                 style={{ marginTop: 25 }}
                                 data={dataItem}
@@ -364,7 +413,7 @@ const UpdateDetails = (props) => {
 
                                 }
                                 ItemSeparatorComponent={ViewSeparator}
-                            />
+                            /> */}
 
 
                         </View>

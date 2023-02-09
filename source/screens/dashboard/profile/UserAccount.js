@@ -16,10 +16,12 @@ const UserAccount = (props) => {
           
             <ImageBackground source={require('../../../assests/png/UserAccounBGImg.png')} resizeMode={'stretch'} style={{ height:250, width: SCREEN_WIDTH }}>
 
+        
+                 <View style={{height:52}}/>
+                 <Header title={''} navigation={props.navigation}/>
               
               
-              
-                <View style={{flexDirection:'row',marginTop:138,width:SCREEN_WIDTH-25,alignItems:'center',alignSelf:'center',justifyContent:'space-between'}}>
+                <View style={{flexDirection:'row',marginTop:38,width:SCREEN_WIDTH-25,alignItems:'center',alignSelf:'center',justifyContent:'space-between'}}>
 
                     <View style={{flexDirection:'row'}}>
 
@@ -63,12 +65,12 @@ const UserAccount = (props) => {
 
             <AccountListItem title={'Support'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
             <AccountListItem title={'FAQ'} icon={MobileIcon} onpress={()=>props.navigation.navigate('faq')}/>
-            <AccountListItem title={'Terms of Service'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('faq')}/>
-            <AccountListItem title={'Logout'} icon={WhiteEmailIcon} isArrow={false}/>
+            <AccountListItem title={'Terms of Service'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('terms')}/>
+            <AccountListItem title={'Logout'} icon={WhiteEmailIcon} isArrow={false} onpress={()=>props.navigation.replace('authstack')}/>
 
-            <View style={{marginTop:89,alignItems:'center'}}>
+            <View style={{marginTop:80,alignItems:'center'}}>
                 <SvgXml xml ={AppTextLogo} height={18.15}  width={77.72}/>
-                <Text style={{marginTop:9.18,color:Colors.textColor.white}}>v17.1.13</Text>
+                <Text style={{marginTop:1,color:Colors.textColor.white,fontSize:12}}>v17.1.13</Text>
             </View>
 
             </ScrollView>

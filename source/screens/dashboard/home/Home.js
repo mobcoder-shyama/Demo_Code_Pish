@@ -53,59 +53,18 @@ const HomeScreen = (props) => {
 
 
   return (
-    <View style={{ flex: 1, alignItems: 'center',backgroundColor:'#000000' }}>
+    <View style={styles.mainContainer}>
 
       <MainHeader onpress={() => props.navigation.navigate('user-account')} />
 
-
-
-      <TouchableOpacity onPress={() => props.navigation.replace('authstack')} style={{ marginTop: 100 }}>
-        <Text style={{ color: Colors.textColor.white }}>Logout!</Text>
-      </TouchableOpacity>
-
-
-
-
-      
-
-
-
-    </View>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
-  iconContainer: {
-    height: 70,
-    width: 70,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  height: {
-    backgroundColor: "#5243FE",
-    //borderRadius: 16,
-  },
-  inner: {
-    height: "100%",
-    backgroundColor: "#9945FF",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  white: {
-    color: "#FFF",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-  button: {
-    height: 80,
-    width: 180,
-  },
-  outer: {
-    flex: 1,
-    padding: 10,
-    //backgroundColor: "rgba(0,0,0,0.65)",
-    //borderRadius: 14,
-  },
+    mainContainer:{
+      flex: 1, alignItems: 'center',backgroundColor:Colors.background.dark_black
+    }
 });
 
 export default HomeScreen

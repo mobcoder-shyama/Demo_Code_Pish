@@ -12,6 +12,8 @@ import BackgroundTimer from "react-native-background-timer"
 import { emailEncraptionFormat } from '../../utils/InputValidation';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { FontFamily } from '../../constant/FontFamily';
+import { storeObjectData } from '../../utils/AsyncStorage';
+import { LOGIN_VIA } from '../../utils/AsyncKeys';
 
 
 
@@ -82,6 +84,11 @@ const EmailOTPVerification = (props) => {
 
     }
 
+    const handleLogin=async()=>{
+        await storeObjectData(LOGIN_VIA,2);    // 1 For via mobile number
+        props.navigation.replace('update_details');
+    }
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -89,7 +96,7 @@ const EmailOTPVerification = (props) => {
 
             <View style={{ marginTop:Platform.OS === 'android'?25:60, alignSelf: 'center' }}>
 
-                <Header title={'Login with OTP'} navigation={props.navigation} />
+                <Header title={'OTP Verification'} navigation={props.navigation} />
 
                 <View style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
 
@@ -116,7 +123,7 @@ const EmailOTPVerification = (props) => {
                     <View style={{ marginTop: 28 }} />
 
 
-                    {<AuthButton type={2} title={'Login'} isArrow={false} onpress={()=>props.navigation.replace('tabs')} />}
+                    {<AuthButton type={2} title={'Login'} isArrow={false} onpress={()=>handleLogin()} />}
 
                     {renderResendView()}
 

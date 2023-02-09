@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions, Keyboard, Text,TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon, GmailIcon, FBIcon } from '../../assests/svg/AuthSvg';
+import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, SearchIcon, GmailIcon, FBIcon, DropdownIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
 import DisableButton from '../../components/DisableButton';
 import Colors from '../../constant/Colors';
@@ -18,107 +18,22 @@ import ViewSeparator from '../../components/ViewSeparator';
 import SocialButton from '../../components/SocialButton';
 import { WhiteEmailIcon } from '../../assests/svg/MainSvg';
 
-let dataItem = [
+let data= [
     {
         countryName: 'India',
         flag: IndianFlagIcon,
         countryCode: '+91'
     },
     {
-        countryName: 'India',
+        countryName: 'Bangladesh',
         flag: IndianFlagIcon,
-        countryCode: '+91'
+        countryCode: '+90'
     },
     {
-        countryName: 'India',
+        countryName: 'Pakistan',
         flag: IndianFlagIcon,
-        countryCode: '+91'
+        countryCode: '+928'
     },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    }
 ]
 
 
@@ -129,8 +44,11 @@ const Login = (props) => {
         isContinue: false,
     })
     const [mobile, setMobile] = useState('');
+    const[countryCode,setCountryCode] = useState('+91')
     const [countryModal, setCountryModal] = useState(false);
     const [searchText, setSearchText] = useState('');
+    const [dataItem, setDataItem] = useState(data);
+
 
     useEffect(() => {
         fcmToken();
@@ -139,7 +57,19 @@ const Login = (props) => {
     useDebunceEffect(() => {
         if (searchText.length != 0) {
             Keyboard.dismiss();
-        }
+        //     const newData = dataItem.filter(item => {      
+        //         const itemData = `${item.countryName.toUpperCase()}   
+        //         ${item.countryName.toUpperCase()} ${item.countryName.toUpperCase()}`;
+        //         console.log("itemData------",itemData)
+        //         const textData = searchText.toUpperCase();
+        //         return itemData.indexOf(textData) > -1; 
+                
+                
+        //       });
+
+        //       setDataItem(newData)
+              
+         }
 
     }, [searchText], 500)
 
@@ -192,6 +122,13 @@ const Login = (props) => {
 
     }
 
+    const selectCountry=(item)=>{
+        console.log("selectCountry------",item?.countryCode)
+        setCountryCode(item?.countryCode);
+        setSearchText('')
+        setCountryModal(false);
+    }
+
     const { isContinue } = state;
 
     return (
@@ -212,13 +149,6 @@ const Login = (props) => {
 
                     </View>
 
-                    {/* <SvgXml xml={WinFantasyIcon} width={92.6} height={93.3} />
-
-
-                <TouchableOpacity style={{ height: 24, width: 64, backgroundColor: '#2D2563', marginTop: 52, borderRadius: 20, alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-end', right: 20, borderWidth: 1, borderColor: '#918DAD' }}>
-                    <Text style={{ color: '#FFFFFF', fontFamily: 'Gilroy', fontSize: 13 }}>Skip</Text>
-                </TouchableOpacity> */}
-
 
                 </ImageBackground>
 
@@ -226,7 +156,6 @@ const Login = (props) => {
 
                 <View style={{ alignItems: 'center' }}>
                     <Text style={styles.textStyle}>India’s first fantasy{'\n'}eCommerce platform</Text>
-                    {/* <Text style={styles.textStyle} >Device FCM token :- {state.fcmToken} </Text> */}
                 </View>
 
 
@@ -236,15 +165,18 @@ const Login = (props) => {
                 {   <View style={styles.inputContainer}>
 
                         {/* country code */}
-                        <TouchableOpacity onPress={() => setCountryModal(true)} style={{ width: 76, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => setCountryModal(true)} hitSlop={{top:20,bottom:20}} style={{ width: 70, flexDirection: 'row', alignItems: 'center',flexDirection:'row',justifyContent:'space-around',}}>
                             <SvgXml xml={IndianFlagIcon} width={20} height={16} />
-                            <Text style={{ color: 'white', margin: 8, fontSize: RFValue(16), fontFamily: FontFamily['Gilroy'][500] }}>+91</Text>
+                            <SvgXml xml={DropdownIcon} width={14} height={7} style={{right:9}}  />
+                          
                         </TouchableOpacity>
 
                         <View style={{ height: 30, width: 1, backgroundColor: '#757575' }} />
 
+                        <Text style={{ color: 'white', margin: 8, fontSize: RFValue(16), fontFamily: FontFamily['Gilroy'][500] }}>{countryCode}</Text>
+
                         <TextInput
-                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][400] }}
+                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][500] }}
                             placeholder="Enter mobile number"
                             selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
@@ -280,7 +212,7 @@ const Login = (props) => {
 
                             {/* country code */}
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14 }}>
-                                <SvgXml xml={VioletSearchIcon} width={20.31} height={20.31} />
+                                <SvgXml xml={SearchIcon} width={20.31} height={20.31} />
                             </View>
 
 
@@ -300,14 +232,17 @@ const Login = (props) => {
                         {/* <Loader/> */}
 
                         <FlatList
-                        style={{marginTop:25}}
+                            style={{marginTop:25,backgroundColor:Colors.background.grey_black}}
                             data={dataItem}
                             renderItem={({ item }) =>
-                                 <View style={{width:width-25,height:25,margin:15,alignItems:'center',flexDirection:'row',}}>
-                                  <SvgXml xml={item.flag} height={20} width={20}/>
-                                  <Text style={{color:'white',paddingHorizontal:12}}>{item.countryName}</Text>
-                                  <Text style={{color:'white',paddingHorizontal:12}}>{item.countryCode}</Text>
-                                </View>
+                                 <TouchableOpacity onPress={()=>selectCountry(item)}style={{width:width-25,height:25,margin:15,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
+                                    <View style={{flexDirection:'row',alignItems:'center'}}>
+                                    <SvgXml xml={item.flag} height={20} width={20}/>
+                                    <Text style={{color:'white',paddingHorizontal:12,fontFamily:FontFamily['Gilroy'][600]}}>{item.countryName}</Text>
+                                    </View>  
+                                 
+                                  <Text style={{color:'white',paddingHorizontal:12,fontFamily:FontFamily['Gilroy'][600]}}>{item.countryCode}</Text>
+                                </TouchableOpacity>
                                 
                                 }
                             ItemSeparatorComponent={ViewSeparator}
@@ -318,15 +253,6 @@ const Login = (props) => {
 
                 </Modal>
 
-                {/* {isContinue && <View style={{ alignSelf: 'center', alignItems: 'center', marginTop: 14 }}>
-                    <Text style={{ color: 'white', fontSize: 36, fontFamily: FontFamily['Gilroy'][700], fontWeight: 700 }}>+91 {mobile}</Text>
-                    <Text style={{ color: 'white', fontSize: 16, marginTop: 5, fontFamily: FontFamily['Gilroy'][500], fontWeight: 500 }}> Is this the correct number?</Text>
-                    <TouchableOpacity style={{ marginTop: 14 }} onPress={() => setState({ isContinue: false })}>
-                        <Text style={{ color: 'white', fontSize: 18, fontFamily: FontFamily['Gilroy'][600], fontWeight: 600 }}>Edit</Text>
-                    </TouchableOpacity>
-
-
-                </View>} */}
 
                 {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleLogin()} />}
 
@@ -434,9 +360,9 @@ const styles = StyleSheet.create({
     },
     bottomtextStyle: {
         color: '#FFFFFF',
-        fontWeight: '400',
+        fontWeight: '600',
         fontSize: 13,
-        fontFamily: 'Gilroy',
+        fontFamily: FontFamily['Gilroy'][600],
         letterSpacing: 0.3
     },
     modal: {

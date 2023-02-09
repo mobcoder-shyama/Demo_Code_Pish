@@ -12,6 +12,8 @@ import { FontFamily } from '../../constant/FontFamily';
 import { SCREEN_HEIGHT } from '../../constant/Dimensions';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { VioletEditIcon, WhiteBackArrow } from '../../assests/svg/AuthSvg';
+import { storeObjectData } from '../../utils/AsyncStorage';
+import { LOGIN_VIA } from '../../utils/AsyncKeys';
 
 
 
@@ -82,6 +84,11 @@ const PhoneOTPVerification = (props) => {
 
     }
 
+    const codeFilled=async()=>{
+        await storeObjectData(LOGIN_VIA,1);    // 1 For via mobile number
+        props.navigation.replace('update_details');
+    }
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -99,7 +106,7 @@ const PhoneOTPVerification = (props) => {
 
                     </Text>
                    
-                    <View style={{flexDirection:'row',paddingHorizontal: 16,bottom:10}}>
+                    <View style={{flexDirection:'row',paddingHorizontal: 16,bottom:20}}>
 
                         <Text style={{ color: '#FFFFFF', lineHeight: 24, fontSize: 20, letterSpacing: 0.2,fontFamily: FontFamily['Gilroy'][700], fontWeight: 700 }}>+91-{props?.route?.params?.mobile}</Text>
                        
@@ -114,7 +121,7 @@ const PhoneOTPVerification = (props) => {
                     </View>
 
 
-                    <View style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
+                    <View style={{ flex: 1, alignItems: 'center', marginTop: 0 }}>
 
 
                         <OTPInputView
@@ -126,7 +133,7 @@ const PhoneOTPVerification = (props) => {
                             codeInputFieldStyle={styles.otpBoxStyle}
                             codeInputHighlightStyle={styles.underlineStyleHighLighted}
                             onCodeChanged={(text) => updateCode(text)}
-                            onCodeFilled={() => props.navigation.replace('update_details')}    // 
+                            onCodeFilled={() =>codeFilled()}    // 
                             keyboardAppearance={'light'}
                         />
 
@@ -134,7 +141,7 @@ const PhoneOTPVerification = (props) => {
 
                         {renderResendView()}
 
-                        <TouchableOpacity onPress={() => props.navigation.replace('login_with_email')} style={{ alignItems: 'center', marginTop: 20 }}>
+                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ alignItems: 'center', marginTop: 20 }}>
                             <Text style={{ color: '#9945FF', fontFamily: FontFamily['Gilroy'][400], lineHeight: 16, fontSize: 13, letterSpacing: 0.2 }}>Try other login method</Text>
                         </TouchableOpacity>
 

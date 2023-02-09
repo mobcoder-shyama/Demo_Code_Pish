@@ -44,7 +44,7 @@ const WelcomeScreen = (props) => {
 
     return (
         <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'cover'}>
-            <TouchableOpacity onPress={()=>props.navigation.replace('authstack')} style={styles.skipButton}>
+            <TouchableOpacity onPress={()=>props.navigation.replace('tabs')} style={styles.skipButton}>
                   <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
             {renderTextContainer()}
