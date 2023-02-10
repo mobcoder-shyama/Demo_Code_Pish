@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: 20, //Here is the trick
+        bottom: 60, //Here is the trick
         flexDirection:'row'
       },
       textStyle: {

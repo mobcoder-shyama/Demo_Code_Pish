@@ -82,7 +82,7 @@ const Login = (props) => {
     const renderBottomView = () => {
         return (
             <View style={styles.bottomView}>
-                <Text style={[styles.bottomtextStyle, { color: '#757575' }]}>By continuing, you agree to our </Text>
+                <Text style={[styles.bottomtextStyle, { color: '#757575',fontFamily: FontFamily['Gilroy'][400],fontWeight:400 }]}>By continuing, you agree to our </Text>
                 <TouchableOpacity hitSlop={{ right: 20, left: 20, bottom: 20 }} onPress={() => props.navigation.navigate('terms')}>
                     <Text style={[styles.bottomtextStyle, { color: '#9E9E9E', marginTop: 6 }]}>Terms & Conditions</Text>
                 </TouchableOpacity>
@@ -173,10 +173,10 @@ const Login = (props) => {
 
                         <View style={{ height: 30, width: 1, backgroundColor: '#757575' }} />
 
-                        <Text style={{ color: 'white', margin: 8, fontSize: RFValue(16), fontFamily: FontFamily['Gilroy'][500] }}>{countryCode}</Text>
+                        <Text style={{ color: 'white', margin: 8, fontSize:16, fontFamily: FontFamily['Gilroy'][500],letterSpacing:0.2 }}>{countryCode}</Text>
 
                         <TextInput
-                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][500] }}
+                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily:FontFamily['Gilroy'][500],letterSpacing:0.2 }}
                             placeholder="Enter mobile number"
                             selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
         marginTop: 36,
         textAlign: 'center',
         letterSpacing: 1,
-        lineHeight: 29
+        //lineHeight: 29
     },
     emailTextStyle: {
         color: '#9E9E9E',

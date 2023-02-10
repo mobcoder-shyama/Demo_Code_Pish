@@ -229,7 +229,7 @@ const UpdateDetails = (props) => {
 
                     </View>
 
-                    {selectField == 2 && <View style={styles.inputContainer}>
+                    {selectField == 1 && <View style={styles.inputContainer}>
 
                         {emailFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Enter email
@@ -258,7 +258,7 @@ const UpdateDetails = (props) => {
 
                     </View>}
 
-                    {selectField == 1 && <View style={[styles.inputContainer]}>
+                    {selectField == 2 && <View style={[styles.inputContainer]}>
 
                         {mobileFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Mobile
@@ -289,7 +289,8 @@ const UpdateDetails = (props) => {
                                 <TouchableOpacity onPress={() => setCountryCodeModal(!countryCodeModal)} style={{ flexDirection: 'row', borderBottomColor: '#757575', borderBottomWidth: 1.0, width: 55, alignItems: 'center', justifyContent: 'space-around', }}>
 
                                     <SvgXml xml={IndianFlagIcon} height={14} width={20} />
-                                    <SvgXml xml={DropdownIcon} width={14} height={7}/>
+                                    <SvgXml xml={DropdownIcon} width={14} height={7} />
+
 
 
 
@@ -297,28 +298,47 @@ const UpdateDetails = (props) => {
 
                             }
 
-                            {mobileFocus && <Text style={{ color: 'white',borderBottomWidth: 1.0, borderBottomColor: '#757575',fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8 }}>+91</Text>}
+                            {/* {mobileFocus && <Text style={{ color: 'white', borderBottomWidth: 1.0, borderBottomColor: '#757575', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8, justifyContent: 'center' }}>+91</Text>} */}
+
 
 
 
                             {mobileFocus &&
 
-                                <TextInput
-                                    autoFocus={true}
-                                    style={{
-                                        color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
-                                        borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500], width: (width - 25) - 85
-                                    }}
-                                    placeholder={!mobileFocus ? "Mobile" : ''}
-                                    placeholderTextColor={'#757575'}
-                                    selectionColor={Colors.cursor.white}
-                                    keyboardType='phone-pad'
-                                    maxLength={50}
-                                    value={mobile}
-                                    onChangeText={(text) => setMobile(text)}
-                                    onFocus={() => setMobileFocus(true)}
-                                    onBlur={() => onBlurInputMobile()}
-                                />}
+
+
+                                <View style={{ flexDirection: 'row', }}>
+
+                                    {/* <Text style={{ color: 'white',borderBottomWidth: 1.0, borderBottomColor: '#757575', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8, justifyContent: 'center',textAlign:'center' }}>+91</Text> */}
+
+                                    <TextInput
+                                        autoFocus={true}
+                                        style={{
+                                            color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,paddingHorizontal:45,
+                                            borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500], width: (width - 25) - 65
+                                        }}
+                                        placeholder={!mobileFocus ? "Mobile" : ''}
+                                        placeholderTextColor={'#757575'}
+                                        selectionColor={Colors.cursor.white}
+                                        keyboardType='phone-pad'
+                                        maxLength={50}
+                                        value={mobile}
+                                        onChangeText={(text) => setMobile(text)}
+                                        onFocus={() => setMobileFocus(true)}
+                                        onBlur={() => onBlurInputMobile()}
+                                    />
+
+                                    <View style={{position:'absolute',top:0,bottom:0,}}>
+                                        <Text style={{ color: 'white', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8, justifyContent: 'center', textAlign: 'center' }}>+91</Text>
+
+                                    </View>
+
+
+                                </View>
+
+
+
+                            }
 
                         </View>
 
@@ -347,8 +367,8 @@ const UpdateDetails = (props) => {
                             selectionColor={Colors.cursor.white}
                             keyboardType="default"
                             maxLength={50}
-                            value={fName}
-                            onChangeText={(text) => setFName(text)}
+                            // value={fName}
+                            // onChangeText={(text) => setFName(text)}
                             onFocus={() => setFNameFocus(true)}
                             onBlur={() => onBlurInputFName()}
                         //returnKeyType={'send'}
@@ -436,13 +456,7 @@ const UpdateDetails = (props) => {
 
                 </View>
 
-                <View style={{
-                    height: 0.5,
-                    width: SCREEN_WIDTH,
-                    alignSelf: 'center',
-                    backgroundColor: "#424242",
-                    marginTop: 45
-                }} />
+               
 
                 <View style={{ width: SCREEN_WIDTH - 25, height: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, alignSelf: 'center' }}>
 

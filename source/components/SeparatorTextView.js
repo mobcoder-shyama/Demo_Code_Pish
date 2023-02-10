@@ -34,9 +34,9 @@ const SeparatorTextStyles = StyleSheet.create({
     },
     textStyle: {
         color: '#9E9E9E',
-        fontWeight: '500',
+        fontWeight: '600',
         fontSize: 14,
-        fontFamily:FontFamily['Gilroy'][500],
+        fontFamily:FontFamily['Gilroy'][600],
         textAlign: 'center',
         letterSpacing: 0.2,
         lineHeight: 14,

@@ -23,6 +23,7 @@ import Support from '../screens/dashboard/profile/Support';
 import HowToScore from '../screens/dashboard/profile/HowToScore';
 import HowToPlay from '../screens/dashboard/profile/HowToPlay';
 import DeviceSettings from '../screens/dashboard/profile/DeviceSettings';
+import HomeScreen from '../screens/dashboard/home/Home';
 
 
 
@@ -54,6 +55,7 @@ const RootNavigation = props => {
                     <Stack.Screen name="splash" component={Splash} options={{ headerShown: false, animation: 'slide_from_right' }} />
                     <Stack.Screen name="welcome" component={WelcomeScreen} options={{ headerShown: false, animation: 'slide_from_right' }} />
                     <Stack.Screen name="walkthrough" component={OnBoarding} options={{ headerShown: false, animation: 'slide_from_right' }} />
+                    <Stack.Screen name="no-auth" component={HomeScreen} options={{ headerShown: false, animation: 'slide_from_right' }} />
 
                     <Stack.Screen
                         name="authstack"
@@ -122,7 +124,7 @@ const RootNavigation = props => {
                     <Stack.Screen
                         name="howtoplay"
                         component={HowToPlay}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false, animation: 'slide_from_right' }}
                     />
 
 

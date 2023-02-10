@@ -54,7 +54,7 @@ const UserAccount = (props) => {
 
             <View style={{height:SCREEN_HEIGHT<675?10:25}}/>
 
-            <ScrollView style={{flex:1,alignSelf:'center',width:SCREEN_WIDTH-25}} scrollEnabled={SCREEN_HEIGHT<675?true:false}>
+            <ScrollView style={{flex:1,alignSelf:'center',width:SCREEN_WIDTH-25}}>
 
             <AccountListItem title={'My Campaigns'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
             <AccountListItem title={'Device Settings'} icon={MobileIcon} onpress={()=>props.navigation.navigate('settings')}/>
@@ -68,10 +68,12 @@ const UserAccount = (props) => {
             <AccountListItem title={'Terms of Service'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('terms')}/>
             <AccountListItem title={'Logout'} icon={WhiteEmailIcon} isArrow={false} onpress={()=>props.navigation.replace('authstack')}/>
 
-            <View style={{marginTop:80,alignItems:'center'}}>
+            <View style={{marginTop:65,alignItems:'center'}}>
                 <SvgXml xml ={AppTextLogo} height={18.15}  width={77.72}/>
                 <Text style={{marginTop:1,color:Colors.textColor.white,fontSize:12}}>v17.1.13</Text>
             </View>
+
+            <View style={{height:25}}/>
 
             </ScrollView>
 

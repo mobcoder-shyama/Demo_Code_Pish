@@ -234,7 +234,7 @@ export default class SwiperComponent extends Component {
                             }}>skip</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => this.swipe()} style={{flexDirection:'row',justifyContent:'center'}}>
+                        <TouchableOpacity onPress={() => this.swipe()} style={{flexDirection:'row',justifyContent:'center',}}>
 
                             <Text style={{
                                 fontSize: 16,
@@ -244,7 +244,7 @@ export default class SwiperComponent extends Component {
                                 fontFamily:FontFamily['Gilroy'][600]
                             }}>swipe</Text>
 
-                            <SvgXml xml={NextArrow} height={20} width={20} style={{left:10}} />
+                            <SvgXml xml={NextArrow} height={20} width={20} style={{left:10,top:Platform.OS === 'android'?2:0}} />
 
 
                         </TouchableOpacity>

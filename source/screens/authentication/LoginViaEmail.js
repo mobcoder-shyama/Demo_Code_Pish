@@ -124,13 +124,13 @@ const LoginViaEmail = (props) => {
 
                         <TextInput
                             style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][500] }}
-                            placeholder="Enter email"
+                            placeholder="Enter email "
                             selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
                             value={email}
                             onChangeText={(text) => setEmail(text)}
                             keyboardType='phone-pad'
-                            maxLength={15}
+                            maxLength={50}
                             returnKeyType={'done'}
                         />
 

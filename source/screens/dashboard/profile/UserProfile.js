@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, ImageBackground, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
 import { HomeAddressIcon, MobileIcon, PlayedIcon, ThreeDotIcon, WhiteEmailIcon, WinBadgeIcon } from '../../../assests/svg/MainSvg';
@@ -60,6 +60,13 @@ const UserProfile = (props) => {
 
             </ImageBackground>
 
+
+            <View style={{ width: 68, height: 68, borderWidth: 1, borderColor: Colors.border.white, borderRadius: 34, position: 'absolute', marginTop: 125 }}>
+
+</View>
+
+            <ScrollView>
+
             <View style={{ marginTop: 24, alignItems: 'center' }}>
 
                 <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', fontSize: 24 }]}>Kristin Watson</Text>
@@ -79,9 +86,7 @@ const UserProfile = (props) => {
 
             {/* user circle profile */}
 
-            <View style={{ width: 68, height: 68, borderWidth: 1, borderColor: Colors.border.white, borderRadius: 34, position: 'absolute', marginTop: 125 }}>
-
-            </View>
+           
 
             {/*  */}
 
@@ -106,6 +111,11 @@ const UserProfile = (props) => {
 
 
             </View>
+
+            <View style={{height:25}}/>
+
+
+            </ScrollView>
 
 
 

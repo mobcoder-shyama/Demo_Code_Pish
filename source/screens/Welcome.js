@@ -71,17 +71,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: 50, //Here is the trick
+        bottom:50, //Here is the trick
         flexDirection: 'row'
     },
     bottomTextTitle: {
-        fontSize: 40,fontFamily:FontFamily['Gilroy'][400],color:Colors.textColor.white, fontWeight:'400', lineHeight: 46, letterSpacing: 0.5,
+        fontSize: 40,fontFamily:FontFamily['Gilroy'][400],color:Colors.textColor.white, fontWeight:'400',letterSpacing: 0.5,
     },
     bottomSubTitle: {
         fontWeight: '400', fontSize: 16, color:Colors.textColor.white, marginTop: 6, fontFamily:FontFamily['Gilroy'][400]
     },
     skipButton:{
-        height:24,width:64,backgroundColor:'#FB8C00',marginTop:Platform.OS ==='android'?50:60,borderRadius:20,alignItems:'center',justifyContent:'center',alignSelf:'flex-end',right:20
+        height:24,width:64,backgroundColor:'#FB8C00',marginTop:Platform.OS ==='android'?50:52,borderRadius:20,alignItems:'center',justifyContent:'center',alignSelf:'flex-end',right:20
     },
     skipText:{
         color:Colors.textColor.white,fontWeight:'500',fontSize:13, fontFamily:FontFamily['Gilroy'][500]
