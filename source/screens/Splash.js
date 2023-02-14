@@ -1,18 +1,33 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {View,Text, StyleSheet} from 'react-native';
 import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import { Splash_Logo,Heart_Icon } from '../assests/svg/AuthSvg';
 import { FontFamily } from '../constant/FontFamily';
+import { getStringData } from '../utils/AsyncStorage';
+import { FIRST_LOGIN } from '../utils/AsyncKeys';
 
 const Splash=(props)=>{
 
 
-    React.useEffect(() => {
-        setTimeout(() => {
-           props.navigation.replace('welcome')
-        }, 1000);
-    }, [props]);
+    // React.useEffect(() => {
+    //     setTimeout(() => {
+    //        props.navigation.replace('welcome')
+    //     }, 1000);
+    // }, [props]);
+
+    useEffect(()=>{
+        getLocalData();
+    },[])
+
+
+    const getLocalData=async()=>{
+         let isFirstLogin = await getStringData(FIRST_LOGIN);
+         console.log("isFirstLogin---------",isFirstLogin);
+         setTimeout(() => {
+            isFirstLogin === 'true'? props.navigation.replace('tabs'):props.navigation.replace('welcome')
+         }, 1000);
+    }
 
     
 

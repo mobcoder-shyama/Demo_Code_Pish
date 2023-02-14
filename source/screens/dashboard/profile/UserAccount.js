@@ -1,16 +1,39 @@
 import * as React from 'react';
-import { Text, View,ImageBackground,TouchableOpacity,StyleSheet, ScrollView } from 'react-native';
+import { Text, View,ImageBackground,TouchableOpacity,StyleSheet, ScrollView,Alert } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
-import { AppTextLogo, LineSeparator, MobileIcon, WhiteEmailIcon } from '../../../assests/svg/MainSvg';
+import { AppTextLogo, HowtoPlayIcon, HowtoScoreIcon, LineSeparator, LogoutIcon, FAQIcon, MyCampaignIcon, SupportIcon, TermsIcon, SettingIcon } from '../../../assests/svg/MainSvg';
 import Header from '../../../components/Header';
 import Colors from '../../../constant/Colors';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constant/Dimensions';
 import { FontFamily } from '../../../constant/FontFamily';
+import { IS_LOGIN } from '../../../utils/AsyncKeys';
+import { storeStringData } from '../../../utils/AsyncStorage';
 import AccountListItem from './components/AccountListItem';
 
 
+
 const UserAccount = (props) => {
+
+    const logoutAction=async()=>{
+       Alert.alert('Logout!', 'Are you sure want to logout?', [
+            {
+              text: 'Cancel',
+              onPress: () => null,
+              style: 'cancel',
+            },
+            {text: 'YES', onPress: () => handleLogout()},
+          ]);
+        // await storeStringData(IS_LOGIN,'false');
+        // props.navigation.replace('authstack');
+    }
+
+    const handleLogout=async()=>{
+         await storeStringData(IS_LOGIN,'false');
+         props.navigation.replace('authstack');
+     }
+
+
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#000000' }}>
           
@@ -31,7 +54,7 @@ const UserAccount = (props) => {
 
                         <View style={{paddingHorizontal:16,justifyContent:'center'}}>
                            <Text style={[userAccountStyles.detailsText,{fontSize:18}]}>Kistan Waston</Text>
-                           <Text style={userAccountStyles.detailsText}>kitnas@gmail.com {SCREEN_HEIGHT}</Text>
+                           <Text style={userAccountStyles.detailsText}>kitnas@gmail.com</Text>
                            <Text style={userAccountStyles.detailsText}>+91273673623</Text>
 
                         </View>
@@ -56,17 +79,17 @@ const UserAccount = (props) => {
 
             <ScrollView style={{flex:1,alignSelf:'center',width:SCREEN_WIDTH-25}}>
 
-            <AccountListItem title={'My Campaigns'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
-            <AccountListItem title={'Device Settings'} icon={MobileIcon} onpress={()=>props.navigation.navigate('settings')}/>
-            <AccountListItem title={'How to Play'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('howtoplay')}/>
-            <AccountListItem title={'How to Score'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('howtoscore')}/>
+            <AccountListItem title={'My Campaigns'} icon={MyCampaignIcon} onpress={()=>props.navigation.navigate('support')} width={20} height={19}/>
+            <AccountListItem title={'Device Settings'} icon={SettingIcon} onpress={()=>props.navigation.navigate('settings')} width={16.63} height={22}/>
+            <AccountListItem title={'How to Play'} icon={HowtoPlayIcon} onpress={()=>props.navigation.navigate('howtoplay')} width={20} height={20}/>
+            <AccountListItem title={'How to Score'} icon={HowtoScoreIcon} onpress={()=>props.navigation.navigate('howtoscore')} width={18} height={18}/>
 
             <SvgXml xml={LineSeparator} height={1} width={SCREEN_WIDTH} marginTop={SCREEN_HEIGHT<675?25:32}/> 
 
-            <AccountListItem title={'Support'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('support')}/>
-            <AccountListItem title={'FAQ'} icon={MobileIcon} onpress={()=>props.navigation.navigate('faq')}/>
-            <AccountListItem title={'Terms of Service'} icon={WhiteEmailIcon} onpress={()=>props.navigation.navigate('terms')}/>
-            <AccountListItem title={'Logout'} icon={WhiteEmailIcon} isArrow={false} onpress={()=>props.navigation.replace('authstack')}/>
+            <AccountListItem title={'Support'} icon={SupportIcon} onpress={()=>props.navigation.navigate('support')} width={20} height={20}/>
+            <AccountListItem title={'FAQ'} icon={FAQIcon} onpress={()=>props.navigation.navigate('faq')} width={20} height={20}/>
+            <AccountListItem title={'Terms of Service'} icon={TermsIcon} onpress={()=>props.navigation.navigate('terms')} width={19.33} height={20}/>
+            <AccountListItem title={'Logout'} icon={LogoutIcon} isArrow={false} onpress={()=>logoutAction()} width={17.7} height={18}/>
 
             <View style={{marginTop:65,alignItems:'center'}}>
                 <SvgXml xml ={AppTextLogo} height={18.15}  width={77.72}/>

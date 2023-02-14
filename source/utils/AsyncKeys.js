@@ -2,5 +2,6 @@ export const USER_ACCESS_TOKEN = 'USER_ACCESS_TOKEN';
 export const USER_REFRESH_TOKEN = 'USER_REFRESH_TOKEN';
 export const USERREFERRAL = 'USERREFERRAL';
 export const LOGIN_VIA ='LOGIN_VIA';
-export const FIRST_LOGIN = 'FIRST_LOGIN'
+export const FIRST_LOGIN = 'FIRST_LOGIN';
+export const IS_LOGIN = 'IS_LOGIN_USER';
 

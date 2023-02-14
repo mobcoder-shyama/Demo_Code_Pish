@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Modal, StyleSheet, Dimensions, Keyboard, Text,TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions, Keyboard, Text,TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, BackHandler, Alert, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, SearchIcon, GmailIcon, FBIcon, DropdownIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
@@ -17,6 +17,8 @@ import Loader from '../../components/Loader';
 import ViewSeparator from '../../components/ViewSeparator';
 import SocialButton from '../../components/SocialButton';
 import { WhiteEmailIcon } from '../../assests/svg/MainSvg';
+import { storeStringData } from '../../utils/AsyncStorage';
+import { IS_LOGIN } from '../../utils/AsyncKeys';
 
 let data= [
     {
@@ -48,30 +50,50 @@ const Login = (props) => {
     const [countryModal, setCountryModal] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [dataItem, setDataItem] = useState(data);
+    const [dupDataItem, setDupDataItem] = useState(data);
 
 
     useEffect(() => {
         fcmToken();
     }, []);
 
-    useDebunceEffect(() => {
-        if (searchText.length != 0) {
-            Keyboard.dismiss();
-        //     const newData = dataItem.filter(item => {      
-        //         const itemData = `${item.countryName.toUpperCase()}   
-        //         ${item.countryName.toUpperCase()} ${item.countryName.toUpperCase()}`;
-        //         console.log("itemData------",itemData)
-        //         const textData = searchText.toUpperCase();
-        //         return itemData.indexOf(textData) > -1; 
-                
-                
-        //       });
+    useEffect(() => {
+        const backAction = () => {
+           BackHandler.exitApp();
+           return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          'hardwareBackPress',
+          backAction,
+        );
+         return () => backHandler.remove();
+      }, []);
 
-        //       setDataItem(newData)
+    // useDebunceEffect(() => {
+    //     if (1) {
+    //         Keyboard.dismiss();
+    //         let filteredData = dupDataItem.filter(function (item) {
+    //            return item.countryName.includes(searchText);
+    //         });
+    //         console.log("filteredData--------",filteredData)
+    //        // setDataItem(filteredData);
               
-         }
+    //      }
 
-    }, [searchText], 500)
+    // }, [searchText], 500)
+
+    const onsearch = (searchText) => {
+
+        setSearchText(searchText)
+        let filteredData = dupDataItem.filter(function (item) {
+            return (item.countryName.toLowerCase().includes(searchText) || item.countryName.toUpperCase().includes(searchText)) ;
+        });
+        setDataItem(filteredData);
+
+
+
+    };
 
     const fcmToken = async () => {
         let token = await getFCMToken();
@@ -115,8 +137,9 @@ const Login = (props) => {
         )
     }
 
-    const handleLogin = () => {
-         props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
+    const handleLogin = async() => {
+          await storeStringData(IS_LOGIN,'true')
+          props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
         //state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
 
 
@@ -176,8 +199,8 @@ const Login = (props) => {
                         <Text style={{ color: 'white', margin: 8, fontSize:16, fontFamily: FontFamily['Gilroy'][500],letterSpacing:0.2 }}>{countryCode}</Text>
 
                         <TextInput
-                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily:FontFamily['Gilroy'][500],letterSpacing:0.2 }}
-                            placeholder="Enter mobile number"
+                            style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily:FontFamily['Gilroy'][500]}}
+                            placeholder="Enter mobile "
                             selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
                             value={mobile}
@@ -217,12 +240,12 @@ const Login = (props) => {
 
 
                             <TextInput
-                                style={{ color: 'white', fontSize: RFValue(14) }}
+                                style={{ color: 'white', fontSize:14 }}
                                 placeholder="Search by country name..."
                                 placeholderTextColor={'#757575'}
                                 selectionColor={Colors.cursor.white}
                                 value={searchText}
-                                onChangeText={(text) => setSearchText(text)}
+                                onChangeText={(text) => onsearch(text)}
                                 maxLength={15}
                                 returnKeyType={'search'}
                             />
@@ -234,6 +257,7 @@ const Login = (props) => {
                         <FlatList
                             style={{marginTop:25,backgroundColor:Colors.background.grey_black}}
                             data={dataItem}
+
                             renderItem={({ item }) =>
                                  <TouchableOpacity onPress={()=>selectCountry(item)}style={{width:width-25,height:25,margin:15,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
                                     <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -356,7 +380,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: height < 700 ? 24 : 30, //Here is the trick
+        bottom: height < 700 ? 24 : 24, //Here is the trick
     },
     bottomtextStyle: {
         color: '#FFFFFF',

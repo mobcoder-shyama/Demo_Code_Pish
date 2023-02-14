@@ -18,7 +18,7 @@ const TabStack = () => {
 
     const activeTabbar = (title, icon) => {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center',top:7.5 }}>
                 <SvgXml xml={icon} height={20} width={20} style={{bottom:10}} />
                 <Text style={[styles.activeTabTitle]}>{title}</Text>
             </View>
@@ -27,7 +27,7 @@ const TabStack = () => {
 
     const inactiveTabbar = (title, icon) => {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center',top:7.5 }}>
                 <SvgXml xml={icon} height={20} width={20}  style={{bottom:0}}  />
                 <Text style={[styles.inactiveTabTitle]}>{title}</Text>
             </View>

@@ -4,7 +4,8 @@ import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import AuthButton from '../components/AuthButton';
 import { FontFamily } from '../constant/FontFamily';
-import { Button } from 'neopop-native/components';
+import { storeStringData } from '../utils/AsyncStorage';
+import {FIRST_LOGIN} from '../utils/AsyncKeys'
 
 
 
@@ -41,10 +42,15 @@ const WelcomeScreen = (props) => {
         )
     }
 
+    const handleSkipButton=async()=>{
+         await storeStringData(FIRST_LOGIN,'true');
+         props.navigation.replace('tabs');
+    }
+
 
     return (
         <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'cover'}>
-            <TouchableOpacity onPress={()=>props.navigation.replace('tabs')} style={styles.skipButton}>
+            <TouchableOpacity onPress={()=>handleSkipButton()} style={styles.skipButton}>
                   <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
             {renderTextContainer()}

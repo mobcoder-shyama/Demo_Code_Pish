@@ -14,6 +14,8 @@ import { SvgXml } from 'react-native-svg';
 import AuthButton from "../../components/AuthButton";
 import { NextArrow } from '../../assests/svg/AuthSvg';
 import { FontFamily } from "../../constant/FontFamily";
+import { FIRST_LOGIN } from "../../utils/AsyncKeys";
+import { storeStringData } from "../../utils/AsyncStorage";
 const { width, height } = Dimensions.get("window");
 let iPad = Platform.isPad
 
@@ -208,6 +210,16 @@ export default class SwiperComponent extends Component {
         );
     };
 
+    handleSkipButton=async()=>{
+        await storeStringData(FIRST_LOGIN,'true');
+        this.props.navigation.replace('tabs');
+   }
+
+   handleLetsWin=async()=>{
+       await storeStringData(FIRST_LOGIN,'true');
+       this.props.navigation.replace('tabs')
+   }
+
     renderButton = () => {
         const lastScreen = this.state.index === this.state.total - 1;
         return (
@@ -218,13 +230,13 @@ export default class SwiperComponent extends Component {
                 {lastScreen ? (
                     // Show this button on the last screen
                     // TODO: Add a handler that would send a user to your app after onboarding is complete
-                    <AuthButton title={'Lets win'} isArrow={true} onpress={() =>this.props.navigation.replace('authstack')} type={2} />
+                    <AuthButton title={'Lets win'} isArrow={true} onpress={() =>this.handleLetsWin()} type={2} />
 
                 ) : (
 
                     <View style={{ flexDirection: 'row', justifyContent:'space-between', width: width - 55 }}>
 
-                        <TouchableOpacity  onPress={() => this.props.navigation.replace('tabs')}>
+                        <TouchableOpacity  onPress={() =>this.handleSkipButton()}>
                             <Text style={{
                                 fontSize: 16,
                                 color: '#FB8C00',

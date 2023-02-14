@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,6 +25,11 @@ import HowToScore from '../screens/dashboard/profile/HowToScore';
 import HowToPlay from '../screens/dashboard/profile/HowToPlay';
 import DeviceSettings from '../screens/dashboard/profile/DeviceSettings';
 import HomeScreen from '../screens/dashboard/home/Home';
+import { getStringData } from '../utils/AsyncStorage';
+import { FIRST_LOGIN } from '../utils/AsyncKeys';
+import MainHeader from '../screens/dashboard/components/MainHeader';
+import Notifications from '../screens/notification/Notifications';
+
 
 
 
@@ -40,7 +46,9 @@ const RootNavigation = props => {
 
     const [state, setState] = React.useState({
         loading: true,
-    })
+    });
+
+   
 
 
 
@@ -85,13 +93,13 @@ const RootNavigation = props => {
                     <Stack.Screen
                         name="user-account"
                         component={UserAccount}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false, animation:'slide_from_right' }}
                     />
 
                     <Stack.Screen
                         name="user-profile"
                         component={UserProfile}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false,animation:'slide_from_right' }}
                     />
 
                     <Stack.Screen
@@ -103,28 +111,34 @@ const RootNavigation = props => {
                     <Stack.Screen
                         name="settings"
                         component={DeviceSettings}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false,animation:'slide_from_right' }}
                     />
                     <Stack.Screen
                         name="faq"
                         component={FAQ}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false,animation:'slide_from_right' }}
                     />
                     <Stack.Screen
                         name="support"
                         component={Support}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false,animation:'slide_from_right' }}
                     />
 
                     <Stack.Screen
                         name="howtoscore"
                         component={HowToScore}
-                        options={{ headerShown: false, animation: 'slide_from_left' }}
+                        options={{ headerShown: false,animation:'slide_from_right'}}
                     />
                     <Stack.Screen
                         name="howtoplay"
                         component={HowToPlay}
-                        options={{ headerShown: false, animation: 'slide_from_right' }}
+                        options={{ headerShown: false,  animation:'slide_from_right'}}
+                    />
+
+                   <Stack.Screen
+                        name="notification"
+                        component={Notifications}
+                        options={{ headerShown: false, animation:'slide_from_right' }}
                     />
 
 

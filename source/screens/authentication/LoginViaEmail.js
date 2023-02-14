@@ -45,7 +45,7 @@ const LoginViaEmail = (props) => {
     const renderBottomView = () => {
         return (
             <View style={styles.bottomView}>
-                <Text style={[styles.bottomtextStyle, { color: '#757575' }]}>By continuing, you agree to our </Text>
+                <Text style={[styles.bottomtextStyle, { color: '#757575',fontFamily:FontFamily['Gilroy'][400],fontWeight:400  }]}>By continuing, you agree to our </Text>
                 <TouchableOpacity hitSlop={{ right: 20, left: 20, bottom: 20 }} onPress={() => props.navigation.navigate('terms')}>
                     <Text style={[styles.bottomtextStyle, { color: '#9E9E9E', marginTop: 6 }]}>Terms & Conditions</Text>
                 </TouchableOpacity>
@@ -125,11 +125,12 @@ const LoginViaEmail = (props) => {
                         <TextInput
                             style={{ color: 'white', paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][500] }}
                             placeholder="Enter email "
+                            multiline={false}
                             selectionColor={Colors.cursor.white}
                             placeholderTextColor={'#757575'}
                             value={email}
                             onChangeText={(text) => setEmail(text)}
-                            keyboardType='phone-pad'
+                            keyboardType='email-address'
                             maxLength={50}
                             returnKeyType={'done'}
                         />

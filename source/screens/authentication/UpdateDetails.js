@@ -11,111 +11,26 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/Dimensions';
 import DisableButton from '../../components/DisableButton';
 import { CheckIcon, DropdownIcon, IndianFlagIcon, SearchIcon, VioletSearchIcon, WhatsAppIcon, WhiteBackArrow } from '../../assests/svg/AuthSvg';
 import ViewSeparator from '../../components/ViewSeparator';
-import { getStringData } from '../../utils/AsyncStorage';
-import { LOGIN_VIA } from '../../utils/AsyncKeys';
+import { getStringData, storeStringData } from '../../utils/AsyncStorage';
+import { IS_LOGIN, LOGIN_VIA } from '../../utils/AsyncKeys';
 
 
-let dataItem = [
+let data = [
     {
         countryName: 'India',
         flag: IndianFlagIcon,
         countryCode: '+91'
     },
     {
-        countryName: 'India',
+        countryName: 'Bangladesh',
         flag: IndianFlagIcon,
-        countryCode: '+91'
+        countryCode: '+90'
     },
     {
-        countryName: 'India',
+        countryName: 'Pakistan',
         flag: IndianFlagIcon,
-        countryCode: '+91'
+        countryCode: '+928'
     },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    },
-    {
-        countryName: 'India',
-        flag: IndianFlagIcon,
-        countryCode: '+91'
-    }
 ]
 
 
@@ -125,28 +40,33 @@ const UpdateDetails = (props) => {
     const [email, setEmail] = useState('');
     const [mobile, setMobile] = useState('');
     const [fName, setFName] = useState('');
+    const [referral, setReferral] = useState('');
     const [emailFocus, setEmailFocus] = React.useState(false);
     const [fNameFocus, setFNameFocus] = React.useState(false);
     const [mobileFocus, setMobileFocus] = React.useState(false);
+    const [referralFocus, setReferralFocus] = React.useState(false);
     const [isWhatsApp, setWhatsApp] = useState(false);
     const [countryCodeModal, setCountryCodeModal] = useState(false);
     const [searchText, setSearchText] = useState('');
-    const [selectField, setSelectField] = useState(1)
+    const [selectField, setSelectField] = useState(1);
+    const [dataItem, setDataItem] = useState(data);
+    const[countryCode,setCountryCode] = useState('+91');
+  
 
 
 
-    useEffect(() => {
-        const backAction = () => {
-            return true
-        };
+    // useEffect(() => {
+    //     const backAction = () => {
+    //         return true
+    //     };
 
-        const backHandler = BackHandler.addEventListener(
-            'hardwareBackPress',
-            backAction,
-        );
+    //     const backHandler = BackHandler.addEventListener(
+    //         'hardwareBackPress',
+    //         backAction,
+    //     );
 
-        return () => backHandler.remove();
-    }, []);
+    //     return () => backHandler.remove();
+    // }, []);
 
 
     useEffect(() => {
@@ -157,6 +77,14 @@ const UpdateDetails = (props) => {
         let returnData = await getStringData(LOGIN_VIA);
         console.log("returnData----", returnData);
         setSelectField(returnData)
+    }
+
+
+    const selectCountry=(item)=>{
+        console.log("selectCountry------",item?.countryCode)
+        setCountryCode(item?.countryCode);
+        setSearchText('')
+        setCountryCodeModal(false);
     }
 
 
@@ -184,6 +112,18 @@ const UpdateDetails = (props) => {
         fName.length === 0 && setFNameFocus(false)
 
     }
+
+    const onBlurReferral = () => {
+        referral.length === 0 && setReferralFocus(false)
+
+    }
+
+    const handleLogin = async() => {
+        await storeStringData(IS_LOGIN,'true')
+        props.navigation.replace('tabs')
+
+
+  }
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -314,22 +254,22 @@ const UpdateDetails = (props) => {
                                     <TextInput
                                         autoFocus={true}
                                         style={{
-                                            color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,paddingHorizontal:45,
+                                            color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16, paddingHorizontal: 45,
                                             borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500], width: (width - 25) - 65
                                         }}
                                         placeholder={!mobileFocus ? "Mobile" : ''}
                                         placeholderTextColor={'#757575'}
                                         selectionColor={Colors.cursor.white}
                                         keyboardType='phone-pad'
-                                        maxLength={50}
+                                        maxLength={15}
                                         value={mobile}
                                         onChangeText={(text) => setMobile(text)}
                                         onFocus={() => setMobileFocus(true)}
                                         onBlur={() => onBlurInputMobile()}
                                     />
 
-                                    <View style={{position:'absolute',top:0,bottom:0,}}>
-                                        <Text style={{ color: 'white', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8, justifyContent: 'center', textAlign: 'center' }}>+91</Text>
+                                    <View style={{ position: 'absolute', top: 0, bottom: 0,justifyContent:'center' }}>
+                                        <Text style={{ color: 'white', fontSize: 16, fontSize: 16, fontFamily: FontFamily['Gilroy'][500], paddingHorizontal: 8, justifyContent: 'center', textAlign: 'center' }}>{countryCode}</Text>
 
                                     </View>
 
@@ -352,7 +292,7 @@ const UpdateDetails = (props) => {
 
                     <View style={[styles.inputContainer, { marginTop: 36 }]}>
 
-                        {fNameFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
+                        {referralFocus && <Animated.Text style={[{ color: 'grey', top: Platform.OS === 'android' ? 5 : -12, fontSize: 14, fontFamily: FontFamily['Gilroy'][500], color: '#BDBDBD' }]}>
                             Referral code (Optional)
                         </Animated.Text>}
 
@@ -362,15 +302,15 @@ const UpdateDetails = (props) => {
                                 color: 'white', fontSize: 16, borderBottomWidth: 1.0, fontSize: 16,
                                 borderBottomColor: '#757575', fontFamily: FontFamily['Gilroy'][500],
                             }}
-                            placeholder={!fNameFocus ? "Referral code (Optional)" : ''}
+                            placeholder={!referralFocus ? "Referral code (Optional)" : ''}
                             placeholderTextColor={'#757575'}
                             selectionColor={Colors.cursor.white}
                             keyboardType="default"
                             maxLength={50}
-                            // value={fName}
-                            // onChangeText={(text) => setFName(text)}
-                            onFocus={() => setFNameFocus(true)}
-                            onBlur={() => onBlurInputFName()}
+                            value={referral}
+                            onChangeText={(text) => setReferral(text)}
+                            onFocus={() => setReferralFocus(true)}
+                            onBlur={() => onBlurReferral()}
                         //returnKeyType={'send'}
                         />
 
@@ -420,20 +360,25 @@ const UpdateDetails = (props) => {
                             </View>
 
                             {/* <Loader/> */}
-                            {/* 
+
+
                             <FlatList
-                                style={{ marginTop: 25 }}
+                                style={{ marginTop: 25, backgroundColor: Colors.background.grey_black }}
                                 data={dataItem}
                                 renderItem={({ item }) =>
-                                    <View style={{ width: width - 25, height: 25, margin: 15, alignItems: 'center', flexDirection: 'row', }}>
-                                        <SvgXml xml={item.flag} height={20} width={20} />
-                                        <Text style={{ color: 'white', paddingHorizontal: 12 }}>{item.countryName}</Text>
-                                        <Text style={{ color: 'white', paddingHorizontal: 12 }}>{item.countryCode}</Text>
-                                    </View>
+                                    <TouchableOpacity onPress={() => selectCountry(item)} style={{ width: width - 25, height: 25, margin: 15, alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <SvgXml xml={item.flag} height={20} width={20} />
+                                            <Text style={{ color: 'white', paddingHorizontal: 12, fontFamily: FontFamily['Gilroy'][600] }}>{item.countryName}</Text>
+                                        </View>
+
+                                        <Text style={{ color: 'white', paddingHorizontal: 12, fontFamily: FontFamily['Gilroy'][600] }}>{item.countryCode}</Text>
+                                    </TouchableOpacity>
 
                                 }
                                 ItemSeparatorComponent={ViewSeparator}
-                            /> */}
+                            />
+
 
 
                         </View>
@@ -456,7 +401,7 @@ const UpdateDetails = (props) => {
 
                 </View>
 
-               
+
 
                 <View style={{ width: SCREEN_WIDTH - 25, height: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, alignSelf: 'center' }}>
 
@@ -474,7 +419,7 @@ const UpdateDetails = (props) => {
 
                 </View>
 
-                {fName?.length != 0 && (email?.length != 0 || mobile?.length != 0) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => props.navigation.replace('tabs')} />}
+                {fName?.length != 0 && (email?.length != 0 || mobile?.length != 0) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() =>handleLogin()} />}
                 {(fName?.length == 0 || (email?.length == 0 && mobile?.length == 0)) && <DisableButton type={2} title={'Continue'} isArrow={false} />}
 
 
@@ -483,6 +428,8 @@ const UpdateDetails = (props) => {
 
         </TouchableWithoutFeedback>
     )
+
+   
 
 
 

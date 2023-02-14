@@ -13,13 +13,13 @@ import BadgeView from './components/BadgeView';
 
 const UserProfile = (props) => {
 
-    const renderUserDetails = (icon, title, value) => {
+    const renderUserDetails = (icon, title, value, height, width) => {
         return (
-            <View style={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: 'center', }}>
                 <View style={{ flexDirection: 'row', marginTop: 0, justifyContent: 'space-between', paddingHorizontal: 21, alignItems: 'center' }}>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <SvgXml xml={icon} height={22} width={14} />
+                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                        <SvgXml xml={icon} height={height} width={width} />
                         <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left' }]}>{title}</Text>
 
                     </View>
@@ -63,56 +63,59 @@ const UserProfile = (props) => {
 
             <View style={{ width: 68, height: 68, borderWidth: 1, borderColor: Colors.border.white, borderRadius: 34, position: 'absolute', marginTop: 125 }}>
 
-</View>
+            </View>
 
             <ScrollView>
 
-            <View style={{ marginTop: 24, alignItems: 'center' }}>
+                <View style={{ marginTop: 24, alignItems: 'center' }}>
 
-                <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', fontSize: 24 }]}>Kristin Watson</Text>
+                    <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', fontSize: 24 }]}>Kristin Watson</Text>
 
-                <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', marginTop: 5, fontSize: 16 }]}>Female, 26 years old</Text>
+                    <Text style={[userAccountStyles.buttonText, { marginHorizontal: 17, textAlign: 'left', marginTop: 5, fontSize: 16 }]}>Female, 26 years old</Text>
 
-                <AuthButton type={2} title={'Edit Profile'} width={124} onpress={() => props.navigation.navigate('user-profile-update')} />
+                    <AuthButton type={2} title={'Edit Profile'} width={124} onpress={() => props.navigation.navigate('user-profile-update')} />
 
-                <View style={{ marginTop: 24,flexDirection:'row',width:SCREEN_WIDTH-25,alignSelf:'center',justifyContent:'space-around',alignContent:'center' }}>
-                    <BadgeView icon={PlayedIcon}  title={'Points'} value ={2322}/ >
-                    <BadgeView  icon={WinBadgeIcon} title={'Wins'} value ={2322} />
-                    <BadgeView  icon={PlayedIcon} title={'Played'}  value ={2322}/>
+                    <View style={{ marginTop: 24, flexDirection: 'row', width: SCREEN_WIDTH - 25, alignSelf: 'center', justifyContent: 'space-around', alignContent: 'center' }}>
+                        <BadgeView icon={PlayedIcon} title={'QPoints'} value={2322} />
+                        <BadgeView icon={WinBadgeIcon} title={'Won'} value={2322} />
+                        <BadgeView icon={PlayedIcon} title={'Played'} value={2322} />
+                    </View>
+
+
                 </View>
 
-
-            </View>
-
-            {/* user circle profile */}
-
-           
-
-            {/*  */}
-
-            <View style={{ height: 56 }} />
-
-            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', minHeight: 128, height: 'auto', borderRadius: 24, justifyContent: 'center' }}>
+                {/* user circle profile */}
 
 
 
-                {renderUserDetails(WhiteEmailIcon, 'Email', "432432432")}
+                {/*  */}
 
-                <View style={{ height: 10 }} />
+                <View style={{ height: 56 }} />
 
-                {renderUserDetails(MobileIcon, 'Phone', "342345345")}
-
-            </View>
-
-            <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', height: 122, borderRadius: 24, marginTop: 24, justifyContent: 'center' }}>
-
-                {renderUserDetails(HomeAddressIcon, '105, Vars Casa Rosa, Sakshi Nagar Pai Layout, Mahadevapura, Bengaluru Karnataka 560048', "")}
+                <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', minHeight: 128, height: 'auto', borderRadius: 24, justifyContent: 'center' }}>
 
 
 
-            </View>
 
-            <View style={{height:25}}/>
+                    {renderUserDetails(MobileIcon, 'Phone', "342345345", 22, 14)}
+
+                    {/* <View style={{ height: 10 }} /> */}
+
+                    {renderUserDetails(WhiteEmailIcon, 'Mobile', "432432432", 16, 20)}
+
+
+
+                </View>
+
+                <View style={{ width: SCREEN_WIDTH - 25, backgroundColor: '#252525', height: 122, borderRadius: 24, marginTop: 24, justifyContent: 'center' }}>
+
+                    {renderUserDetails(HomeAddressIcon, '105, Vars Casa Rosa, Sakshi Nagar Pai Layout, Mahadevapura, Bengaluru Karnataka 560048', "", 17.63, 16)}
+
+
+
+                </View>
+
+                <View style={{ height: 25 }} />
 
 
             </ScrollView>

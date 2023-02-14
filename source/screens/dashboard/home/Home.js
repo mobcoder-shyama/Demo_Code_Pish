@@ -5,6 +5,8 @@ import { QuizKart_Logo } from '../../../assests/svg/AuthSvg';
 import { PlayNowButton, NeoPopBGImg, NeoPopButton } from '../../../assests/svg/MainSvg';
 import PopButton from '../../../components/PopButton';
 import Colors from '../../../constant/Colors';
+import { IS_LOGIN } from '../../../utils/AsyncKeys';
+import { getStringData } from '../../../utils/AsyncStorage';
 import MainHeader from '../components/MainHeader';
 
 const HomeScreen = (props) => {
@@ -12,6 +14,28 @@ const HomeScreen = (props) => {
   const [state, setState] = React.useState({
     animation: new Animated.Value(0),
   })
+  
+  const handleLoginStatus = async () => {
+    let isLogin = await getStringData(IS_LOGIN);
+    if (isLogin === 'true') {
+      props.navigation.navigate('user-account')
+    } else {
+      console.log('handleProfile status-------', isLogin)
+      props.navigation.replace('authstack');
+    }
+  }
+
+  const handleNotification = async () => {
+    let isLogin = await getStringData(IS_LOGIN);
+    if (isLogin === 'true') {
+      props.navigation.navigate('notification')
+    } else {
+      console.log('handleProfile status-------', isLogin)
+      props.navigation.replace('authstack');
+    }
+  }
+
+
 
 
 
@@ -37,7 +61,7 @@ const HomeScreen = (props) => {
     try {
       Animated.timing(state.animation, {
         toValue: 1,
-        duration:100,
+        duration: 100,
       }).start();
     } catch (e) { }
   };
@@ -55,16 +79,16 @@ const HomeScreen = (props) => {
   return (
     <View style={styles.mainContainer}>
 
-      <MainHeader onpress={() => props.navigation.navigate('user-account')} />
+      <MainHeader onpress={() =>handleLoginStatus()} handleNotification={()=>handleNotification()} />
 
-  </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    mainContainer:{
-      flex: 1, alignItems: 'center',backgroundColor:Colors.background.dark_black
-    }
+  mainContainer: {
+    flex: 1, alignItems: 'center', backgroundColor: Colors.background.dark_black
+  }
 });
 
 export default HomeScreen
