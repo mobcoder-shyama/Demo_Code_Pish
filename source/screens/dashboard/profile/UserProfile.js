@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, ImageBackground, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, ImageBackground, TouchableOpacity, StyleSheet, ScrollView, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
 import { HomeAddressIcon, MobileIcon, PlayedIcon, ThreeDotIcon, WhiteEmailIcon, WinBadgeIcon } from '../../../assests/svg/MainSvg';
@@ -35,7 +35,7 @@ const UserProfile = (props) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#000000' }}>
 
-            <ImageBackground source={require('../../../assests/png/UserProfileBGImg.png')} resizeMode={'stretch'} style={{ height: 206, width: SCREEN_WIDTH }}>
+            <ImageBackground source={require('../../../assests/png/UserProfileBGImg.png')} resizeMode={'stretch'} style={{ height:Platform.OS ==='android'?206 :206, width: SCREEN_WIDTH }}>
 
                 <View style={userAccountStyles.header}>
 

@@ -1,20 +1,15 @@
 import React,{useEffect} from 'react';
-import {View,Text, StyleSheet} from 'react-native';
+import {View,Text, StyleSheet, Platform} from 'react-native';
 import Colors from '../constant/Colors';
 import { SvgXml } from 'react-native-svg';
 import { Splash_Logo,Heart_Icon } from '../assests/svg/AuthSvg';
 import { FontFamily } from '../constant/FontFamily';
 import { getStringData } from '../utils/AsyncStorage';
 import { FIRST_LOGIN } from '../utils/AsyncKeys';
+import { addIdentifier } from '../utils/Effect';
 
 const Splash=(props)=>{
 
-
-    // React.useEffect(() => {
-    //     setTimeout(() => {
-    //        props.navigation.replace('welcome')
-    //     }, 1000);
-    // }, [props]);
 
     useEffect(()=>{
         getLocalData();
@@ -32,18 +27,16 @@ const Splash=(props)=>{
     
 
     return(
+        
         <View style={styles.container}>
 
-            <SvgXml xml={Splash_Logo} height={147} width={140} />
+            <SvgXml xml={Splash_Logo} height={147} width={140} {...addIdentifier('Splash_App_Logo')} />
 
-            <View style={styles.bottomView}>
+            <View style={styles.bottomView} {...addIdentifier('Splash_Bottom_Text_View')}>
                <Text style={styles.textStyle}>Crafted with </Text>
                 <SvgXml xml={Heart_Icon} height={12} width={13} />
                <Text style={styles.textStyle}> in New Delhi, India</Text>
             </View>
-
-
-
 
        </View>
     )
@@ -66,7 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute', //Here is the trick
-        bottom: 60, //Here is the trick
+        bottom:Platform.OS ==='android'?24:60, //Here is the trick
         flexDirection:'row'
       },
       textStyle: {

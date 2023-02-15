@@ -7,7 +7,8 @@ export default {
     textColor:{
         white:'#FFFFFF',
         lightWhite:'#E7E7E7',
-        orange:'#FB8C00'
+        orange:'#FB8C00',
+        voilet:'#9945FF',
     },
     border:{
         gray:'#E5E5F3',

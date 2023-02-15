@@ -94,7 +94,7 @@ const PhoneOTPVerification = (props) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>
 
-                <View style={{ marginTop: SCREEN_HEIGHT < 675 ? 25 : Platform.OS === 'android' ? 25 : 60, alignSelf: 'center' }}>
+                <View style={{ marginTop: SCREEN_HEIGHT < 675 ? 25 : Platform.OS === 'android' ? 24 : 60, alignSelf: 'center' }}>
 
                     {/* <Header title={''} navigation={props.navigation} /> */}
 

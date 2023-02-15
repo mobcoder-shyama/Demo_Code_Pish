@@ -31,7 +31,7 @@ const AccountListItem = (props) => {
 
 const styles = StyleSheet.create({
     mainContainer:{
-        alignItems: 'center', marginTop: 29, flexDirection: 'row', justifyContent: 'space-between', width: SCREEN_WIDTH - 25
+        alignItems: 'center', marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', width: SCREEN_WIDTH - 25
     },
     title:{
         color: Colors.textColor.white, paddingHorizontal: 12, fontSize: 16, fontFamily: FontFamily['Gilroy'][500],letterSpacing:0.1,textAlign:'center'

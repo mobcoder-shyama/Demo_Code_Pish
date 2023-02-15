@@ -371,7 +371,7 @@ const styles = StyleSheet.create({
             },
             android: {
                 paddingVertical: iPad ? 10 : height > 700 ? 20 : 40,
-                marginBottom: iPad ? 40 : height > 700 ? 60 : 5,
+                marginBottom: iPad ? 40 : height > 700 ? 24 : 5,
 
             },
         }),

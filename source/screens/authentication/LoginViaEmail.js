@@ -93,13 +93,23 @@ const LoginViaEmail = (props) => {
             <View style={styles.container}>
 
 
-                <ImageBackground source={height < 700 ? require('../../assests/png/LoginBGImg_Small.png') : require('../../assests/png/LoginBGImg.png')} resizeMode={'stretch'} style={{ height: height < 700 ? 160 : 296, width: width }}>
+                <ImageBackground source={height < 700 ? require('../../assests/png/LoginBGImg_Small.png') : require('../../assests/png/LoginBGImg.png')} resizeMode={'stretch'} style={{ height: height < 700 ? 160 :Platform.OS ==='android'?274 : 296, width: width }}>
 
-                    <View style={{ marginTop: 56, width, height: 'auto', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 20 }}>
+                    {/* <View style={{ width, height: 'auto', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 20 }}>
+
+                        <SvgXml xml={WinFantasyIcon} width={92.6} height={93.3} marginTop={32} />
+
+                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ height: 24, width: 64, backgroundColor: '#2D2563', borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#918DAD', right: 40, bottom: 0 }}>
+                            <Text style={{ color: '#FFFFFF', fontFamily: FontFamily['Gilroy'][400], fontSize: 13 }}>Close</Text>
+                        </TouchableOpacity>
+
+                    </View> */}
+
+                    <View style={{ width: width - 16,height:56, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', alignSelf: 'center', marginTop: Platform.OS === 'android' ? 32:56 }}>
 
                         <SvgXml xml={WinFantasyIcon} width={92.6} height={93.3} />
 
-                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ height: 24, width: 64, backgroundColor: '#2D2563', borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#918DAD', right: 40, bottom: 20 }}>
+                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ height: 24, width: 64, backgroundColor: '#2D2563', borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#918DAD', }}>
                             <Text style={{ color: '#FFFFFF', fontFamily: FontFamily['Gilroy'][400], fontSize: 13 }}>Close</Text>
                         </TouchableOpacity>
 
@@ -111,8 +121,9 @@ const LoginViaEmail = (props) => {
 
                 {/* header container */}
 
-                <View style={{ alignItems: 'center' }}>
-                    <Text style={styles.textStyle}>India’s first fantasy{'\n'}eCommerce platform</Text>
+                <View style={{ alignItems: 'center', marginTop: 32 }}>
+                    <Text style={[styles.textStyle]}>India’s first fantasy</Text>
+                    <Text style={[styles.textStyle, { marginTop: 4 }]}> eCommerce platform</Text>
                 </View>
 
 
@@ -197,7 +208,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
         //justifyContent:'space-around',
         alignItems: 'center',
-        marginTop: height < 600 ? 0 : 25,
+        marginTop: height < 600 ? 0 : 24,
         borderWidth: 1,
         borderColor: '#424242',
         borderRadius: 8
@@ -207,7 +218,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 24,
         fontFamily: FontFamily['Gilroy'][500],
-        marginTop: 36,
+        //marginTop: 36,
         textAlign: 'center',
         letterSpacing: 1,
         lineHeight: 29

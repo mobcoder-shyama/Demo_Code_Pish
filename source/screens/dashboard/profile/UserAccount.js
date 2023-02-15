@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View,ImageBackground,TouchableOpacity,StyleSheet, ScrollView,Alert } from 'react-native';
+import { Text, View,ImageBackground,TouchableOpacity,StyleSheet, ScrollView,Alert, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { WhiteBackArrow } from '../../../assests/svg/AuthSvg';
 import { AppTextLogo, HowtoPlayIcon, HowtoScoreIcon, LineSeparator, LogoutIcon, FAQIcon, MyCampaignIcon, SupportIcon, TermsIcon, SettingIcon } from '../../../assests/svg/MainSvg';
@@ -37,10 +37,11 @@ const UserAccount = (props) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#000000' }}>
           
-            <ImageBackground source={require('../../../assests/png/UserAccounBGImg.png')} resizeMode={'stretch'} style={{ height:250, width: SCREEN_WIDTH }}>
+            <ImageBackground source={require('../../../assests/png/UserAccounBGImg.png')} resizeMode={'stretch'} style={{ height:Platform.OS ==='android'?226:250, width: SCREEN_WIDTH }}>
 
         
-                 <View style={{height:52}}/>
+                 <View style={{height:Platform.OS ==='android'?36:60}}/>
+                 
                  <Header title={''} navigation={props.navigation}/>
               
               
@@ -75,7 +76,7 @@ const UserAccount = (props) => {
 
             </ImageBackground>
 
-            <View style={{height:SCREEN_HEIGHT<675?10:25}}/>
+            <View style={{height:SCREEN_HEIGHT<675?10:24}}/>
 
             <ScrollView style={{flex:1,alignSelf:'center',width:SCREEN_WIDTH-25}}>
 

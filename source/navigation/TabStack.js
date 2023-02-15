@@ -10,6 +10,7 @@ import { Home_Active_Icon, Home_Inactive_Icon, Line_Icon, Question_Active_Icon, 
 import QuizRules from '../screens/dashboard/quiz_rules/QuizRules';
 import { SCREEN_WIDTH } from '../constant/Dimensions';
 import { FontFamily } from '../constant/FontFamily';
+import Colors from '../constant/Colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,8 +41,8 @@ const TabStack = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: 'black',
-                    height:Platform.OS === 'android'?85:120,
+                    backgroundColor:Colors.background.dark_black,
+                    height:Platform.OS === 'android'?75:120,
                     borderTopWidth: 1,
                     borderTopColor: 'transparent',
                 },
