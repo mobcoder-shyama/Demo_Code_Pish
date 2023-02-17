@@ -1,7 +1,11 @@
 [
     {
        "Name":"dev",
-       "Domain":""    
+       "Domain":"http://apidev.quizkart.com/api/v2/app/"    
+    },
+    {
+      "Name":"prod",
+      "Domain":"http://apidev.quizkart.com/api/v2/app/"  
     }
    
    

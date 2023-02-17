@@ -1,5 +1,5 @@
 import environments from './environments.json'
-let env_index = 2
+let env_index = 0
 
 
 export default (() => {
@@ -8,8 +8,7 @@ export default (() => {
 
      //authentication
 
-     'AUTH':api_token_dev,
-     'USER_LOGIN': environments[env_index].Domain+"user/login/v2", 
+     'MOBILE_SENT_OTP': environments[env_index].Domain+"send-otp-to-mobile", 
    
 
       

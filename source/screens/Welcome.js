@@ -49,15 +49,15 @@ const WelcomeScreen = (props) => {
 
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'stretch'}>
+        // <SafeAreaView style={{ flex: 1 }}>
+            <ImageBackground source={require('../assests/png/welcome_bg.png')} style={{ flex: 1 }} resizeMode={'cover'}>
                 <TouchableOpacity onPress={() => handleSkipButton()} style={styles.skipButton}>
                     <Text style={styles.skipText}>Skip</Text>
                 </TouchableOpacity>
                 {renderTextContainer()}
                 {renderStartButton()}
             </ImageBackground>
-        </SafeAreaView>
+        // </SafeAreaView>
 
     )
 

@@ -24,14 +24,29 @@ const PhoneOTPVerification = (props) => {
 
     const [secondsLeft, setSecondsLeft] = useState(60);
     const [isResendOTP, setResendOTP] = useState(false);
-    const [otp, setOTP] = useState('');
-    const sendEmail = props?.route?.parmas?.email;
+    const [otp,setOTP] = useState(null);
+   
     console.log("props valuesss", props?.route?.params?.mobile)
 
 
     useEffect(() => {
-        startTimer();
+      startTimer();
     }, []);
+
+    // useEffect(() => {
+    //     const unsubscribe = props.navigation.addListener('focus', () => {
+    //       console.log("focus----",otp)   
+    //       //setOTP('');
+    //     });
+    //     return unsubscribe;
+    //   }, [props?.navigation]);
+
+
+    useEffect(() => {
+        if(otp?.length === 6){
+            handleOTPVerification();
+        }
+     }, [otp]);
 
     useEffect(() => {
         if (secondsLeft === 0) {
@@ -77,21 +92,20 @@ const PhoneOTPVerification = (props) => {
         )
     }
 
-    const updateCode = (value) => {
-        let otpValue = otp + value;
-        console.log("otpValue------", otpValue)
-        otpValue?.length == 6 && setOTP(otpValue);
+   
 
-    }
-
-    const codeFilled=async()=>{
-        await storeObjectData(LOGIN_VIA,1);    // 1 For via mobile number
+    const handleOTPVerification=async()=>{
+        console.log("complete otp values ----",otp,"----otpValue")
+        await storeObjectData(LOGIN_VIA,1); 
         props.navigation.replace('update_details');
     }
+
+   
 
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+           
             <View style={styles.container}>
 
                 <View style={{ marginTop: SCREEN_HEIGHT < 675 ? 25 : Platform.OS === 'android' ? 24 : 60, alignSelf: 'center' }}>
@@ -132,8 +146,7 @@ const PhoneOTPVerification = (props) => {
                             style={{ width: SCREEN_HEIGHT < 675 ? width - 15 : width - 25, height: 20, marginTop: 45, alignSelf: 'center' }}
                             codeInputFieldStyle={styles.otpBoxStyle}
                             codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                            onCodeChanged={(text) => updateCode(text)}
-                            onCodeFilled={() =>codeFilled()}    // 
+                            onCodeChanged={(text) => setOTP(text)}
                             keyboardAppearance={'light'}
                         />
 

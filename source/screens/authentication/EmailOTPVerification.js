@@ -77,16 +77,21 @@ const EmailOTPVerification = (props) => {
         )
     }
 
+   
+
     const updateCode = (value) => {
-        let otpValue = otp + value;
-        console.log("otpValue------", otpValue)
-        otpValue?.length == 6 && setOTP(otpValue);
+        let otpValue = value;
+        console.log("otpValue------", otpValue);
+        if(otpValue.length === 6){
+            setOTP(otpValue);
+        } 
 
     }
 
     const handleLogin=async()=>{
-        await storeObjectData(LOGIN_VIA,2);    // 1 For via mobile number
-        props.navigation.replace('update_details');
+        console.log("handleLogin-----",otp)
+       // await storeObjectData(LOGIN_VIA,2);    // 1 For via mobile number
+       // props.navigation.replace('update_details');
     }
 
 

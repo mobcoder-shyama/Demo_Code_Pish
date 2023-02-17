@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Modal, StyleSheet, Dimensions, Keyboard, Text, TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, BackHandler, Alert, FlatList, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { connect } from 'react-redux';
 import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, SearchIcon, GmailIcon, FBIcon, DropdownIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
 import DisableButton from '../../components/DisableButton';
@@ -19,6 +20,8 @@ import SocialButton from '../../components/SocialButton';
 import { WhiteEmailIcon } from '../../assests/svg/MainSvg';
 import { storeStringData } from '../../utils/AsyncStorage';
 import { IS_LOGIN } from '../../utils/AsyncKeys';
+
+import {login} from '../../redux/actions/AuthActions'
 
 let data = [
     {
@@ -138,8 +141,14 @@ const Login = (props) => {
     }
 
     const handleLogin = async () => {
-        await storeStringData(IS_LOGIN, 'true')
-        props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
+        let data = {
+            "mobileNumber":mobile,
+            "countryCode":countryCode
+        }
+        console.log("data object for mobile",data)
+        props.login(data);
+        //await storeStringData(IS_LOGIN, 'true')
+        //props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
         //state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
 
 
@@ -292,9 +301,9 @@ const Login = (props) => {
                 </Modal>
 
 
-                {!isEmpty(mobile) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleLogin()} />}
+                {(!isEmpty(mobile) && mobile?.length > 9) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleLogin()} />}
 
-                {isEmpty(mobile) && <DisableButton type={2} title={'Continue'} />}
+                {(isEmpty(mobile) || mobile?.length < 10 )&& <DisableButton type={2} title={'Continue'} />}
                 <View style={{ height: 14 }} />
 
 
@@ -422,4 +431,12 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        userInfo: state
+    }
+};
+
+
+export default connect(mapStateToProps,{login})(Login);
+

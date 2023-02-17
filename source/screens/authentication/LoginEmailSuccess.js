@@ -80,22 +80,16 @@ const LoginEmailSuccess = (props) => {
     }
 
     const handleLogin=async()=>{
-        console.log("0000000000000-----stye",otpValue?.length);
+        console.log("0000000000000-----stye",otpValue?.length,"------",otpValue);
         await storeObjectData(LOGIN_VIA,2);    // 1 For via mobile number
         props.navigation.replace('update_details');
     }
 
+    
+
     const updateCode = (value) => {
-
          setOTPValue(value)
-          
-
-          console.log("2321423432-----stye",otpValue);
-
-        //otpInput.push(...otpInput,value);
-        //console.log("otp value pushed in array-----",otpInput.length);
-       // otpInput.length>5 &&  console.log("otp value pushed in array 3543534-----",otpInput);
-
+         console.log("2321423432-----stye",otpValue);
     }
 
 
@@ -132,8 +126,8 @@ const LoginEmailSuccess = (props) => {
                         codeInputFieldStyle={styles.otpBoxStyle}
                         codeInputHighlightStyle={styles.underlineStyleHighLighted}
                         onCodeChanged={(code) => updateCode(code)}
-                        onFocus={()=>Alert.alert("focuss")}
-                        onBlur={()=>Alert.alert("Blue")}
+                        //onFocus={()=>Alert.alert("focuss")}
+                        //onBlur={()=>Alert.alert("Blue")}
                         keyboardAppearance={'dark'}
                     />
                     <View style={{height:28}}/>

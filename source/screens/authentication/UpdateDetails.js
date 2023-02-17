@@ -13,6 +13,8 @@ import { CheckIcon, DropdownIcon, IndianFlagIcon, SearchIcon, VioletSearchIcon, 
 import ViewSeparator from '../../components/ViewSeparator';
 import { getStringData, storeStringData } from '../../utils/AsyncStorage';
 import { IS_LOGIN, LOGIN_VIA } from '../../utils/AsyncKeys';
+import { useDebunceEffect } from '../../utils/Effect';
+import { validEmail } from '../../utils/InputValidation';
 
 
 let data = [
@@ -51,6 +53,7 @@ const UpdateDetails = (props) => {
     const [selectField, setSelectField] = useState(1);
     const [dataItem, setDataItem] = useState(data);
     const[countryCode,setCountryCode] = useState('+91');
+    const [isValidEmail, setEmailValidate] = useState(false);
   
 
 
@@ -72,6 +75,14 @@ const UpdateDetails = (props) => {
     useEffect(() => {
         getStoreData();
     }, []);
+
+    useDebunceEffect(() => {
+        if (email.length != 0) {
+            let isValid = validEmail(email);
+            setEmailValidate(isValid);
+        }
+
+    }, [email], 500)
 
     const getStoreData = async () => {
         let returnData = await getStringData(LOGIN_VIA);
@@ -213,13 +224,13 @@ const UpdateDetails = (props) => {
                             placeholder={!mobileFocus ? "Mobile" : ''}
                             placeholderTextColor={'#757575'}
                             selectionColor={Colors.cursor.white}
-                            keyboardType="email-address"
+                            keyboardType="phone-pad"
                             maxLength={50}
                             value={email}
                             onChangeText={(text) => setMobile(text)}
                             onFocus={() => setMobileFocus(true)}
-                            onBlur={() => onBlurInputMobile()}
-                        //returnKeyType={'send'}
+                            //onBlur={() => onBlurInputMobile()}
+                            //returnKeyType={'send'}
                         />}
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
@@ -419,8 +430,8 @@ const UpdateDetails = (props) => {
 
                 </View>
 
-                {fName?.length != 0 && (email?.length != 0 || mobile?.length != 0) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() =>handleLogin()} />}
-                {(fName?.length == 0 || (email?.length == 0 && mobile?.length == 0)) && <DisableButton type={2} title={'Continue'} isArrow={false} />}
+                {fName?.length != 0 && ((email?.length != 0 && isValidEmail) || (mobile?.length != 0 && mobile?.length >= 10 )) && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() =>handleLogin()} />}
+                {(fName?.length == 0 || ((email?.length >= 0 && !isValidEmail) && (mobile?.length <= 9))) && <DisableButton type={2} title={'Continue'} isArrow={false} />}
 
 
 

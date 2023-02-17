@@ -21,7 +21,7 @@ const Splash=(props)=>{
          console.log("isFirstLogin---------",isFirstLogin);
          setTimeout(() => {
             isFirstLogin === 'true'? props.navigation.replace('tabs'):props.navigation.replace('welcome')
-         }, 1000);
+         },3000);
     }
 
     
@@ -32,10 +32,10 @@ const Splash=(props)=>{
 
             <SvgXml xml={Splash_Logo} height={147} width={140} {...addIdentifier('Splash_App_Logo')} />
 
-            <View style={styles.bottomView} {...addIdentifier('Splash_Bottom_Text_View')}>
-               <Text style={styles.textStyle}>Crafted with </Text>
-                <SvgXml xml={Heart_Icon} height={12} width={13} />
-               <Text style={styles.textStyle}> in New Delhi, India</Text>
+            <View style={styles.bottomView}>
+               <Text style={styles.textStyle}  {...addIdentifier('Crafted_With_Text')}>Crafted with </Text>
+                <SvgXml xml={Heart_Icon} height={12} width={13}  {...addIdentifier('Hearth_Icon')} />
+               <Text style={styles.textStyle}  {...addIdentifier('NewDelhi_Text')}> in New Delhi, India</Text>
             </View>
 
        </View>
