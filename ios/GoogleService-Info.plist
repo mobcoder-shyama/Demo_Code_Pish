@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>122326759988-ncmdiqu616la9m1fdvnl2mpn04084mln.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.122326759988-ncmdiqu616la9m1fdvnl2mpn04084mln</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDC_6mSu7DoD2G7sYtznaqm2dC1_K_ZoB8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>122326759988</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.quizkart.dev</string>
+	<key>PROJECT_ID</key>
+	<string>quizkart-2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>quizkart-2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:122326759988:ios:7267cc13f1c79339db6861</string>
+</dict>
+</plist>
