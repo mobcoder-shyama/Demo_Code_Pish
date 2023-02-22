@@ -14,3 +14,24 @@ export function loginUser(params) {
      return axios.post(Api.MOBILE_SENT_OTP,params)
 
 }
+
+export function mobileSentOTP(params) {
+     return axios.post(Api.MOBILE_SENT_OTP,params)
+
+}
+
+export function emailSentOTP(params) {
+     return axios.post(Api.EMAIL_SENT_OTP,params)
+
+}
+
+export function otpVerify(params) {
+     return axios.post(Api.OTP_VERIFY,params)
+
+}
+
+export function checkUserExist(params) {
+     return axios.post(Api.USER_CHECK_VALIDATION,params)
+
+}
+

@@ -21,7 +21,7 @@ import { WhiteEmailIcon } from '../../assests/svg/MainSvg';
 import { storeStringData } from '../../utils/AsyncStorage';
 import { IS_LOGIN } from '../../utils/AsyncKeys';
 
-import {login} from '../../redux/actions/AuthActions'
+import {mobileOTP} from '../../redux/actions/AuthActions'
 
 let data = [
     {
@@ -146,9 +146,10 @@ const Login = (props) => {
             "countryCode":countryCode
         }
         console.log("data object for mobile",data)
-        props.login(data);
-        //await storeStringData(IS_LOGIN, 'true')
-        //props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
+        props.mobileOTP(data);
+        await storeStringData(IS_LOGIN, 'true')
+        props.navigation.navigate('phone_otp_verification', { 'mobile': mobile })
+       
         //state?.isContinue ? props.navigation.navigate('phone_otp_verification', { 'mobile': mobile }) : setState({ isContinue: true })
 
 
@@ -438,5 +439,5 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps,{login})(Login);
+export default connect(mapStateToProps,{mobileOTP})(Login);
 

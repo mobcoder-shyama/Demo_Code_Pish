@@ -38,6 +38,7 @@ const InputField = (props) => {
 const UpdateUserProfile = (props) => {
    
     const[name,setName] = useState('')
+    const[pincode,setPincode] = useState('')
     const[nameFocus,setNameFocus] = useState(false)
 
     const updateName=(text)=>{

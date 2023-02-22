@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Modal, StyleSheet, Dimensions, Keyboard, Text,TouchableOpacity, TextInput, ImageBackground, TouchableWithoutFeedback, ScrollView, Alert, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { connect } from 'react-redux';
 import { GreyEmailIcon, WinFantasyIcon, IndianFlagIcon, WhiteBackArrow, VioletSearchIcon, GmailIcon, FBIcon } from '../../assests/svg/AuthSvg';
 import AuthButton from '../../components/AuthButton';
 import DisableButton from '../../components/DisableButton';
@@ -13,7 +14,7 @@ import { useDebunceEffect } from '../../utils/Effect';
 import { FontFamily } from '../../constant/FontFamily';
 import { SCREEN_HEIGHT } from '../../constant/Dimensions';
 
-
+import {emailOTP} from '../../redux/actions/AuthActions'
 
 
 const LoginViaEmail = (props) => {
@@ -85,6 +86,19 @@ const LoginViaEmail = (props) => {
 
     }
 
+    const handleOTPSent = async () => {
+        let data = {
+            "email":email,
+        }
+        console.log("data object for mobile",data)
+        let response = await props.emailOTP(data);
+        console.log("response of email otp sent",response)
+        props.navigation.navigate('login_email_success', { 'email': email,"data":response?.data })
+       
+
+
+    }
+
     const { isContinue } = state;
 
     return (
@@ -151,7 +165,7 @@ const LoginViaEmail = (props) => {
               
               
 
-                {isValidEmail && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => props.navigation.navigate('login_email_success', { 'email': email })} />}
+                {isValidEmail && <AuthButton type={2} title={'Continue'} isArrow={false} onpress={() => handleOTPSent()} />}
 
                 {!isValidEmail && <DisableButton type={2} title={'Continue'} />}
 
@@ -265,4 +279,10 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LoginViaEmail;
+const mapStateToProps = state => {
+    return {
+        userInfo: state
+    }
+};
+
+export default connect(mapStateToProps,{emailOTP})(LoginViaEmail);
